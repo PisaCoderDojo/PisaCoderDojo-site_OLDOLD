@@ -1,11 +1,28 @@
-<html>
+<html ng-app="coderDojo">
   <head>
   <title>CoderDojo - Pisa</title>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
   <script src='js/main.js'></script>
+  <script src='js/pages/home.js'></script>
+  <script src='js/pages/contatti.js'></script>
   <link src="css/style.css"></link>
+  <script type="text/javascript">
+    angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+  </script>
   </head>
   <body>
-    HELLO WORLD!
+    <div class="main" ng-controller="MainController">
+      <header>CODER DOJO - PISA</header>
+
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="contatti">Contatti</a></li>
+      </ul>
+
+      <div ng-view></div>
+
+      <footer>roba che sta in fondo alla pagina</footer>
+    </div>
   </body>
 </html>
