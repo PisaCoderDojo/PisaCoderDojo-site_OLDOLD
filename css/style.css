@@ -1,8 +1,16 @@
-
 header hgroup{
   margin: 0 auto;
   display:table;
 }
+
 header img{
   float:left;
+}
+
+.background{
+  background:grey;
+}
+
+.container{
+  background:white;
 }
