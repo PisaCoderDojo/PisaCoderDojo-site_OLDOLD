@@ -1,0 +1,29 @@
+<div ng-controller="NewsController">
+  <div class="row">
+    <div class="col-sm-9">
+      <div ng-repeat="post in news" class="blog-post">
+        <h2 class="blog-post-title" ng-bind="post.title"></h2>
+        <p class="blog-post-meta" ng-bind="post.date"></p>
+        <div ng-bind="post.text"></div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <p>MENU</p>
+      <div class="list-group">
+          <a href="#" class="list-group-item active">
+              <span class="glyphicon glyphicon-camera"></span> Pictures <span class="badge">25</span>
+          </a>
+          <a href="#" class="list-group-item">
+              <span class="glyphicon glyphicon-file"></span> Documents <span class="badge">145</span>
+          </a>
+          <a href="#" class="list-group-item">
+              <span class="glyphicon glyphicon-music"></span> Music <span class="badge">50</span>
+          </a>
+          <a href="#" class="list-group-item">
+              <span class="glyphicon glyphicon-film"></span> Videos <span class="badge">8</span>
+          </a>
+      </div>
+    </div>
+  </div>
+</div>

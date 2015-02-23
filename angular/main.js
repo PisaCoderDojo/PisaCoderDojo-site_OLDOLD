@@ -6,6 +6,10 @@ myApp.config(function($routeProvider, $locationProvider) {
     templateUrl: 'angular/views/home.html',
     controller: 'HomeController',
   })
+  .when('/news', {
+    templateUrl: 'angular/views/news.html',
+    controller: 'NewsController'
+  })
   .when('/contact', {
     templateUrl: 'angular/views/contact.html',
     controller: 'ContactController'
@@ -22,6 +26,12 @@ myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 });
 
-myApp.controller('MainController', ['$scope', function($scope) {
+myApp.controller('MainController', function($scope) {
   $scope.test = 'Hola!';
-}]);
+});
+
+myApp.controller('NavController', function($scope, $location){
+  $scope.isActive = function (viewLocation) {
+       return viewLocation === $location.path();
+   };
+});

@@ -21,64 +21,40 @@
     <script src='angular/controllers/contact.js'></script>
     <script src='angular/controllers/about.js'></script>
     <script src='angular/controllers/calendar.js'></script>
+    <script src='angular/controllers/news.js'></script>
 
     <script type="text/javascript">
       angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
     </script>
   </head>
   <body>
-    <div class="container-fluid background">
+    <nav class="navbar navbar-default" ng-controller="NavController">
       <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <img src="img/logo.jpg"></img>
-          </div>
-          <div class="col-sm-6">
-            <h1>CODER DOJO - PISA</h1>
-          </div>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href=".">CoderDojo - Pisa</a>
         </div>
 
-        <div class="row">
-            <nav class="navbar navbar-default">
-              <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand" href="#"></a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav">
-                    <li class="active"><a href=".">Home</a></li>
-                    <li><a href="calendar">Calendario</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="contact">Contatti</a></li>
-                  </ul>
-                </div><!-- /.navbar-collapse -->
-              </div><!-- /.container-fluid -->
-            </nav>
-          </div>
-
-        <div class="row" ng-controller="MainController">
-          <div class="col-sm-9 blog-main">
-              <div ng-view></div>
-          </div>
-          <div class="col-sm-3">
-            <p>MENU</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <footer>FOOTER!</footer>
-        </div>
-
-      </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="{ active: isActive('/news') }"><a href="news">News</a></li>
+            <li ng-class="{ active: isActive('/calendar') }"><a href="calendar">Calendario</a></li>
+            <li ng-class="{ active: isActive('/about') }"><a href="about">About</a></li>
+            <li ng-class="{ active: isActive('/contact') }"><a href="contact">Contatti</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container" ng-controller="MainController">
+      <div ng-view></div>
+      <footer>FOOTER!</footer>
     </div>
   </body>
 </html>
