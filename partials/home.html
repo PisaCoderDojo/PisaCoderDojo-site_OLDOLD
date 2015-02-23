@@ -1,0 +1,17 @@
+<div>
+
+Search News: <input ng-model="queryNews">
+Sort by:
+<select ng-model="orderProp">
+  <option value="title">Title</option>
+  <option value="date">Newest</option>
+  <option value="author">Author</option>
+</select>
+
+
+    <div ng-repeat="post in news | filter:queryNews |orderBy:orderProp" class="blog-post">
+      <h2 class="blog-post-title" >{{post.title}}</h2>
+      <p class="blog-post-meta">{{post.date_create}}</p>
+        <p class="blog-post-meta">{{post.author}}</p>
+      <div> {{post.body}}</div>
+</div>

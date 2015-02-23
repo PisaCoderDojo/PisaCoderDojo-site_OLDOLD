@@ -15,11 +15,10 @@
   <script src="lib/angular-route.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <script src='angular/main.js'></script>
-  <script src='angular/controllers/home.js'></script>
-  <script src='angular/controllers/contact.js'></script>
-  <script src='angular/controllers/about.js'></script>
-  <script src='angular/controllers/calendar.js'></script>
+
+  <script src='js/controllers.js'></script>
+  <script src='js/app.js'></script>
+
 
   <script type="text/javascript">
     angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
@@ -52,13 +51,14 @@
               <li><a href="calendar">Calendario</a></li>
               <li><a href="about">About</a></li>
               <li><a href="contact">Contatti</a></li>
+              <li><a href="insert">Insert News</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
     </header>
 
-    <div class="container" ng-controller="MainController">
+    <div class="container">
       <div class="row">
         <div class="col-sm-10 blog-main">
             <div ng-view>    </div>
