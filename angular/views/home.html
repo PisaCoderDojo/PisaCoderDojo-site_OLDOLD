@@ -1,7 +1,15 @@
 <div ng-controller="HomeController">
-  {{ test }}
+{{ test }}
 
-  <div ng-repeat="post in news" class="blog-post">
+Search News: <input ng-model="queryNews">
+Sort by:
+<select ng-model="orderProp">
+  <option value="title">Title</option>
+  <option value="date">Newest</option>
+  <option value="author">Author</option>
+</select>
+
+  <div ng-repeat="post in news | filter:queryNews |orderBy:orderProp" class="blog-post">
     <h2 class="blog-post-title" ng-bind="post.title"></h2>
     <p class="blog-post-meta" ng-bind="post.date"></p>
     <div ng-bind="post.text"></div>

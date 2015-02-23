@@ -120,10 +120,11 @@ class SQlite3ToJSONConverter {
             $aData[$sTableName] = $aRows;
         }
 
-        $aResult['database_schema'] = $aTables;
-        $aResult['data'] = $aData;
+        //$aResult['database_schema'] = $aTables;
+        //$aResult['data'] = $aData;
 
-        return json_encode($aResult);
+        //return json_encode($aResult);
+        return json_encode($aData);
     }
 }
 
