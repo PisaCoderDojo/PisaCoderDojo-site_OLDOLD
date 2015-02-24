@@ -14,3 +14,12 @@ header img{
 .container{
   background:white;
 }
+
+.img-responsive{
+  margin: 0 auto;
+}
+
+.vertical-align{
+  display: flex;
+  align-items: center;
+}
