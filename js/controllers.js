@@ -17,6 +17,16 @@ coderDojoControllers.controller('newsCtrl', function ($scope, $http) {
     error(function(data, status, headers, config) {
         console.log('error');
     });
+
+  $http.post('php/addNews.php', {body:'hello word!',
+                                  author:'pippa',
+                                  bdaytime:'3333'}).
+    success(function(data, status, headers, config) {
+      console.log(data);
+    }).
+    error(function(data, status, headers, config) {
+      console.log('error');
+    });
   $scope.orderProp = 'age';
   });
 
