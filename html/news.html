@@ -1,12 +1,27 @@
-<div ng-controller="NewsController">
+<div ng-controller="newsCtrl">
+
   <div class="row">
-    <div class="col-sm-9">
-      <div ng-repeat="post in news" class="blog-post">
-        <h2 class="blog-post-title" ng-bind="post.title"></h2>
-        <p class="blog-post-meta" ng-bind="post.date"></p>
-        <div ng-bind="post.text"></div>
-      </div>
+    <div class="col-ms-2">
+        <!--Sidebar content-->
+
+        Search: <input ng-model="query">
+        Sort by:
+        <select ng-model="orderProp">
+          <option value="title">Alfabetico</option>
+          <option value="id">Più recente</option>
+        </select>
     </div>
+
+
+    <div class="col-sm-9">
+      <div ng-repeat="post in news | filter:query | orderBy:orderProp" class="blog-post">
+        <h2 class="blog-post-title" ng-bind="post.title"></h2>
+        <p class="blog-post-title" ng-bind="post.author"></p>
+        <p class="blog-post-meta" ng-bind="post.date_create"></p>
+        <div ng-bind="post.body"></div>
+      </div>
+  </div>
+
 
     <div class="col-sm-3">
       <p>MENU</p>

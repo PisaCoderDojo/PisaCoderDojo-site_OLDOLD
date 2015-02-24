@@ -2,10 +2,11 @@
 
 var myApp = angular.module('coderDojo',[
   'ngRoute',
-  'coderDojoControllers'
+  'coderDojoControllers',
+  'coderDojoFilters'
   ]);
 
-myApp.config(['$routeProvider',
+myApp.config(['$routeProvider' ,'$locationProvider',
 function($routeProvider, $locationProvider) {
   $routeProvider
    .when('/', {

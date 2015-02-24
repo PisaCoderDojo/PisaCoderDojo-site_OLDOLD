@@ -19,6 +19,7 @@
 
     <script src='js/app.js'></script>
     <script src='js/controllers.js'></script>
+    <script src="js/filters.js"></script>
 
     <script type="text/javascript">
       angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
@@ -41,7 +42,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li ng-class="{ active: isActive('/news') }"><a href="html/news.html">Notizie</a></li>
+            <li ng-class="{ active: isActive('/news') }"><a href="news">Notizie</a></li>
             <li ng-class="{ active: isActive('/calendar') }"><a href="calendar">Calendario</a></li>
             <li ng-class="{ active: isActive('/about') }"><a href="about">Chi siamo</a></li>
             <li ng-class="{ active: isActive('/contact') }"><a href="contact">Contatti</a></li>
@@ -50,7 +51,7 @@
       </div><!-- /.container-fluid -->
     </nav>
     <div class="container" >
-      <div ng-view></div>
+      <div ng-view ></div>
       <footer>FOOTER!</footer>
     </div>
   </body>

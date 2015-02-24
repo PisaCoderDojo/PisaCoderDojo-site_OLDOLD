@@ -1,0 +1,37 @@
+
+[
+  {
+    "name": "Davide neri",
+    "account":
+    [
+      {
+      "gmail":"davideneri18@gmail.com",
+      "twitter": "jjjj"
+      }
+    ],
+    "sito":"www.ttfv.it"
+  },
+
+  {
+    "name": "Luca Rinaldi",
+    "account":
+    [
+      {
+        "gmail":"luca@gmail.com",
+        "twitter": "jjjj"
+      }
+    ],
+    "sito" : "www.kkkk.com"
+  },
+  {
+    "name": "Stefano Forti ",
+    "account":
+    [
+      {
+      "gmail":"sff18@gmail.com",
+      "twitter": "jjjj"
+      }
+    ],
+    "sito" : "www.kkkk.com"
+  }
+]

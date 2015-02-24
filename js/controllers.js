@@ -10,23 +10,28 @@ coderDojoControllers.controller('homeCtrl', ['$scope',
   }]);
 
 
-coderDojoControllers.controller('newsCtrl', ['$scope',
-    function($scope){
-      $scope.test="sei in Nws!";
-    }]);
+coderDojoControllers.controller('newsCtrl', function ($scope, $http) {
+  $http.get('json/news.json').success(function(data) {
+      $scope.news = data;
+  });
+
+  $scope.orderProp = 'age';
+  });
 
 coderDojoControllers.controller('calendarCtrl', ['$scope',
-      function($scope){
-        $scope.test="sei in Home!";
-      }]);
+  function($scope){
+      $scope.test="sei in calendar, con google calendar  !";
+  }]);
 
 coderDojoControllers.controller('aboutCtrl', ['$scope',
-                  function($scope){
-                    $scope.test="sei in Home!";
-      }]);
+  function($scope){
+      $scope.test="sei in Chi siamo !";
+  }]);
 
 
-coderDojoControllers.controller('contactCtrl', ['$scope',
-            function($scope){
-              $scope.test="sei in Home!";
-}]);
+coderDojoControllers.controller('contactCtrl', function ($scope, $http) {
+    $http.get('json/contacts.json').success(function(data) {
+      $scope.contacts = data;
+    });
+
+  });
