@@ -2,21 +2,31 @@
 
 /* Controllers */
 
-var newsControllers = angular.module('newsController', []);
+var coderDojoControllers = angular.module('coderDojoControllers', []);
 
-phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
-  function($scope, Phone) {
-    $scope.phones = Phone.query();
-    $scope.orderProp = 'age';
+coderDojoControllers.controller('homeCtrl', ['$scope',
+  function($scope){
+    $scope.test="sei in Home!";
   }]);
 
-phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
-  function($scope, $routeParams, Phone) {
-    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
-      $scope.mainImageUrl = phone.images[0];
-    });
 
-    $scope.setImage = function(imageUrl) {
-      $scope.mainImageUrl = imageUrl;
-    }
-  }]);
+coderDojoControllers.controller('newsCtrl', ['$scope',
+    function($scope){
+      $scope.test="sei in Nws!";
+    }]);
+
+coderDojoControllers.controller('calendarCtrl', ['$scope',
+      function($scope){
+        $scope.test="sei in Home!";
+      }]);
+
+coderDojoControllers.controller('aboutCtrl', ['$scope',
+                  function($scope){
+                    $scope.test="sei in Home!";
+      }]);
+
+
+coderDojoControllers.controller('contactCtrl', ['$scope',
+            function($scope){
+              $scope.test="sei in Home!";
+}]);
