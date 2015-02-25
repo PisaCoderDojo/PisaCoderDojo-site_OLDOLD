@@ -1,11 +1,8 @@
 <?php
 $data = json_decode(file_get_contents("php://input"));
-$title = $data->title ;
-$body = $data->text ;
-$author = $data->user;
-$date = '23/23/1999';
+$id = $data->id;
 
-$sql ="INSERT INTO news (TITLE,BODY,AUTHOR,DATE_CREATE) VALUES ('$title','$body','$author','$date')";
+$sql ="DELETE FROM news WHERE ID='$id'";
 
  /*INSERT INTO news (TITLE,BODY,AUTHOR,DATE_CREATE)
  VALUES ($POST['title'],$POST['body'],$POST['uthor'],$POST['bdaytime']);

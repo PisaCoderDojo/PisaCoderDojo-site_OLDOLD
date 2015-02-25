@@ -1,7 +1,13 @@
 <?php
+if(isset($_GET["id"])){
+  $id = $_GET["id"];
+  $sql = "SELECT * FROM news WHERE ID=$id";
+}else{
+  $sql="SELECT * FROM news";
+}
 $database = new SQLite3('../sqlite/newsdb.db');
 $aResult = array();
-$uResult = $database->query("SELECT * FROM news");
+$uResult = $database->query($sql);
 
 while ($aRow = $uResult->fetchArray(SQLITE3_ASSOC)) {
   $aResult[] = $aRow;

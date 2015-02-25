@@ -7,19 +7,23 @@ var myApp = angular.module('coderDojo',[
   'coderDojoFilters'
   ]);
 
-myApp.controller('mainCtrl', ['$scope','ngProgress',
-function($scope, ngProgress){
-  $scope.isViewLoading = false;
-  $scope.$on('$routeChangeStart', function() {
-    $scope.isViewLoading = true;
-    if(ngProgress.status()!= 0)
-      ngProgress.reset();
-    ngProgress.start();
-  });
-  $scope.$on('$routeChangeSuccess', function() {
-    ngProgress.complete();
-    $scope.isViewLoading = false;
-  });
+myApp.controller('mainCtrl', ['$scope',
+function($scope){
+}]);
+
+myApp.run(['$rootScope','ngProgress','$location','tokenValue',
+  function($rootScope,ngProgress,$location,tokenValue){
+    $rootScope.$on('$routeChangeStart', function(data, current) {
+      ngProgress.start();
+      //console.log(current.$$route.originalPath.split('/'));
+      /*if (current.$$route.originalPath.split('/')[1] == 'admin' && tokenValue.token===null){
+        console.log(tokenValue.token);
+        $location.path('/login');
+      }*/
+    });
+    $rootScope.$on('$routeChangeSuccess', function() {
+      ngProgress.complete();
+    });
 }]);
 
 myApp.config(['$routeProvider', '$locationProvider',
@@ -50,6 +54,34 @@ function($routeProvider, $locationProvider) {
   .when('/calendar', {
     templateUrl: 'html/calendar.html',
     controller: 'calendarCtrl'
+  })
+  .when('/admin',{
+      templateUrl: 'html/admin.html',
+      controller: 'adminCtrl',
+      resolve: {
+        news: function(newsService){
+          console.log('inside resolve');
+          return newsService.getNews();
+        }
+      }
+  })
+  .when('/admin/add',{
+    templateUrl: 'html/add.html',
+    controller: 'addCtrl'
+  })
+  .when('/admin/mod/:id',{
+    templateUrl: 'html/mod.html',
+    controller: 'modCtrl',
+    resolve: {
+      news: function(newsService, $route){
+        console.log('inside resolve');
+        return newsService.getNew($route.current.params.id);
+      }
+    }
+  })
+  .when('/login',{
+    templateUrl: 'html/login.html',
+    controller: 'loginCtrl'
   });
   // configure html5 to get links working on jsfiddle
   $locationProvider.html5Mode(true);

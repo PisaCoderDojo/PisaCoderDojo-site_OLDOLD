@@ -41,8 +41,80 @@ coderDojoControllers.controller('aboutCtrl', ['$scope', function($scope){
 
 
 coderDojoControllers.controller('contactCtrl', function ($scope, $http) {
-    $http.get('json/contacts.json').success(function(data) {
-      $scope.contacts = data;
-    });
-
+  $http.get('json/contacts.json').success(function(data) {
+    $scope.contacts = data;
   });
+});
+
+coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '$location',
+  function($scope, news, newsService, $location){
+    $scope.news = news.data;
+    $scope.modify = function(id){
+      $location.path('/admin/mod/'+id);
+    };
+
+    $scope.showDelModal = function(id,key){
+      $scope.delNews = {key:key,
+                        id:id,
+                        title:$scope.news[key].TITLE
+                        };
+                        console.log('show');
+      $('#deleteModal').modal('show');
+    };
+
+    $scope.delete = function(delNew){
+      $('#deleteModal').modal('hide');
+      newsService.delNews(delNew.id).success(function(data){
+        console.log(data);
+        if(data=='success')
+          $scope.news.splice(delNew.key,1);
+      });
+    };
+}]);
+
+coderDojoControllers.controller('modCtrl', ['$scope', 'news',
+  function($scope, news){
+    console.log(news.data[0]);
+    news=news.data[0];
+    var id = news.ID;
+    $scope.title=news.TITLE;
+    $scope.user=news.AUTHOR;
+    $scope.text=news.BODY;
+
+}]);
+
+coderDojoControllers.controller('loginCtrl', ['$scope', 'tokenValue', '$location', 'loginService',
+  function($scope,tokenValue,$location,loginService){
+    $scope.error = false;
+
+    $scope.login = function(){
+      loginService.login($scope.pass).success(function(data){
+        console.log(data);
+        if(data != 'error'){
+          $scope.error = false;
+          tokenValue.token=data;
+          $location.path('/admin');
+        }else{
+          $scope.error = true;
+        }
+      });
+    }
+}]);
+
+coderDojoControllers.controller('addCtrl', ['$scope', 'newsService', '$location',
+  function($scope, newsService, $location){
+    $scope.submit = function(){
+      if ($scope.title!='' && $scope.text!='' && $scope.user!=''){
+        newsService.addNews({
+          title: $scope.title,
+          text: $scope.text,
+          user: $scope.user
+        }).success(function(data){
+          console.log(data);
+          if(data=='success')
+            $location.path('/admin');
+        });
+      }
+    }
+
+}]);
