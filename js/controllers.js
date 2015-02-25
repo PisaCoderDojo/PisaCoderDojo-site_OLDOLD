@@ -16,27 +16,15 @@ coderDojoControllers.controller('newsCtrl', function ($scope, $http) {
     }).
     error(function(data, status, headers, config) {
         console.log('error');
-    });
-
-  $http.post('php/addNews.php', {body:'hello word!',
-                                  author:'pippa',
-                                  bdaytime:'3333'}).
-    success(function(data, status, headers, config) {
-      console.log(data);
-    }).
-    error(function(data, status, headers, config) {
-      console.log('error');
-    });
+  });
   $scope.orderProp = 'age';
   });
 
-coderDojoControllers.controller('calendarCtrl', ['$scope',
-  function($scope){
+coderDojoControllers.controller('calendarCtrl', ['$scope', function($scope){
       $scope.test="sei in calendar, con google calendar  !";
   }]);
 
-coderDojoControllers.controller('aboutCtrl', ['$scope',
-  function($scope){
+coderDojoControllers.controller('aboutCtrl', ['$scope', function($scope){
       $scope.test="sei in Chi siamo !";
   }]);
 
