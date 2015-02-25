@@ -1,19 +1,43 @@
+"use strict";
 var myApp = angular.module('coderDojo',[
   'ngRoute',
+  'ngProgress',
   'coderDojoControllers',
+  'coderDojoServices',
   'coderDojoFilters'
   ]);
 
-myApp.config(['$routeProvider' ,'$locationProvider',
+myApp.controller('mainCtrl', ['$scope','ngProgress',
+function($scope, ngProgress){
+  $scope.isViewLoading = false;
+  $scope.$on('$routeChangeStart', function() {
+    $scope.isViewLoading = true;
+    if(ngProgress.status()!= 0)
+      ngProgress.reset();
+    ngProgress.start();
+  });
+  $scope.$on('$routeChangeSuccess', function() {
+    ngProgress.complete();
+    $scope.isViewLoading = false;
+  });
+}]);
+
+myApp.config(['$routeProvider', '$locationProvider',
 function($routeProvider, $locationProvider) {
   $routeProvider
-   .when('/', {
+  .when('/', {
     templateUrl: 'html/home.html',
     controller: 'homeCtrl'
   })
   .when('/news', {
     templateUrl: 'html/news.html',
-    controller: 'newsCtrl'
+    controller: 'newsCtrl',
+    resolve: {
+      news: function(newsService){
+        console.log('inside resolve');
+        return newsService.getNews();
+      }
+    }
   })
   .when('/contact', {
     templateUrl: 'html/contact.html',
