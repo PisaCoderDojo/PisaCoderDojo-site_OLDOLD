@@ -1,5 +1,3 @@
-'use strict';
-
 /* Controllers */
 
 var coderDojoControllers = angular.module('coderDojoControllers', []);
@@ -11,10 +9,14 @@ coderDojoControllers.controller('homeCtrl', ['$scope',
 
 
 coderDojoControllers.controller('newsCtrl', function ($scope, $http) {
-  $http.get('json/news.json').success(function(data) {
-      $scope.news = data;
-  });
-
+  $http.get('php/getNews.php').
+    success(function(data, status, headers, config) {
+      $scope.news = angular.fromJson(data);
+      console.log($scope.news);
+    }).
+    error(function(data, status, headers, config) {
+        console.log('error');
+    });
   $scope.orderProp = 'age';
   });
 
