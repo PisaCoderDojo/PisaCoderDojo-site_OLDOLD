@@ -1,4 +1,5 @@
 "use strict";
+
 var myApp = angular.module('coderDojo',[
   'ngRoute',
   'ngProgress',
@@ -13,14 +14,13 @@ myApp.controller('mainCtrl', ['$scope',
 function($scope){
 }]);
 
-myApp.run(['$rootScope','ngProgress','$location','$cookies',
-  function($rootScope,ngProgress,$location,$cookies){
+myApp.run(['$rootScope','ngProgress','$location','tokenService',
+  function($rootScope,ngProgress,$location,tokenService){
+    tokenService.copyCookie();
     $rootScope.$on('$routeChangeStart', function(data, current) {
       ngProgress.start();
-      console.log(current.$$route.originalPath.split('/')[1]);
-      console.log('cookie_token '+$cookies.token);
-      if (current.$$route.originalPath.split('/')[1] == 'admin' && $cookies.token===undefined){
-        console.log($cookies.token);
+      console.log('cookie_token '+tokenService.get());
+      if (current.$$route.originalPath.split('/')[1] == 'admin' && !tokenService.isSet()){
         $location.path('/login');
       }
     });

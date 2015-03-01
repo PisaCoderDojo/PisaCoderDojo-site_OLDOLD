@@ -1,3 +1,4 @@
+/*
 header hgroup{
   margin: 0 auto;
   display:table;
@@ -6,21 +7,30 @@ header hgroup{
 header img{
   float:left;
 }
-
+*/
 .background{
   background:grey;
 }
 
-.container{
+.main{
   background:white;
   max-width: 850px;
+  margin:20px auto;
+}
+
+.menu{
+  max-width: 850px;
+}
+
+.login{
+    margin:40px auto;
 }
 
 .img-responsive{
   margin: 0 auto;
 }
 
-.imp-profile{
+.img-profile{
   max-width: 150px;
 }
 

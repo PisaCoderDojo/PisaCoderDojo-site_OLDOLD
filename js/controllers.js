@@ -87,16 +87,17 @@ coderDojoControllers.controller('modCtrl', ['$scope', 'news', 'newsService', '$l
     };
 }]);
 
-coderDojoControllers.controller('loginCtrl', ['$scope', '$location', 'loginService','$cookies',
-  function($scope,$location,loginService,$cookies){
+coderDojoControllers.controller('loginCtrl', ['$scope', '$location', 'loginService','tokenService',
+  function($scope,$location,loginService,tokenService){
     $scope.error = false;
-
+    $scope.remember = tokenService.remember;
     $scope.login = function(){
       loginService.login($scope.pass).success(function(data){
         console.log(data);
         if(data != 'error'){
+          tokenService.remember = $scope.remember;
           $scope.error = false;
-          $cookies.token=data;
+          tokenService.set(data);
           $location.path('/admin');
         }else{
           $scope.error = true;

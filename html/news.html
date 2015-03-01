@@ -1,44 +1,19 @@
-<div>
-
-  <div class="row">
-    <div class="col-ms-2">
-        <!--Sidebar content-->
-
-        Search: <input ng-model="query">
-        Sort by:
-        <select ng-model="orderProp">
-          <option value="title">Alfabetico</option>
-          <option value="id">Più recente</option>
-        </select>
+<div class="container-fluid">
+  <div class="col-sm-9">
+    <div ng-repeat="post in news | filter:query | orderBy:orderProp" class="blog-post">
+      <h2 class="blog-post-title" ng-bind="post.TITLE"></h2>
+      <p class="blog-post-title" ng-bind="post.AUTHOR"></p>
+      <p class="blog-post-meta" ng-bind="post.DATE_CREATE | date:'medium'"></p>
+      <div ng-bind-html="post.BODY"></div>
     </div>
-
-
-    <div class="col-sm-9">
-      <div ng-repeat="post in news | filter:query | orderBy:orderProp" class="blog-post">
-        <h2 class="blog-post-title" ng-bind="post.TITLE"></h2>
-        <p class="blog-post-title" ng-bind="post.AUTHOR"></p>
-        <p class="blog-post-meta" ng-bind="post.DATE_CREATE | date:'medium'"></p>
-        <div ng-bind-html="post.BODY"></div>
-      </div>
   </div>
 
-
-    <div class="col-sm-3">
-      <p>MENU</p>
-      <div class="list-group">
-          <a href="#" class="list-group-item active">
-              <span class="glyphicon glyphicon-camera"></span> Pictures <span class="badge">25</span>
-          </a>
-          <a href="#" class="list-group-item">
-              <span class="glyphicon glyphicon-file"></span> Documents <span class="badge">145</span>
-          </a>
-          <a href="#" class="list-group-item">
-              <span class="glyphicon glyphicon-music"></span> Music <span class="badge">50</span>
-          </a>
-          <a href="#" class="list-group-item">
-              <span class="glyphicon glyphicon-film"></span> Videos <span class="badge">8</span>
-          </a>
-      </div>
-    </div>
+  <div class="col-sm-3">
+      Search: <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="title">Alfabetico</option>
+        <option value="id">Più recente</option>
+      </select>
   </div>
 </div>

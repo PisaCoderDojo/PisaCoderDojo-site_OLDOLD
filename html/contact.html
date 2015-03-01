@@ -1,12 +1,10 @@
-<div ng-controller="contactCtrl">
+<div class="container-fluid">
 
-  <div class="row jumbotron">
-      <div class="col-sm-2">
+  <div class="jumbotron">
         <div ng-repeat="contact in contacts" >
           <h2 ng-bind="contact.name"></h2>
           <p  ng-bind="contact.account.gmail"></p>
           <p  ng-bind="contact.sito"></p>
         </div>
-      </div>
   </div>
 </div>

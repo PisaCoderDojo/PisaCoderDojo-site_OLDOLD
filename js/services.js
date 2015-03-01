@@ -2,7 +2,7 @@
 "use strict";
 
 angular.module('coderDojoServices', [])
-.factory('newsService', ['$http', function($http) {
+.factory('newsService', ['$http', 'tokenService', function($http, tokenService) {
   return {
     getNews: function() {
       return $http({
@@ -17,6 +17,7 @@ angular.module('coderDojoServices', [])
       });
     },
     modNews: function(news){
+      news.token = tokenService.get();
       return $http({
         method: 'POST',
         url: 'php/modNews.php',
@@ -24,6 +25,7 @@ angular.module('coderDojoServices', [])
       })
     },
     addNews: function(news){
+      news.token = tokenService.get();
       return $http({
         method: 'POST',
         url: 'php/addNews.php',
@@ -34,7 +36,7 @@ angular.module('coderDojoServices', [])
       return $http({
         method: 'POST',
         url: 'php/delNews.php',
-        data: {'id':id}
+        data: {id:id,token:tokenService.get()}
       })
     }
   }
@@ -49,4 +51,27 @@ angular.module('coderDojoServices', [])
       });
     }
   }
-}]);
+}])
+.factory('tokenService', ['$cookies', function($cookies){
+  var tokenValue = undefined;
+  return {
+    copyCookie: function(){
+      tokenValue = $cookies.token;
+      console.log('onStart: '+tokenValue);
+    },
+    set: function(token){
+      if(this.remember){
+        $cookies.token=token;
+      }
+      tokenValue=token;
+    },
+    get: function(){
+      return tokenValue;
+    },
+    isSet: function(){
+      return tokenValue!==undefined;
+    },
+    remember: false
+  };
+}])
+//.values('tokenValue',{token:undefined,cookie:true});
