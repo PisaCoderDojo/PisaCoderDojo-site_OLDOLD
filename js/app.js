@@ -2,6 +2,8 @@
 var myApp = angular.module('coderDojo',[
   'ngRoute',
   'ngProgress',
+  'ngCookies',
+  'textAngular',
   'coderDojoControllers',
   'coderDojoServices',
   'coderDojoFilters'
@@ -11,19 +13,24 @@ myApp.controller('mainCtrl', ['$scope',
 function($scope){
 }]);
 
-myApp.run(['$rootScope','ngProgress','$location','tokenValue',
-  function($rootScope,ngProgress,$location,tokenValue){
+myApp.run(['$rootScope','ngProgress','$location','$cookies',
+  function($rootScope,ngProgress,$location,$cookies){
     $rootScope.$on('$routeChangeStart', function(data, current) {
       ngProgress.start();
-      //console.log(current.$$route.originalPath.split('/'));
-      /*if (current.$$route.originalPath.split('/')[1] == 'admin' && tokenValue.token===null){
-        console.log(tokenValue.token);
+      console.log(current.$$route.originalPath.split('/')[1]);
+      console.log('cookie_token '+$cookies.token);
+      if (current.$$route.originalPath.split('/')[1] == 'admin' && $cookies.token===undefined){
+        console.log($cookies.token);
         $location.path('/login');
-      }*/
+      }
     });
     $rootScope.$on('$routeChangeSuccess', function() {
       ngProgress.complete();
     });
+    $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
+        console.log(event);
+    });
+
 }]);
 
 myApp.config(['$routeProvider', '$locationProvider',
@@ -82,6 +89,9 @@ function($routeProvider, $locationProvider) {
   .when('/login',{
     templateUrl: 'html/login.html',
     controller: 'loginCtrl'
+  })
+  .otherwise({
+    redirectTo: '/'
   });
   // configure html5 to get links working on jsfiddle
   $locationProvider.html5Mode(true);

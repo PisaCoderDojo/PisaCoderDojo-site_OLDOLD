@@ -17,8 +17,8 @@
       <div ng-repeat="post in news | filter:query | orderBy:orderProp" class="blog-post">
         <h2 class="blog-post-title" ng-bind="post.TITLE"></h2>
         <p class="blog-post-title" ng-bind="post.AUTHOR"></p>
-        <p class="blog-post-meta" ng-bind="post.DATE_CREATE"></p>
-        <div ng-bind="post.BODY"></div>
+        <p class="blog-post-meta" ng-bind="post.DATE_CREATE | date:'medium'"></p>
+        <div ng-bind-html="post.BODY"></div>
       </div>
   </div>
 

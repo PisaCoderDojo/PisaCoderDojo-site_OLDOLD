@@ -12,12 +12,13 @@
    $sql = <<<EOF
    CREATE TABLE news (
      ID  integer PRIMARY KEY AUTOINCREMENT,
-     TITLE varchar(30) ,
-     BODY  text ,
+     TITLE varchar(30),
+     BODY  text,
      AUTHOR varchar(20),
-     DATE_CREATE text  --date of format "YYYY-MM-DD HH:MM:SS.SSS"
+     DATE_CREATE integer
    )
 EOF;
+
    $ret = $db->exec($sql);
    if(!$ret){
       echo $db->lastErrorMsg();
@@ -27,7 +28,7 @@ EOF;
 
 
  // ---------------------INSERT  operation ------------------
-
+/*
     $sql =<<<EOF
      INSERT INTO news (TITLE,BODY,AUTHOR,DATE_CREATE)
      VALUES ( 'primo tit', 'body 1', 'Davdie', 'YYY.1111' );
@@ -63,5 +64,5 @@ EOF;
   }
   echo "Operation done successfully\n";
   $db->close();
-
+*/
 ?>

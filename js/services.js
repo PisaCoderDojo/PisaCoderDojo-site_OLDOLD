@@ -16,6 +16,13 @@ angular.module('coderDojoServices', [])
         url: 'php/getNews.php?id='+id
       });
     },
+    modNews: function(news){
+      return $http({
+        method: 'POST',
+        url: 'php/modNews.php',
+        data: news
+      })
+    },
     addNews: function(news){
       return $http({
         method: 'POST',
@@ -42,5 +49,4 @@ angular.module('coderDojoServices', [])
       });
     }
   }
-}])
-.value('tokenValue', {token:null});
+}]);

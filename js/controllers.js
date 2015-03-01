@@ -29,8 +29,8 @@ coderDojoControllers.controller('contactCtrl', function ($scope, $http) {
   });
 });
 
-coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '$location',
-  function($scope, news, newsService, $location){
+coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '$location', '$cookies',
+  function($scope, news, newsService, $location, $cookies){
     $scope.news = news.data;
     $scope.modify = function(id){
       $location.path('/admin/mod/'+id);
@@ -45,6 +45,11 @@ coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '
       $('#deleteModal').modal('show');
     };
 
+    $scope.logout = function(){
+      delete $cookies['token'];
+      $location.path('/');
+    };
+
     $scope.delete = function(delNew){
       $('#deleteModal').modal('hide');
       newsService.delNews(delNew.id).success(function(data){
@@ -55,19 +60,35 @@ coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '
     };
 }]);
 
-coderDojoControllers.controller('modCtrl', ['$scope', 'news',
-  function($scope, news){
-    console.log(news.data[0]);
+coderDojoControllers.controller('modCtrl', ['$scope', 'news', 'newsService', '$location',
+  function($scope,news,newsService,$location){
     news=news.data[0];
-    var id = news.ID;
-    $scope.title=news.TITLE;
-    $scope.user=news.AUTHOR;
-    $scope.text=news.BODY;
-
+    if (news===undefined)
+      $location.path('/admin');
+    else{
+      var id = news.ID;
+      $scope.title=news.TITLE;
+      $scope.user=news.AUTHOR;
+      $scope.text=news.BODY;
+      console.log(id);
+    }
+    $scope.submit = function(){
+      var data = {id:id,
+                  title:$scope.title,
+                  user:$scope.user,
+                  text:$scope.text
+                  };
+      newsService.modNews(data).success(function(data){
+        console.log(data);
+        if(data=='success'){
+          $location.path('/admin');
+        }
+      });
+    };
 }]);
 
-coderDojoControllers.controller('loginCtrl', ['$scope', 'tokenValue', '$location', 'loginService',
-  function($scope,tokenValue,$location,loginService){
+coderDojoControllers.controller('loginCtrl', ['$scope', '$location', 'loginService','$cookies',
+  function($scope,$location,loginService,$cookies){
     $scope.error = false;
 
     $scope.login = function(){
@@ -75,7 +96,7 @@ coderDojoControllers.controller('loginCtrl', ['$scope', 'tokenValue', '$location
         console.log(data);
         if(data != 'error'){
           $scope.error = false;
-          tokenValue.token=data;
+          $cookies.token=data;
           $location.path('/admin');
         }else{
           $scope.error = true;
