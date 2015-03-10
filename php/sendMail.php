@@ -10,7 +10,7 @@
   $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
   // More headers
-  $headers .= 'From: <'.$data->mail.'>' . "\r\n";
+  $headers .= "From: <" . $data->mail . ">\r\n";
   //$headers .= 'Cc: myboss@example.com' . "\r\n";
 
   $ris = mail($to,$subject,$message,$headers);
