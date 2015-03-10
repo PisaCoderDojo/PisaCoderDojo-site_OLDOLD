@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="col-sm-9">
+  <!--<div class="col-sm-9">-->
     <div ng-repeat="post in news | filter:query | orderBy:orderProp" class="blog-post">
-      <h2 class="blog-post-title" ng-bind="post.TITLE"></h2>
+      <a ng-href="news/{{post.ID}}"><h2 class="blog-post-title" ng-bind="post.TITLE"></h2></a>
       <p class="blog-post-title" ng-bind="post.AUTHOR"></p>
       <p class="blog-post-meta" ng-bind="post.DATE_CREATE | date:'medium'"></p>
       <div fb-like="BASE_URL+post.ID"></div>
@@ -9,8 +9,8 @@
       </br>
       <div ng-bind-html="post.BODY"></div>
     </div>
-  </div>
-
+  <!--</div>-->
+  <!--
   <div class="col-sm-3">
       Search: <input ng-model="query">
       Sort by:
@@ -19,4 +19,5 @@
         <option value="id">Più recente</option>
       </select>
   </div>
+  -->
 </div>

@@ -21,7 +21,12 @@ myApp.run(['$rootScope','ngProgress','$location','tokenService',
     $rootScope.$on('$routeChangeStart', function(data, current) {
       ngProgress.start();
       console.log('cookie_token '+tokenService.get());
-      if (current.$$route.originalPath.split('/')[1] == 'admin' && !tokenService.isSet()){
+      var route = current.$$route.originalPath.split('/')[1];
+      if (route == 'admin' || route == 'login')
+        $rootScope.sideBar=false;
+      else
+        $rootScope.sideBar=true;
+      if (route == 'admin' && !tokenService.isSet()){
         $location.path('/login');
       }
     });
@@ -48,6 +53,15 @@ function($routeProvider, $locationProvider) {
       news: function(newsService){
         console.log('inside resolve');
         return newsService.getNews();
+      }
+    }
+  })
+  .when('/news/:id',{
+    templateUrl: 'html/new.html',
+    controller: 'newCtrl',
+    resolve: {
+      news: function(newsService, $route){
+        return newsService.getNew($route.current.params.id);
       }
     }
   })

@@ -15,20 +15,44 @@ coderDojoControllers.controller('newsCtrl', ['$scope', 'news',
     $scope.orderProp = 'age';
 }]);
 
+coderDojoControllers.controller('newCtrl', ['$scope', 'news', '$location',
+  function($scope,news,$location){
+    $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
+    news=news.data[0];
+    if (news===undefined)
+      $location.path('/news');
+    else{
+      $scope.new = news;
+    }
+}]);
+
 coderDojoControllers.controller('calendarCtrl', ['$scope', function($scope){
-      $scope.test="sei in calendar, con google calendar  !";
-  }]);
+    $scope.test="sei in calendar, con google calendar  !";
+}]);
 
 coderDojoControllers.controller('aboutCtrl', ['$scope', function($scope){
-      $scope.test="sei in Chi siamo !";
-  }]);
+    $scope.test="sei in Chi siamo !";
+}]);
 
 
-coderDojoControllers.controller('contactCtrl', function ($scope, $http) {
-  $http.get('json/contacts.json').success(function(data) {
+coderDojoControllers.controller('contactCtrl', ['$scope', '$http', function ($scope, $http) {
+  /*$http.get('json/contacts.json').success(function(data) {
     $scope.contacts = data;
-  });
-});
+  });*/
+  $scope.isSend = false;
+  $scope.send = function(){
+    console.log($scope.mail+' '+$scope.subject+' '+$scope.text);
+    $http({
+      method:'POST',
+      url: 'php/sendMail.php',
+      data: {'mail':$scope.mail,'subject':$scope.subject,'text':$scope.text}
+    }).success(function(data){
+      console.log(data);
+      if(data == 'true')
+        $scope.isSend=true;
+    });
+  }
+}]);
 
 coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '$location', '$cookies',
   function($scope, news, newsService, $location, $cookies){

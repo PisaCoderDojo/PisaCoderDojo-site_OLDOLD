@@ -1,0 +1,9 @@
+<div class="container-fluid">
+  <h2 class="blog-post-title" ng-bind="new.TITLE"></h2>
+  <p class="blog-post-title" ng-bind="new.AUTHOR"></p>
+  <p class="blog-post-meta" ng-bind="new.DATE_CREATE | date:'medium'"></p>
+  <div fb-like="BASE_URL+new.ID"></div>
+  <div tweet="new.TITLE"></div>
+  </br>
+  <div ng-bind-html="new.BODY"></div>
+</div>

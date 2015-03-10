@@ -1,10 +1,20 @@
 <div class="container-fluid">
-
-  <div class="jumbotron">
-        <div ng-repeat="contact in contacts" >
-          <h2 ng-bind="contact.name"></h2>
-          <p  ng-bind="contact.account.gmail"></p>
-          <p  ng-bind="contact.sito"></p>
-        </div>
-  </div>
+  <form ng-submit="send()" ng-hide="isSend">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input ng-model="mail" type="email" class="form-control" id="email" placeholder="Enter email">
+      <p class="help-block">Inserisci la tua email</p>
+    </div>
+    <div class="form-group">
+      <label for="oggetto">Oggetto</label>
+      <input type="text" ng-model="subject" class="form-control" id="oggetto" placeholder="Subject">
+      <p class="help-block">Inserisci l'oggetto</p>
+    </div>
+    <div class="form-group">
+      <label for="testo">Testo</label>
+      <textarea ng-model="text" class="form-control" rows="10" id="testo"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Invia</button>
+  </form>
+  <div ng-show="isSend">Inviata!</div>
 </div>
