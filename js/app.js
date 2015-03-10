@@ -7,7 +7,8 @@ var myApp = angular.module('coderDojo',[
   'textAngular',
   'coderDojoControllers',
   'coderDojoServices',
-  'coderDojoFilters'
+  'coderDojoFilters',
+  'angulike'
   ]);
 
 myApp.controller('mainCtrl', ['$scope',

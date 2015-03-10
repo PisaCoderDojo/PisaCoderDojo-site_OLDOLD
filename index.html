@@ -16,6 +16,7 @@
     <!--<script src='lib/textAngular.min.js'></script>-->
     <script src='lib/textAngular.js'></script>
     <script src='lib/textAngularSetup.js'></script>
+    <script src='lib/angulike.js'></script>
 
     <!--
     <link rel="stylesheet" href="lib/bootstrap.min.css">
@@ -39,6 +40,27 @@
 
   </head>
   <body>
+    <!--FACEBOOK-sdk-->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '852604174797487',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/it_IT/sdk/debug.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!--FACEBOOK-sdk>-->
+
     <nav class="navbar.admin navbar-default" >
       <div class="container menu">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +87,29 @@
     </nav>
     <div class="container main" ng-controller="mainCtrl">
       <!--<span ng-show="isViewLoading"> loading the view... </span>-->
-      <div ng-view ></div>
+      <div class="row">
+        <div class="col-sm-9">
+          <div ng-view ></div>
+        </div>
+        <div class="col-sm-3">
+          <div class="fb-like-box"
+               data-href="https://www.facebook.com/pisacoderdojo"
+               data-width="200"
+               data-colorscheme="light"
+               data-show-faces="true"
+               data-header="false"
+               data-stream="false"
+               data-show-border="false">
+          </div>
+          <a class="twitter-timeline"
+             href="https://twitter.com/PisaCoderDojo"
+             data-chrome="noborders transparent"
+             data-widget-id="575254844765765632"
+             height="300"
+             width="200">Tweetdi @PisaCoderDojo</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+      </div>
       <footer>FOOTER!</footer>
     </div>
   </body>

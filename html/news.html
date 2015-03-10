@@ -4,6 +4,9 @@
       <h2 class="blog-post-title" ng-bind="post.TITLE"></h2>
       <p class="blog-post-title" ng-bind="post.AUTHOR"></p>
       <p class="blog-post-meta" ng-bind="post.DATE_CREATE | date:'medium'"></p>
+      <div fb-like="BASE_URL+post.ID"></div>
+      <div tweet="post.TITLE"></div>
+      </br>
       <div ng-bind-html="post.BODY"></div>
     </div>
   </div>

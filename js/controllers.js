@@ -9,6 +9,7 @@ coderDojoControllers.controller('homeCtrl', ['$scope',
 
 coderDojoControllers.controller('newsCtrl', ['$scope', 'news',
   function($scope, news) {
+    $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
     $scope.news = angular.fromJson(news.data);
     console.log(news.data);
     $scope.orderProp = 'age';
