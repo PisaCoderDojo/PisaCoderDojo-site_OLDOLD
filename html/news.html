@@ -2,12 +2,25 @@
   <!--<div class="col-sm-9">-->
     <div ng-repeat="post in news | filter:query | orderBy:orderProp" class="blog-post">
       <a ng-href="news/{{post.ID}}"><h2 class="blog-post-title" ng-bind="post.TITLE"></h2></a>
-      <p class="blog-post-title" ng-bind="post.AUTHOR"></p>
-      <p class="blog-post-meta" ng-bind="post.DATE_CREATE | date:'medium'"></p>
-      <div fb-like="BASE_URL+post.ID"></div>
-      <div tweet="post.TITLE"></div>
+        <div class="row">
+          <div class="blog-post-meta col-sm-6">
+            <span class="glyphicon glyphicon-user"></span>
+            <span ng-bind="post.AUTHOR"></span>
+            <span class="glyphicon glyphicon-time"></span>
+            <span ng-bind="post.DATE_CREATE | date:'medium'"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="blog-post-social col-xs-5">
+            <span fb-like="BASE_URL+post.ID"></span>
+          </div>
+          <div class="blog-post-social col-xs-2">
+            <span tweet="post.TITLE"></span>
+          </div>
+        </div>
       </br>
-      <div ng-bind-html="post.BODY"></div>
+      <div ng-bind-html="post.BODY" class="blog-post-body"></div>
+      <a ng-href="news/{{post.ID}}">(continua...)</a>
     </div>
   <!--</div>-->
   <!--
@@ -20,4 +33,5 @@
       </select>
   </div>
   -->
+
 </div>
