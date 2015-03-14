@@ -1,21 +1,11 @@
-/*
-header hgroup{
-  margin: 0 auto;
-  display:table;
-}
-
-header img{
-  float:left;
-}
-*/
 .background{
-  background:grey;
+  background: grey;
 }
 
 .main{
-  background:white;
+  background: white;
   max-width: 920px;
-  margin:20px auto;
+  margin: 20px auto;
 }
 
 .menu{
@@ -23,7 +13,7 @@ header img{
 }
 
 .login{
-    margin:40px auto;
+    margin: 40px auto;
 }
 
 .img-responsive{
@@ -31,7 +21,8 @@ header img{
 }
 
 .img-profile{
-  max-width: 150px;
+  top: -20px;
+  position: relative;
 }
 
 .vertical-align{
@@ -40,7 +31,6 @@ header img{
 }
 
 /* Responsive iFrame */
-
 .responsive-iframe-container {
 position: relative;
 padding-bottom: 56.25%;
@@ -60,16 +50,17 @@ height: 100%;
 }
 
 .padding{
-  padding:10px;
+  padding: 10px;
 }
 .right{
-  margin-right:0px;
+  margin-right: 0px;
 }
 
 .blog-post-body{
   overflow: hidden;
   max-height: 420px;
 }
+
 .blog-post-meta{
   margiin-top:-2px;
   margin-bottom:3px;

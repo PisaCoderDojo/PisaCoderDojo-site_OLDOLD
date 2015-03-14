@@ -26,12 +26,11 @@ coderDojoControllers.controller('newCtrl', ['$scope', 'news', '$location',
     }
 }]);
 
-coderDojoControllers.controller('calendarCtrl', ['$scope', function($scope){
-    $scope.test="sei in calendar, con google calendar  !";
-}]);
-
-coderDojoControllers.controller('aboutCtrl', ['$scope', function($scope){
-    $scope.test="sei in Chi siamo !";
+coderDojoControllers.controller('aboutCtrl', ['$scope', '$http',
+  function($scope, $http){
+    $http.get('json/about.json').success(function(data) {
+      $scope.people = data;
+    });
 }]);
 
 

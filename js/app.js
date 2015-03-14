@@ -8,12 +8,10 @@ var myApp = angular.module('coderDojo',[
   'coderDojoControllers',
   'coderDojoServices',
   'coderDojoFilters',
-  'angulike'
+  'angulike',
+  'angulartics',
+  'angulartics.google.analytics'
   ]);
-
-myApp.controller('mainCtrl', ['$scope',
-function($scope){
-}]);
 
 myApp.run(['$rootScope','ngProgress','$location','tokenService',
   function($rootScope,ngProgress,$location,tokenService){

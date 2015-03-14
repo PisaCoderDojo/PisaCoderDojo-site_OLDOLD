@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html ng-app="coderDojo">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>CoderDojo - Pisa</title>
+    <meta name="google-site-verification" content="vjlLmSmymlvFbY2RmKpDFP6SASUrfOcHJr0nKeFWh3g"/>
     <base href="/">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -17,7 +19,9 @@
     <script src='lib/textAngular.js'></script>
     <script src='lib/textAngularSetup.js'></script>
     <script src='lib/angulike.js'></script>
-
+    <script src='lib/angulartics.min.js'></script>
+    <script src='lib/angulartics-ga.min.js'></script>
+    
     <!--
     <link rel="stylesheet" href="lib/bootstrap.min.css">
     <script src="lib/jquery.min.js"></script>
@@ -33,11 +37,6 @@
     <script src='js/services.js'></script>
     <script src='js/controllers.js'></script>
     <script src="js/filters.js"></script>
-
-    <!--<script type="text/javascript">
-      angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
-    </script>-->
-
   </head>
   <body>
     <!--FACEBOOK-sdk-->
@@ -50,7 +49,6 @@
           version    : 'v2.1'
         });
       };
-
       (function(d, s, id){
          var js, fjs = d.getElementsByTagName(s)[0];
          if (d.getElementById(id)) {return;}
@@ -59,7 +57,15 @@
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
-    <!--FACEBOOK-sdk>-->
+    <!--GOOGLE-ANALYSTIC-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-7192458-7', 'auto');
+    </script>
 
     <nav class="navbar.admin navbar-default" >
       <div class="container menu">
@@ -85,7 +91,7 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="container main" ng-controller="mainCtrl">
+    <div class="container main">
       <!--<span ng-show="isViewLoading"> loading the view... </span>-->
 
       <div class="row" ng-show="sideBar">
