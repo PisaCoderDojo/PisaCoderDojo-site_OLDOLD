@@ -66,6 +66,7 @@ coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '
                         title:$scope.news[key].TITLE
                         };
                         console.log('show');
+                        console.log($scope.delNews);
       $('#deleteModal').modal('show');
     };
 

@@ -31,10 +31,15 @@ server {
         # With php5-fpm:
         fastcgi_pass unix:/var/run/php5-fpm.sock;
         fastcgi_index index.php;
+
+        #Env Variable
+        fastcgi_param ADMIN_PASS 'secret';
+        fastcgi_param SECRET_KEY '3khj6Yppy0923PjbGuKj5P4DJs6tMi11';
+
+        fastcgi_param HTTPS off;
         include fastcgi_params;
         include fastcgi.conf;
         fastcgi_param LARA_ENV local; # Environment variable for Laravel
-        fastcgi_param HTTPS off;
     }
 
     # Deny .htaccess file access
