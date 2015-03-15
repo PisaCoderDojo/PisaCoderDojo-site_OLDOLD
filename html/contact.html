@@ -1,14 +1,15 @@
 <div class="container-fluid">
+  <p>Inviaci un email per avere chiarimenti o informazioni</p>
   <form ng-submit="send()" ng-hide="isSend">
     <div class="form-group">
-      <label for="email">Email address</label>
-      <input ng-model="mail" type="email" class="form-control" id="email" placeholder="Enter email">
-      <p class="help-block">Inserisci la tua email</p>
+      <label for="email">Email</label>
+      <input ng-model="mail" type="email" class="form-control" id="email" placeholder="Inserisci la tua email">
+      <p></p>
     </div>
     <div class="form-group">
       <label for="oggetto">Oggetto</label>
-      <input type="text" ng-model="subject" class="form-control" id="oggetto" placeholder="Subject">
-      <p class="help-block">Inserisci l'oggetto</p>
+      <input type="text" ng-model="subject" class="form-control" id="oggetto" placeholder="Inserisci l'oggetto del messaggio">
+      <p></p>
     </div>
     <div class="form-group">
       <label for="testo">Testo</label>
