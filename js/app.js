@@ -10,7 +10,8 @@ var myApp = angular.module('coderDojo',[
   'coderDojoFilters',
   'angulike',
   'angulartics',
-  'angulartics.google.analytics'
+  'angulartics.google.analytics',
+  'imageupload'
   ]);
 
 myApp.run(['$rootScope','ngProgress','$location','tokenService',

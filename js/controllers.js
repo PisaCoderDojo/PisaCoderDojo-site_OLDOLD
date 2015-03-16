@@ -5,7 +5,7 @@ var coderDojoControllers = angular.module('coderDojoControllers', []);
 coderDojoControllers.controller('homeCtrl', ['$scope',
   function($scope){
     $scope.test="sei in Home!";
-  }]);
+}]);
 
 coderDojoControllers.controller('newsCtrl', ['$scope', 'news',
   function($scope, news) {
@@ -147,4 +147,22 @@ coderDojoControllers.controller('addCtrl', ['$scope', 'newsService', '$location'
       }
     }
 
+}]);
+
+coderDojoControllers.controller('updateImageModal', ['$scope', '$modalInstance', '$http',
+  function($scope,$modalInstance,$http){
+    $scope.ok = function (img) {
+      $http({
+        method: 'POST',
+        url: 'php/updateImg.php',
+        data: {img:img}
+      }).success(function(result) {
+         console.log(result);
+         $modalInstance.close(result);
+      });
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
 }]);
