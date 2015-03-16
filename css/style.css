@@ -10,7 +10,7 @@
 }
 
 .main{
-    margin-top:20px;
+    /*margin-top:20px;*/
 }
 
 .text-muted {
@@ -100,4 +100,27 @@ body {
   padding: 20px 0px;
   margin-top: 10px;
   text-align: center;
+}
+
+
+body {
+    padding-top: 55px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.navbar-fixed-top .nav {
+    padding: 5px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 5px;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 85px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        padding: 5px 0;
+    }
 }
