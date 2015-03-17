@@ -1,17 +1,17 @@
 [
   {
     "name":"Stefano Forti",
-    "text":"Laureato in Informatica all'università di Pisa, attualmente studia Informatica e Networking all'Università di Pisa e alla Scuola Superiore Sant'Anna. Pisano DOC, sogna di unire la sua passione per l'informatica a quella per le lettere e di occuparsi di ricerca, innovazione e divulgazione.",
+    "text":"Laureato in Informatica all'Università di Pisa, attualmente studia Informatica e Networking all'Università di Pisa e alla Scuola Superiore Sant'Anna. Pisano DOC, sogna di unire la sua passione per l'informatica a quella per le lettere e di occuparsi di ricerca, innovazione e divulgazione.",
     "img":"img/personal/stefano.jpg"
   },
   {
     "name":"Davide Neri",
-    "text":"Laureato in Informatica all'Università di  Firenze, attualmente frequenta il corso di Informatica e Networking a Pisa. La scelta formativa è stata guidata dal  fascino e dal ruolo fondamentale che  la comunicazione ha sempre giocato nel passato, continua nel presente e sempre di più avra' nel futuro della storia.",
+    "text":"Laureato in Informatica all'Università di  Firenze, attualmente studia Informatica e Networking all'Università di Pisa e alla Scuola Superiore Sant'Anna. La sua scelta formativa è stata guidata dal fascino e dal ruolo fondamentale che la comunicazione ha sempre giocato nel passato, continua nel presente e sempre di più avrà nel futuro della storia.",
     "img":"img/personal/davide.jpg"
   },
   {
     "name":"Luca Rinaldi",
-    "text":"Laureato in Informatica all'Università di  Perugia, attualmente studia Informatica e Networking all'Università di Pisa e alla Scuola Superiore Sant'anna. Originario delle marche il suo sogno nella vita lavorare nel campo dei servizi web.",
+    "text":"Laureato in Informatica all'Università di  Perugia, attualmente studia Informatica e Networking all'Università di Pisa e alla Scuola Superiore Sant'anna. Originario delle Marche il suo sogno nella vita lavorare nel campo dei servizi web.",
     "img":"img/personal/luca.jpg"
   }
 ]
