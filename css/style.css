@@ -10,7 +10,7 @@
 }
 
 .main{
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 .text-muted {
@@ -132,4 +132,30 @@ body {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+
+.tagline {
+    text-shadow: 0 0 10px #000;
+    color: #fff;
+}
+
+.social{
+  padding:20px 0;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    reset the text-align
+    text-align:left;
+    /*inline-block space fix */
+    margin-right:-4px;
+}
+
+.btn-social-icon{
+  margin:5px;
 }

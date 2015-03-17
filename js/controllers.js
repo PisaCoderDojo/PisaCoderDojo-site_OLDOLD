@@ -33,7 +33,6 @@ coderDojoControllers.controller('aboutCtrl', ['$scope', '$http',
     });
 }]);
 
-
 coderDojoControllers.controller('contactCtrl', ['$scope', '$http', function ($scope, $http) {
   /*$http.get('json/contacts.json').success(function(data) {
     $scope.contacts = data;
