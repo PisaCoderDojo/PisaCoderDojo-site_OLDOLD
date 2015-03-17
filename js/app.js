@@ -21,10 +21,8 @@ myApp.run(['$rootScope','ngProgress','$location','tokenService',
       ngProgress.start();
       console.log('cookie_token '+tokenService.get());
       var route = current.$$route.originalPath.split('/')[1];
-      if (route == 'admin' || route == 'login')
-        $rootScope.sideBar=false;
-      else
-        $rootScope.sideBar=true;
+      $rootScope.home = route=="";
+      $rootScope.sideBar=!(route == 'admin' || route == 'login');
       if (route == 'admin' && !tokenService.isSet()){
         $location.path('/login');
       }
