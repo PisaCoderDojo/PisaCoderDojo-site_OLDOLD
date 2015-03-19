@@ -4,14 +4,14 @@ var coderDojoControllers = angular.module('coderDojoControllers', []);
 
 coderDojoControllers.controller('homeCtrl', ['$scope',
   function($scope){
-    $scope.test="sei in Home!";
+    //$scope.test="sei in Home!";
 }]);
 
 coderDojoControllers.controller('newsCtrl', ['$scope', 'news',
   function($scope, news) {
     $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
     $scope.news = angular.fromJson(news.data);
-    console.log(news.data);
+    //console.log(news.data);
     $scope.orderProp = 'age';
 }]);
 
@@ -39,13 +39,13 @@ coderDojoControllers.controller('contactCtrl', ['$scope', '$http', function ($sc
   });*/
   $scope.isSend = false;
   $scope.send = function(){
-    console.log($scope.mail+' '+$scope.subject+' '+$scope.text);
+    //console.log($scope.mail+' '+$scope.subject+' '+$scope.text);
     $http({
       method:'POST',
       url: 'php/sendMail.php',
       data: {'mail':$scope.mail,'subject':$scope.subject,'text':$scope.text}
     }).success(function(data){
-      console.log(data);
+      //console.log(data);
       if(data == 'true')
         $scope.isSend=true;
     });
@@ -64,8 +64,7 @@ coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '
                         id:id,
                         title:$scope.news[key].TITLE
                         };
-                        console.log('show');
-                        console.log($scope.delNews);
+                        //console.log($scope.delNews);
       $('#deleteModal').modal('show');
     };
 
@@ -77,7 +76,7 @@ coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '
     $scope.delete = function(delNew){
       $('#deleteModal').modal('hide');
       newsService.delNews(delNew.id).success(function(data){
-        console.log(data);
+        //console.log(data);
         if(data=='success')
           $scope.news.splice(delNew.key,1);
       });
@@ -94,7 +93,7 @@ coderDojoControllers.controller('modCtrl', ['$scope', 'news', 'newsService', '$l
       $scope.title=news.TITLE;
       $scope.user=news.AUTHOR;
       $scope.text=news.BODY;
-      console.log(id);
+      //console.log(id);
     }
     $scope.submit = function(){
       var data = {id:id,
@@ -103,7 +102,7 @@ coderDojoControllers.controller('modCtrl', ['$scope', 'news', 'newsService', '$l
                   text:$scope.text
                   };
       newsService.modNews(data).success(function(data){
-        console.log(data);
+        //console.log(data);
         if(data=='success'){
           $location.path('/admin');
         }

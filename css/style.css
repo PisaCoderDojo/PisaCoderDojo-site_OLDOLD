@@ -140,7 +140,8 @@ body {
 }
 
 .social{
-  padding:20px 0;
+  padding-top:20px;
+  padding-bottom:20px;
 }
 
 /* centered columns styles */
@@ -170,7 +171,7 @@ body {
 #beta{
   z-index: 100;
   position: fixed;
-  height: 100px;
+  height: 120px;
   right: 22px;
 }
 
@@ -178,4 +179,13 @@ body {
    -moz-transform: scale(-1, 1);
    -webkit-transform: scale(-1, 1);
    transform: scale(-1, 1);
+}
+
+.eventbride-button{
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+hr{
+  border-top: 1px solid #CFC9C9;
 }

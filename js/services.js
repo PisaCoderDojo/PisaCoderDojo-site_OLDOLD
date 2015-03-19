@@ -57,7 +57,7 @@ angular.module('coderDojoServices', [])
   return {
     copyCookie: function(){
       tokenValue = $cookies.token;
-      console.log('onStart: '+tokenValue);
+      //console.log('onStart: '+tokenValue);
     },
     set: function(token){
       if(this.remember){

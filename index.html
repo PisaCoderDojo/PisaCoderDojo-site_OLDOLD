@@ -70,6 +70,45 @@
 
       ga('create', 'UA-7192458-7', 'auto');
     </script>
+    <!--SCRATCH-->
+    <img id="scratch" src="img/cat-a.png"></img>
+    <script>
+      jQuery(document).ready(function () {
+        var setTimer = function(){
+          var time = Math.random()*55000+5000;
+          console.log(time);
+          setTimeout(function() {
+            var r = Math.random()*91+9;
+            var l = Math.floor(Math.random()*2);
+            if(l==1){
+              $("#scratch")
+                .css('right', 'auto')
+                .css('left','-110px')
+                .removeClass('mirror');
+              anobj1 = {left:'0'};
+              anobj2 = {left:'-110'};
+            }else{
+              $("#scratch")
+                .css('right','-110px')
+                .css('left', 'auto')
+                .addClass('mirror');
+              anobj1 = {right:'0'};
+              anobj2 = {right:'-110'};
+            }
+            $("#scratch").show().css('top',r+'%')
+            .animate(anobj1, 800, 'linear', function() {
+                //completed
+            })
+            .animate(anobj2, 800, 'linear', function() {
+                $("#scratch").hide();
+                setTimer();
+
+            });
+          }, time);
+        }
+        setTimer();
+      });
+    </script>
 
     <nav class="navbar-default navbar navbar-fixed-top" >
       <div class="container">
@@ -150,7 +189,7 @@
             <!-- Begin MailChimp Signup Form -->
             <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
             <style type="text/css">
-              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; max-width:400px}
               #mc_embed_signup input.email {width:80%;}
               /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
                  We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
@@ -178,10 +217,12 @@
                  data-stream="false"
                  data-show-border="true">
             </div>
-            <a class="btn btn-social-icon btn-lg btn-github" href="https://github.com/PisaCoderDojo">
-              <i class="fa fa-github"></i>
-            </a>
-            GitHub
+            <div>
+              <a class="btn btn-social-icon btn-lg btn-github" href="https://github.com/PisaCoderDojo">
+                <i class="fa fa-github"></i>
+              </a>
+              <span>GitHub</span>
+            </div>
           </div>
           <div class="col-sm-4">
             <a class="twitter-timeline"

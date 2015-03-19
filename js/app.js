@@ -19,7 +19,7 @@ myApp.run(['$rootScope','ngProgress','$location','tokenService',
     tokenService.copyCookie();
     $rootScope.$on('$routeChangeStart', function(data, current) {
       ngProgress.start();
-      console.log('cookie_token '+tokenService.get());
+      //console.log('cookie_token '+tokenService.get());
       var route = current.$$route.originalPath.split('/')[1];
       $rootScope.home = route=="";
       $rootScope.sideBar=!(route == 'admin' || route == 'login');
@@ -48,7 +48,7 @@ function($routeProvider, $locationProvider) {
     controller: 'newsCtrl',
     resolve: {
       news: function(newsService){
-        console.log('inside resolve');
+        //console.log('inside resolve');
         return newsService.getNews();
       }
     }
@@ -71,15 +71,14 @@ function($routeProvider, $locationProvider) {
     controller: 'aboutCtrl'
   })
   .when('/calendar', {
-    templateUrl: 'html/calendar.html',
-    controller: 'calendarCtrl'
+    templateUrl: 'html/calendar.html'
   })
   .when('/admin',{
       templateUrl: 'html/admin.html',
       controller: 'adminCtrl',
       resolve: {
         news: function(newsService){
-          console.log('inside resolve');
+          //console.log('inside resolve');
           return newsService.getNews();
         }
       }
@@ -93,7 +92,7 @@ function($routeProvider, $locationProvider) {
     controller: 'modCtrl',
     resolve: {
       news: function(newsService, $route){
-        console.log('inside resolve');
+        //console.log('inside resolve');
         return newsService.getNew($route.current.params.id);
       }
     }
@@ -114,11 +113,19 @@ myApp.controller('CarouselCtrl', function ($scope) {
   var slides = $scope.slides = [];
   $scope.addSlide = function() {
     slides.push({
-      image: 'http://lorempixel.com/g/1200/350/abstract/',
+      image: 'http://lorempixel.com/g/1000/400/abstract/',
       text: ''
     });
   };
-  for (var i=0; i<3; i++) {
+  slides.push({
+    image: 'img/tre-banner.jpg',
+    text: ''
+  });
+  slides.push({
+    image:'img/SMS-biblio.jpg',
+    text: ''
+  });
+  for (var i=0; i<1; i++) {
     $scope.addSlide();
   }
 });
