@@ -170,9 +170,9 @@ body {
 
 #beta{
   z-index: 100;
-  position: fixed;
+  position: absolute;
   height: 120px;
-  right: 22px;
+  right: 20px;
 }
 
 .mirror {

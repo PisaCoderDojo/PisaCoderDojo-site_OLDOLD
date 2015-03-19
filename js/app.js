@@ -118,11 +118,11 @@ myApp.controller('CarouselCtrl', function ($scope) {
     });
   };
   slides.push({
-    image: 'img/tre-banner.jpg',
+    image:'img/SMS-biblio.jpg',
     text: ''
   });
   slides.push({
-    image:'img/SMS-biblio.jpg',
+    image: 'img/tre-banner.jpg',
     text: ''
   });
   for (var i=0; i<1; i++) {
