@@ -108,3 +108,17 @@ function($routeProvider, $locationProvider) {
   // configure html5 to get links working on jsfiddle
   $locationProvider.html5Mode(true);
 }]);
+
+myApp.controller('CarouselCtrl', function ($scope) {
+  $scope.myInterval = 5000;
+  var slides = $scope.slides = [];
+  $scope.addSlide = function() {
+    slides.push({
+      image: 'http://lorempixel.com/g/1200/350/abstract/',
+      text: ''
+    });
+  };
+  for (var i=0; i<3; i++) {
+    $scope.addSlide();
+  }
+});

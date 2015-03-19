@@ -98,105 +98,122 @@
       </div><!-- /.container-fluid -->
     </nav>
 
+    <div class="carousel-header" ng-controller="CarouselCtrl" ng-show="home">
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-2 col-sm-offset-10">
+                <img id="beta" class="img-responsive" src="img/beta1.png"></img>
+              </div>
+          </div>
+      </div>
+      <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+          <img ng-src="{{slide.image}}" style="margin:auto;">
+          <div class="carousel-caption">
+            <h4></h4>
+            <p></p>
+          </div>
+        </slide>
+      </carousel>
+    </div>
+
     <!-- Image Background Page Header -->
     <!-- Note: The background image is set within the business-casual.css file. -->
+    <!--
     <header class="business-header" ng-show="home">
       <div class="container">
           <div class="row">
               <div class="col-sm-2 col-sm-offset-10">
                 <img src="img/beta1.png"></img>
-                <!--<h1 class="tagline">Business Name or Tagline</h1>-->
               </div>
           </div>
       </div>
     </header>
-
+    -->
     <div class="container main">
-        <!--<span ng-show="isViewLoading"> loading the view... </span>-->
-        <div class="row" ng-show="sideBar">
-          <div class="col-sm-9">
-            <div ng-view ></div>
-          </div>
-        <div ng-view ng-hide="sideBar"></div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div ng-view ></div>
+        </div>
       </div>
     </div>
 
-      <footer class="footer">
-        <div class="container social">
-          <div class="row">
+    <footer class="footer">
+      <div class="container social">
+        <div class="row">
 
-              <!--
-              <div class="col-sm-3" style="width:195px; text-align:center;" ><iframe  src="https://www.eventbrite.it/countdown-widget?eid=16099774860" frameborder="0" height="460" width="195" marginheight="0" marginwidth="0" scrolling="no" allowtransparency="true"></iframe><div style="font-family:Helvetica, Arial; font-size:10px; padding:5px 0 5px; margin:2px; width:195px; text-align:center;" ><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.it/r/ecount">Registrazione dell'evento online</a><span style="color:#ddd;"> per </span><a style="color:#ddd; text-decoration:none;" target="_blank" href="https://www.eventbrite.it/e/biglietti-pisa-coderdojo-1-16099774860?ref=ecount">Pisa CoderDojo 1</a> <span style="color:#ddd;">con tecnologia</span> <a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.it?ref=ecount">Eventbrite</a></div></div>
-              -->
-            <div class="col-sm-5">
+            <!--
+            <div class="col-sm-3" style="width:195px; text-align:center;" ><iframe  src="https://www.eventbrite.it/countdown-widget?eid=16099774860" frameborder="0" height="460" width="195" marginheight="0" marginwidth="0" scrolling="no" allowtransparency="true"></iframe><div style="font-family:Helvetica, Arial; font-size:10px; padding:5px 0 5px; margin:2px; width:195px; text-align:center;" ><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.it/r/ecount">Registrazione dell'evento online</a><span style="color:#ddd;"> per </span><a style="color:#ddd; text-decoration:none;" target="_blank" href="https://www.eventbrite.it/e/biglietti-pisa-coderdojo-1-16099774860?ref=ecount">Pisa CoderDojo 1</a> <span style="color:#ddd;">con tecnologia</span> <a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.it?ref=ecount">Eventbrite</a></div></div>
+            -->
+          <div class="col-sm-5">
 
-              <!-- Begin MailChimp Signup Form -->
-              <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-              <style type="text/css">
-                #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-                #mc_embed_signup input.email {width:80%;}
-                /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-                   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-              </style>
-              <div id="mc_embed_signup">
-                <form action="//sfcoding.us10.list-manage.com/subscribe/post?u=eb8799a541ad4e7c8602cf884&amp;id=a55665e114" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                  <div id="mc_embed_signup_scroll">
-                  <h4>Inscriviti alla nostra mailing list</h4>
-                  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_eb8799a541ad4e7c8602cf884_a55665e114" tabindex="-1" value=""></div>
-                    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-                    </div>
-                </form>
-              </div>
-              <!--End mc_embed_signup-->
+            <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+            <style type="text/css">
+              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+              #mc_embed_signup input.email {width:80%;}
+              /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+                 We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+            </style>
+            <div id="mc_embed_signup">
+              <form action="//sfcoding.us10.list-manage.com/subscribe/post?u=eb8799a541ad4e7c8602cf884&amp;id=a55665e114" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+                <h4>Inscriviti alla nostra mailing list</h4>
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;"><input type="text" name="b_eb8799a541ad4e7c8602cf884_a55665e114" tabindex="-1" value=""></div>
+                  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                  </div>
+              </form>
             </div>
-            <div class="col-sm-3">
-              <div class="fb-like-box"
-                   data-href="https://www.facebook.com/pisacoderdojo"
-                   data-width="250"
-                   data-colorscheme="light"
-                   data-show-faces="false"
-                   data-header="true"
-                   data-stream="false"
-                   data-show-border="true">
-              </div>
-              <a class="btn btn-social-icon btn-lg btn-github" href="https://github.com/PisaCoderDojo">
-                <i class="fa fa-github"></i>
-              </a>
-              GitHub
+            <!--End mc_embed_signup-->
+          </div>
+          <div class="col-sm-3">
+            <div class="fb-like-box"
+                 data-href="https://www.facebook.com/pisacoderdojo"
+                 data-width="250"
+                 data-colorscheme="light"
+                 data-show-faces="false"
+                 data-header="true"
+                 data-stream="false"
+                 data-show-border="true">
             </div>
-            <div class="col-sm-4">
-              <a class="twitter-timeline"
-                 href="https://twitter.com/PisaCoderDojo"
-                 data-chrome=""
-                 data-widget-id="575254844765765632"
-                 height="250"
-                 width="250">Tweetdi @PisaCoderDojo</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-            </div>
+            <a class="btn btn-social-icon btn-lg btn-github" href="https://github.com/PisaCoderDojo">
+              <i class="fa fa-github"></i>
+            </a>
+            GitHub
+          </div>
+          <div class="col-sm-4">
+            <a class="twitter-timeline"
+               href="https://twitter.com/PisaCoderDojo"
+               data-chrome=""
+               data-widget-id="575254844765765632"
+               height="250"
+               width="250">Tweetdi @PisaCoderDojo</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
           </div>
         </div>
-        <div class="container">
-          <div class="text-muted">Le nostre collaborazioni</div>
-          <img class="img-responsive img-col" src="img/loghi.png"></img>
-        </div>
-      </footer>
+      </div>
+      <div class="container">
+        <div class="text-muted">Le nostre collaborazioni</div>
+        <img class="img-responsive img-col" src="img/loghi.png"></img>
+      </div>
+    </footer>
 
-      <script type="text/ng-template" id="updateImageModal.html">
-        <div class="modal-header">
-          <h3 class="modal-title">upload Image</h3>
-        </div>
-        <div class="modal-body">
-          <input type="file" accept="image/*" image="image2"
-              resize-max-width="600"
-              resize-quality="0.8" />
-          Resized <img class="img-responsive" ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="ok(image2.resized.dataURL)">OK</button>
-          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-      </script>
+    <script type="text/ng-template" id="updateImageModal.html">
+      <div class="modal-header">
+        <h3 class="modal-title">upload Image</h3>
+      </div>
+      <div class="modal-body">
+        <input type="file" accept="image/*" image="image2"
+            resize-max-width="600"
+            resize-quality="0.8" />
+        Resized <img class="img-responsive" ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok(image2.resized.dataURL)">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      </div>
+    </script>
   </body>
 </html>
