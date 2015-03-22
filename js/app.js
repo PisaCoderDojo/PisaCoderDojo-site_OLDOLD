@@ -33,7 +33,6 @@ myApp.run(['$rootScope','ngProgress','$location','tokenService',
     $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
         console.log(event);
     });
-
 }]);
 
 myApp.config(['$routeProvider', '$locationProvider',
@@ -72,6 +71,24 @@ function($routeProvider, $locationProvider) {
   })
   .when('/calendar', {
     templateUrl: 'html/calendar.html'
+  })
+  .when('/albums', {
+    templateUrl: 'html/albums.html',
+    controller: 'albumsCtrl',
+    resolve: {
+      albums: function(albumsService){
+        return albumsService.getAlbums();
+      }
+    }
+  })
+  .when('/albums/:id', {
+    templateUrl: 'html/album.html',
+    controller: 'albumCtrl',
+    resolve: {
+      album: function(albumsService, $route){
+        return albumsService.getAlbum($route.current.params.id);
+      }
+    }
   })
   .when('/admin',{
       templateUrl: 'html/admin.html',

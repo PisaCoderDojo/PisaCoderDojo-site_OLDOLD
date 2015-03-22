@@ -1,0 +1,7 @@
+<div ng-repeat="album in albums">
+  <a href="{{ 'albums/'+album.id }}" >
+    <div ng-bind="album.name"></div>
+  </a>
+  <div ng-bind="album.id"></div>
+  <img ng-src="{{ getImg(album.cover_photo) }}"></img>
+</div>

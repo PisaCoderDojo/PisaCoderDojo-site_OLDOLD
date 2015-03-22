@@ -2,9 +2,11 @@
 "use strict";
 var coderDojoControllers = angular.module('coderDojoControllers', []);
 
-coderDojoControllers.controller('homeCtrl', ['$scope',
-  function($scope){
-    //$scope.test="sei in Home!";
+coderDojoControllers.controller('homeCtrl', ['$scope','Event',
+  function($scope,Event){
+    Event.next().success(function(data){
+      $scope.nextEvent = Math.floor(Event.getDay(data));
+    });
 }]);
 
 coderDojoControllers.controller('newsCtrl', ['$scope', 'news',
@@ -24,6 +26,21 @@ coderDojoControllers.controller('newCtrl', ['$scope', 'news', '$location',
     else{
       $scope.new = news;
     }
+}]);
+
+coderDojoControllers.controller('albumsCtrl', ['$scope', 'albums',
+  function($scope,albums){
+    $scope.albums=albums.data;
+    console.log(albums.data);
+    $scope.getImg = function(id){
+      return 'https://graph.facebook.com/'+id+'/picture?type=album';
+    }
+}]);
+
+coderDojoControllers.controller('albumCtrl', ['$scope', 'album',
+  function($scope,album){
+    $scope.album=album.data;
+    console.log(album.data);
 }]);
 
 coderDojoControllers.controller('aboutCtrl', ['$scope', '$http',
