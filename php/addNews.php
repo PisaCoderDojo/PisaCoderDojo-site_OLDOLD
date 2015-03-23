@@ -11,6 +11,7 @@ if ($token->admin){
   $body = $database->escapeString($data->text);
   $author = $database->escapeString($data->user);
   $date = time()*1000;
+  $tagList = $data->tag;
 
   $sql ="INSERT INTO news (TITLE,BODY,AUTHOR,DATE_CREATE)
          VALUES ('$title','$body','$author','$date')";
@@ -19,6 +20,11 @@ if ($token->admin){
   if(!$ret){
     echo $database->lastErrorMsg();
   } else {
+    $newsID = $database->lastInsertRowID();
+    foreach ($tagList as $tag){
+      $database->exec("INSERT INTO tag (name) VALUES ('$tag')");
+      $database->exec("INSERT INTO rel_TagNews(news,tag) VALUES ('$newsID','$tag')");
+    }
     echo "success";
   }
 }else

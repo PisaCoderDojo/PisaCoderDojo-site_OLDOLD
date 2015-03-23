@@ -3,7 +3,7 @@ if(isset($_GET["id"])){
   $id = $_GET["id"];
   $sql = "SELECT * FROM news WHERE ID=$id";
 }else{
-  $sql="SELECT * FROM news ORDER BY ID DESC";
+  $sql = "SELECT * FROM news ORDER BY ID DESC";
 }
 $database = new SQLite3('../sqlite/newsdb.db');
 $aResult = array();
