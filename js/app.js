@@ -47,8 +47,10 @@ function($routeProvider, $locationProvider) {
     controller: 'newsCtrl',
     resolve: {
       news: function(newsService){
-        //console.log('inside resolve');
         return newsService.getNews();
+      },
+      tags: function(newsService){
+        return newsService.getTags();
       }
     }
   })

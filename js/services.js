@@ -4,10 +4,10 @@
 angular.module('coderDojoServices', [])
 .factory('newsService', ['$http', 'tokenService', function($http, tokenService) {
   return {
-    getNews: function() {
+    getNews: function(tag) {
       return $http({
         method: 'GET',
-        url: 'php/getNews.php'
+        url: (tag ? 'php/getNews.php?tag='+tag : 'php/getNews.php')
       });
     },
     getNew: function(id) {
@@ -38,6 +38,12 @@ angular.module('coderDojoServices', [])
         url: 'php/delNews.php',
         data: {id:id,token:tokenService.get()}
       })
+    },
+    getTags: function(){
+      return $http({
+        method: 'GET',
+        url: 'php/getTags.php'
+      });
     }
   }
 }])

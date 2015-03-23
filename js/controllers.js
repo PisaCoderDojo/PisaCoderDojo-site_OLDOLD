@@ -9,11 +9,12 @@ coderDojoControllers.controller('homeCtrl', ['$scope','Event',
     });
 }]);
 
-coderDojoControllers.controller('newsCtrl', ['$scope', 'news',
-  function($scope, news) {
+coderDojoControllers.controller('newsCtrl', ['$scope', 'news', 'tags',
+  function($scope, news, tags) {
     $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
-    $scope.news = angular.fromJson(news.data);
-    //console.log(news.data);
+    $scope.news = news.data;
+    $scope.tags = tags.data;
+    console.log(tags.data);
     $scope.orderProp = 'age';
 }]);
 

@@ -13,7 +13,7 @@ if ($token->admin){
   $date = time()*1000;
   $tagList = $data->tag;
 
-  $sql ="INSERT INTO news (TITLE,BODY,AUTHOR,DATE_CREATE)
+  $sql ="INSERT INTO NEWS (title,body,author,creation_date)
          VALUES ('$title','$body','$author','$date')";
 
   $ret = $database->exec($sql);
@@ -22,8 +22,7 @@ if ($token->admin){
   } else {
     $newsID = $database->lastInsertRowID();
     foreach ($tagList as $tag){
-      $database->exec("INSERT INTO tag (name) VALUES ('$tag')");
-      $database->exec("INSERT INTO rel_TagNews(news,tag) VALUES ('$newsID','$tag')");
+      $database->exec("INSERT INTO TAGS (name,news_id) VALUES ('$tag','$newsID')");
     }
     echo "success";
   }
