@@ -21,7 +21,7 @@ myApp.run(['$rootScope','ngProgress','$location','tokenService',
       ngProgress.start();
       //console.log('cookie_token '+tokenService.get());
       var route = current.$$route.originalPath.split('/')[1];
-      $rootScope.home = route=="";
+      $rootScope.home = route === "";
       $rootScope.sideBar=!(route == 'admin' || route == 'login');
       if (route == 'admin' && !tokenService.isSet()){
         $location.path('/login');
@@ -72,7 +72,7 @@ function($routeProvider, $locationProvider) {
   .when('/calendar', {
     templateUrl: 'html/calendar.html'
   })
-  .when('/albums', {
+  /*.when('/albums', {
     templateUrl: 'html/albums.html',
     controller: 'albumsCtrl',
     resolve: {
@@ -89,7 +89,7 @@ function($routeProvider, $locationProvider) {
         return albumsService.getAlbum($route.current.params.id);
       }
     }
-  })
+  })*/
   .when('/admin',{
       templateUrl: 'html/admin.html',
       controller: 'adminCtrl',
