@@ -10,7 +10,6 @@ if(isset($_GET["id"])){
   $sql = "SELECT id,title,body,author,creation_date
           FROM NEWS INNER JOIN TAGS ON NEWS.id=TAGS.news_id
           WHERE TAGS.name='$tag'";
-          
 }else{
   $sql = "SELECT * FROM news ORDER BY ID DESC";
 }

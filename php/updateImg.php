@@ -1,12 +1,12 @@
 <?php
-/*require_once('lib/jwt_helper.php');
+require_once('lib/jwt_helper.php');
 
 $data = json_decode(file_get_contents("php://input"));
 $token = $data->token;
 $token = JWT::decode($token, $_SERVER['SECRET_KEY']);
 
 if ($token->admin){
-  */
+
   $URL = 'img/article/';
   $PATH = '../'.$URL;
 
@@ -22,9 +22,8 @@ if ($token->admin){
   file_put_contents($PATH.$name, $img);
 
   echo $URL.$name;
-/*
+
 }else{
   echo "token is not valid";
 }
-*/
 ?>

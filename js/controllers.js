@@ -1,24 +1,21 @@
 /* Controllers */
 "use strict";
-var coderDojoControllers = angular.module('coderDojoControllers', []);
-
-coderDojoControllers.controller('homeCtrl', ['$scope','Event',
+angular.module('controller', [])
+.controller('homeCtrl', ['$scope','Event',
   function($scope,Event){
     Event.next().success(function(data){
       $scope.nextEvent = Math.floor(Event.getDay(data));
     });
-}]);
-
-coderDojoControllers.controller('newsCtrl', ['$scope', 'news', 'tags',
-  function($scope, news, tags) {
+}])
+.controller('newsCtrl', ['$scope', 'news', 'tags', '$route',
+  function($scope, news, tags, $route) {
     $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
     $scope.news = news.data;
     $scope.tags = tags.data;
-    console.log(tags.data);
+    $scope.currentTag = $route.current.params.tag || -1;
     $scope.orderProp = 'age';
-}]);
-
-coderDojoControllers.controller('newCtrl', ['$scope', 'news', '$location',
+}])
+.controller('newCtrl', ['$scope', 'news', '$location',
   function($scope,news,$location){
     $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
     news=news.data[0];
@@ -27,50 +24,45 @@ coderDojoControllers.controller('newCtrl', ['$scope', 'news', '$location',
     else{
       $scope.new = news;
     }
-}]);
-
-coderDojoControllers.controller('albumsCtrl', ['$scope', 'albums',
+}])
+.controller('albumsCtrl', ['$scope', 'albums',
   function($scope,albums){
     $scope.albums=albums.data;
     console.log(albums.data);
     $scope.getImg = function(id){
       return 'https://graph.facebook.com/'+id+'/picture?type=album';
-    }
-}]);
-
-coderDojoControllers.controller('albumCtrl', ['$scope', 'album',
+    };
+}])
+.controller('albumCtrl', ['$scope', 'album',
   function($scope,album){
     $scope.album=album.data;
     console.log(album.data);
-}]);
-
-coderDojoControllers.controller('aboutCtrl', ['$scope', '$http',
+}])
+.controller('aboutCtrl', ['$scope', '$http',
   function($scope, $http){
     $http.get('json/about.json').success(function(data) {
       $scope.people = data;
     });
-}]);
-
-coderDojoControllers.controller('contactCtrl', ['$scope', '$http', function ($scope, $http) {
-  /*$http.get('json/contacts.json').success(function(data) {
-    $scope.contacts = data;
-  });*/
-  $scope.isSend = false;
-  $scope.send = function(){
-    //console.log($scope.mail+' '+$scope.subject+' '+$scope.text);
-    $http({
-      method:'POST',
-      url: 'php/sendMail.php',
-      data: {'mail':$scope.mail,'subject':$scope.subject,'text':$scope.text}
-    }).success(function(data){
-      //console.log(data);
-      if(data == 'true')
-        $scope.isSend=true;
-    });
-  }
-}]);
-
-coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '$location', '$cookies',
+}])
+.controller('contactCtrl', ['$scope', '$http',
+  function ($scope, $http) {
+    $scope.isSend = false;
+    $scope.send = function(){
+      //console.log($scope.mail+' '+$scope.subject+' '+$scope.text);
+      $http({
+        method:'POST',
+        url: 'php/sendMail.php',
+        data: {'mail':$scope.mail,
+               'subject':$scope.subject,
+               'text':$scope.text}
+      }).success(function(data){
+        //console.log(data);
+        if(data == 'true')
+          $scope.isSend=true;
+      });
+    };
+}])
+.controller('adminCtrl', ['$scope', 'news', 'newsService', '$location', '$cookies',
   function($scope, news, newsService, $location, $cookies){
     $scope.news = news.data;
     $scope.modify = function(id){
@@ -80,7 +72,7 @@ coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '
     $scope.showDelModal = function(id,key){
       $scope.delNews = {key:key,
                         id:id,
-                        title:$scope.news[key].TITLE
+                        title:$scope.news[key].title
                         };
                         //console.log($scope.delNews);
       $('#deleteModal').modal('show');
@@ -99,18 +91,17 @@ coderDojoControllers.controller('adminCtrl', ['$scope', 'news', 'newsService', '
           $scope.news.splice(delNew.key,1);
       });
     };
-}]);
-
-coderDojoControllers.controller('modCtrl', ['$scope', 'news', 'newsService', '$location',
+}])
+.controller('modCtrl', ['$scope', 'news', 'newsService', '$location',
   function($scope,news,newsService,$location){
     news=news.data[0];
     if (news===undefined)
       $location.path('/admin');
     else{
       var id = news.ID;
-      $scope.title=news.TITLE;
-      $scope.user=news.AUTHOR;
-      $scope.text=news.BODY;
+      $scope.title=news.title;
+      $scope.user=news.author;
+      $scope.text=news.body;
       //console.log(id);
     }
     $scope.submit = function(){
@@ -126,9 +117,8 @@ coderDojoControllers.controller('modCtrl', ['$scope', 'news', 'newsService', '$l
         }
       });
     };
-}]);
-
-coderDojoControllers.controller('loginCtrl', ['$scope', '$location', 'loginService','tokenService',
+}])
+.controller('loginCtrl', ['$scope', '$location', 'loginService','tokenService',
   function($scope,$location,loginService,tokenService){
     $scope.error = false;
     $scope.remember = tokenService.remember;
@@ -144,13 +134,12 @@ coderDojoControllers.controller('loginCtrl', ['$scope', '$location', 'loginServi
           $scope.error = true;
         }
       });
-    }
-}]);
-
-coderDojoControllers.controller('addCtrl', ['$scope', 'newsService', '$location',
+    };
+}])
+.controller('addCtrl', ['$scope', 'newsService', '$location',
   function($scope, newsService, $location){
     $scope.submit = function(){
-      if ($scope.title!='' && $scope.text!='' && $scope.user!=''){
+      if ($scope.title!=='' && $scope.text!=='' && $scope.user!==''){
         newsService.addNews({
           title: $scope.title,
           text: $scope.text,
@@ -161,18 +150,12 @@ coderDojoControllers.controller('addCtrl', ['$scope', 'newsService', '$location'
             $location.path('/admin');
         });
       }
-    }
-
-}]);
-
-coderDojoControllers.controller('updateImageModal', ['$scope', '$modalInstance', '$http',
-  function($scope,$modalInstance,$http){
+    };
+}])
+.controller('updateImageModal', ['$scope', '$modalInstance', 'imageService',
+  function($scope,$modalInstance,imageService){
     $scope.ok = function (img) {
-      $http({
-        method: 'POST',
-        url: 'php/updateImg.php',
-        data: {img:img}
-      }).success(function(result) {
+      imageService.upload(img).success(function(result) {
          console.log(result);
          $modalInstance.close(result);
       });

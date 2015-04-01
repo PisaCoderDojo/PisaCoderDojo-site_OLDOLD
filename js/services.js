@@ -22,7 +22,7 @@ angular.module('coderDojoServices', [])
         method: 'POST',
         url: 'php/modNews.php',
         data: news
-      })
+      });
     },
     addNews: function(news){
       news.token = tokenService.get();
@@ -30,14 +30,14 @@ angular.module('coderDojoServices', [])
         method: 'POST',
         url: 'php/addNews.php',
         data: news
-      })
+      });
     },
     delNews: function(id){
       return $http({
         method: 'POST',
         url: 'php/delNews.php',
         data: {id:id,token:tokenService.get()}
-      })
+      });
     },
     getTags: function(){
       return $http({
@@ -45,7 +45,18 @@ angular.module('coderDojoServices', [])
         url: 'php/getTags.php'
       });
     }
-  }
+  };
+}])
+.factory('imageService', ['$http','tokenService', function($http,tokenService){
+  return {
+    upload: function(img){
+      return $http({
+        method: 'POST',
+        url: 'php/updateImg.php',
+        data: {img:img,token:tokenService.get()}
+      });
+    }
+  };
 }])
 .factory('albumsService', ['$http', function($http) {
   return {
@@ -61,7 +72,7 @@ angular.module('coderDojoServices', [])
         url: 'php/getAlbums.php?id='+id
       });
     }
-  }
+  };
 }])
 .factory('loginService', ['$http', function($http){
   return {
@@ -72,10 +83,10 @@ angular.module('coderDojoServices', [])
         data: {'password':pass}
       });
     }
-  }
+  };
 }])
 .factory('tokenService', ['$cookies', function($cookies){
-  var tokenValue = undefined;
+  var tokenValue;
   return {
     copyCookie: function(){
       tokenValue = $cookies.token;

@@ -1,23 +1,23 @@
 <div class="container-fluid">
-  <h2 class="blog-post-title" ng-bind="new.TITLE"></h2>
+  <h2 class="blog-post-title" ng-bind="new.title"></h2>
   <div class="row">
     <div class="blog-post-meta col-sm-6">
       <span class="glyphicon glyphicon-user"></span>
-      <span ng-bind="new.AUTHOR"></span>
+      <span ng-bind="new.author"></span>
       <span class="glyphicon glyphicon-time"></span>
-      <span ng-bind="new.DATE_CREATE | date:'medium'"></span>
+      <span ng-bind="new.creation_date | date:'medium'"></span>
     </div>
   </div>
   <div class="row">
     <div class="blog-post-social col-xs-5">
-      <span fb-like="BASE_URL+new.ID"></span>
+      <span fb-like="BASE_URL+new.id"></span>
     </div>
     <div class="blog-post-social col-xs-2">
-      <span tweet="new.TITLE"></span>
+      <span tweet="new.title"></span>
     </div>
   </div>
   </br>
-  <div ng-bind-html="new.BODY"></div>
+  <div ng-bind-html="new.body"></div>
 
   <div id="disqus_thread"></div>
   <script type="text/javascript">

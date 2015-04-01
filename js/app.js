@@ -63,6 +63,18 @@ function($routeProvider, $locationProvider) {
       }
     }
   })
+  .when('/news/tag/:tag',{
+    templateUrl: 'html/news.html',
+    controller: 'newsCtrl',
+    resolve: {
+      news: function(newsService, $route){
+        return newsService.getNews($route.current.params.tag);
+      },
+      tags: function(newsService){
+        return newsService.getTags();
+      }
+    }
+  })
   .when('/contact', {
     templateUrl: 'html/contact.html',
     controller: 'contactCtrl'
