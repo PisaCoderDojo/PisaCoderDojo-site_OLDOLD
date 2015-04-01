@@ -2,9 +2,18 @@
 <html ng-app="coderDojo">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>CoderDojo - Pisa</title>
-    <meta name="google-site-verification" content="vjlLmSmymlvFbY2RmKpDFP6SASUrfOcHJr0nKeFWh3g"/>
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <link rel="icon" href="favicon.png">
     <base href="/">
+
+    <title>{{ TitleService.get() }}</title>
+
+    <meta name="google-site-verification" content="vjlLmSmymlvFbY2RmKpDFP6SASUrfOcHJr0nKeFWh3g"/>
+
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

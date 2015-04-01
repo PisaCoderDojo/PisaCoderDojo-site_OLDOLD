@@ -14,11 +14,13 @@ var myApp = angular.module('coderDojo',[
   'imageupload'
   ]);
 
-myApp.run(['$rootScope','ngProgress','$location','tokenService',
-  function($rootScope,ngProgress,$location,tokenService){
+myApp.run(['$rootScope','ngProgress','$location','tokenService','TitleService',
+  function($rootScope,ngProgress,$location,tokenService,TitleService){
     tokenService.copyCookie();
     $rootScope.$on('$routeChangeStart', function(data, current) {
       ngProgress.start();
+      //TitleService.set(current.$$route.title);
+      console.log(TitleService.get());
       //console.log('cookie_token '+tokenService.get());
       var route = current.$$route.originalPath.split('/')[1];
       $rootScope.home = route === "";
@@ -43,6 +45,7 @@ function($routeProvider, $locationProvider) {
     controller: 'homeCtrl'
   })
   .when('/news', {
+    title: 'notizie',
     templateUrl: 'html/news.html',
     controller: 'newsCtrl',
     resolve: {
@@ -62,14 +65,17 @@ function($routeProvider, $locationProvider) {
     }
   })
   .when('/contact', {
+    title: 'contatti',
     templateUrl: 'html/contact.html',
     controller: 'contactCtrl'
   })
   .when('/about', {
+    title:'chi siamo',
     templateUrl: 'html/about.html',
     controller: 'aboutCtrl'
   })
   .when('/calendar', {
+    title:'calendario',
     templateUrl: 'html/calendar.html'
   })
   /*.when('/albums', {

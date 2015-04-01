@@ -7,7 +7,7 @@ $token = JWT::decode($token, $_SERVER['SECRET_KEY']);
 
 if ($token->admin){
   $database = new SQLite3('../sqlite/newsdb.db');
-  $id = $data->id;
+  $id = $database->escapeString($data->id);
   $title = $database->escapeString($data->title);
   $body = $database->escapeString($data->text);
   $author = $database->escapeString($data->user);

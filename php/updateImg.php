@@ -7,8 +7,10 @@ $token = JWT::decode($token, $_SERVER['SECRET_KEY']);
 
 if ($token->admin){
   */
-  $URL = 'img/article/';
-  $PATH = '../'.$URL;
+
+  $url = 'img/article/';
+  $path = '../'.$URL;
+  $realPath = realpath($path);
 
   $data = json_decode(file_get_contents("php://input"));
   $imgAll = $data->img;
@@ -17,11 +19,11 @@ if ($token->admin){
   list(, $type) = explode('/', $type);
   $img = base64_decode($imgAll);
 
-  $name = uniqid('',true).".$type";
+  $name = uniqid('',true).$type;
 
-  file_put_contents($PATH.$name, $img);
+  file_put_contents($realPath.$name, $img);
 
-  echo $URL.$name;
+  echo $url.$name;
 /*
 }else{
   echo "token is not valid";

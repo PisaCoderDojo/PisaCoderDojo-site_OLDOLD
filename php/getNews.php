@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET["id"])){
-  $id = $_GET["id"];
+  $id = SQLite3::escapeString($_GET["id"]);
   $sql = "SELECT * FROM news WHERE ID=$id";
 }else{
   $sql="SELECT * FROM news ORDER BY ID DESC";

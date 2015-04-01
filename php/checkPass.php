@@ -4,7 +4,7 @@ require_once('lib/password.php');
 
 $data = json_decode(file_get_contents("php://input"));
 $pass = $data->password;
-$secret = password_hash($_SERVER["ADMIN_PASS"], PASSWORD_DEFAULT);
+$secret = password_hash($_SERVER['ADMIN_PASS'], PASSWORD_DEFAULT);
 if (password_verify($pass, $secret)){
   $token = array();
   $token['admin'] = true;

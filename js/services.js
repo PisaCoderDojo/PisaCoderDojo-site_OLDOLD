@@ -90,6 +90,17 @@ angular.module('coderDojoServices', [])
     remember: false
   };
 }])
+.factory('TitleService', [function(){
+  var title = '';
+  return {
+    get: function(){
+      return 'PisaCoderDojo' + title;
+    },
+    set: function(t){
+      title = t ? ' - '+t : '';
+    }
+  };
+}])
 .factory('Event',['$http', function($http){
   var mykey = 'AIzaSyBVnDL-urhPD8VD-hbSftKN6aZtyHLWJTY'; // typically like Gtg-rtZdsreUr_fLfhgPfgff
   var calendarid = '4kg73k4bcukgr81qfgvah9p9r0@group.calendar.google.com'; // will look somewhat like 3ruy234vodf6hf4sdf5sd84f@group.calendar.google.com

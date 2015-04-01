@@ -7,9 +7,9 @@ $token = JWT::decode($token, $_SERVER['SECRET_KEY']);
 
 if ($token->admin){
   $data = json_decode(file_get_contents("php://input"));
-  $id = $data->id;
+  $id = SQLite3::escapeString($data->id);
 
-  $sql ="DELETE FROM news WHERE ID='$id'";
+  $sql ="DELETE FROM news WHERE ID=$id";
 
   $database = new SQLite3('../sqlite/newsdb.db');
 
