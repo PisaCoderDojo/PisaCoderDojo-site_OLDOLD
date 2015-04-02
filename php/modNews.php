@@ -11,6 +11,7 @@ if ($token->admin){
   $title = $database->escapeString($data->title);
   $body = $database->escapeString($data->text);
   $author = $database->escapeString($data->user);
+  $tags = $data->tags;
 
   $sql ="UPDATE NEWS
          SET title = '$title', body = '$body', author = '$author'
@@ -20,6 +21,10 @@ if ($token->admin){
   if(!$ret){
     echo $database->lastErrorMsg();
   } else {
+    $database->exec("DELETE FROM TAGS WHERE news_id=$id");
+    foreach ($tags as $tag){
+      $database->exec("INSERT INTO TAGS (name,news_id) VALUES ('$tag',$id)");
+    }
     echo "success";
   }
 }else

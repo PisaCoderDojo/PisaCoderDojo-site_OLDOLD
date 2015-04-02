@@ -98,16 +98,19 @@ angular.module('coderDojoControllers', [])
     if (news===undefined)
       $location.path('/admin');
     else{
+      console.log(news);
       var id = news.id;
       $scope.title=news.title;
       $scope.user=news.author;
       $scope.text=news.body;
+      $scope.tags=news.tags.join(',');
     }
     $scope.submit = function(){
       var data = {id:id,
                   title:$scope.title,
                   user:$scope.user,
-                  text:$scope.text
+                  text:$scope.text,
+                  tags:$scope.tags.split(',')
                   };
       newsService.modNews(data).success(function(data){
         if(data=='success'){
@@ -138,13 +141,12 @@ angular.module('coderDojoControllers', [])
   function($scope, newsService, $location){
     $scope.submit = function(){
       if ($scope.title!=='' && $scope.text!=='' && $scope.user!==''){
-        var tagArray = $scope.tags.split(',');
         console.log(tagArray);
         newsService.addNews({
           title: $scope.title,
           text: $scope.text,
           user: $scope.user,
-          tag: tagArray
+          tags: $scope.tags.split(',')
         }).success(function(data){
           if(data=='success')
             $location.path('/admin');

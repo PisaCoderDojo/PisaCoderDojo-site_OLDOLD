@@ -18,15 +18,14 @@ $aResult = array();
 $uResult = $database->query($sql);
 
 while ($aRow = $uResult->fetchArray(SQLITE3_ASSOC)) {
-  $aResult[] = $aRow;
-
   $id = $aRow['id'];
   $tagsRes = $database->query("SELECT name FROM TAGS WHERE news_id=$id");
   $tResult = array();
   while ($tRow = $tagsRes->fetchArray(SQLITE3_ASSOC)) {
-    $tResult[] = $tRow;
+    $tResult[] = $tRow['name'];
   }
-  $aResult['tags'] = $tResult;
+  $aRow['tags'] = $tResult;
+  $aResult[] = $aRow;
 }
 
 echo json_encode($aResult);

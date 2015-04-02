@@ -11,7 +11,7 @@ if ($token->admin){
   $body = $database->escapeString($data->text);
   $author = $database->escapeString($data->user);
   $date = time()*1000;
-  $tagList = $data->tag;
+  $tagList = $data->tags;
 
   $sql ="INSERT INTO NEWS (title,body,author,creation_date)
          VALUES ('$title','$body','$author','$date')";
