@@ -66,7 +66,7 @@ angular.module('coderDojoControllers', [])
   function($scope, news, newsService, $location, $cookies){
     $scope.news = news.data;
     $scope.modify = function(id){
-      $location.path('/admin/mod/'+id);
+      $location.path('/admin/edit/'+id);
     };
 
     $scope.showDelModal = function(id,key){
@@ -138,13 +138,14 @@ angular.module('coderDojoControllers', [])
   function($scope, newsService, $location){
     $scope.submit = function(){
       if ($scope.title!=='' && $scope.text!=='' && $scope.user!==''){
+        var tagArray = $scope.tags.split(',');
+        console.log(tagArray);
         newsService.addNews({
           title: $scope.title,
           text: $scope.text,
           user: $scope.user,
-          tag:[]
+          tag: tagArray
         }).success(function(data){
-          console.log(data);
           if(data=='success')
             $location.path('/admin');
         });

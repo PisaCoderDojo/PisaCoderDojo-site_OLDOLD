@@ -120,12 +120,12 @@ function($routeProvider, $locationProvider) {
         }
       }
   })
-  .when('/admin/add',{
-    templateUrl: 'html/add.html',
+  .when('/admin/edit',{
+    templateUrl: 'html/edit.html',
     controller: 'addCtrl'
   })
-  .when('/admin/mod/:id',{
-    templateUrl: 'html/mod.html',
+  .when('/admin/edit/:id',{
+    templateUrl: 'html/edit.html',
     controller: 'modCtrl',
     resolve: {
       news: function(newsService, $route){
