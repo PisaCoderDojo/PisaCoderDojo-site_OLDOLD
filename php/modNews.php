@@ -12,9 +12,9 @@ if ($token->admin){
   $body = $database->escapeString($data->text);
   $author = $database->escapeString($data->user);
 
-  $sql ="UPDATE news
-         SET TITLE = '$title', BODY = '$body', AUTHOR = '$author'
-         WHERE ID='$id'";
+  $sql ="UPDATE NEWS
+         SET title = '$title', body = '$body', author = '$author'
+         WHERE id='$id'";
 
   $ret = $database->exec($sql);
   if(!$ret){

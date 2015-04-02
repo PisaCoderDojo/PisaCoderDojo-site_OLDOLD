@@ -1,37 +1,51 @@
 <div class="container-fluid">
-  <!--<div class="col-sm-9">-->
+  <div class="col-sm-9">
     <div ng-repeat="post in news | filter:query | orderBy:orderProp" class="blog-post">
-      <a ng-href="news/{{post.ID}}"><h2 class="blog-post-title" ng-bind="post.TITLE"></h2></a>
+      <a ng-href="news/{{post.id}}"><h2 class="blog-post-title" ng-bind="post.title"></h2></a>
         <div class="row">
           <div class="blog-post-meta col-sm-6">
             <span class="glyphicon glyphicon-user"></span>
-            <span ng-bind="post.AUTHOR"></span>
+            <span ng-bind="post.author"></span>
             <span class="glyphicon glyphicon-time"></span>
-            <span ng-bind="post.DATE_CREATE | date:'medium'"></span>
+            <span ng-bind="post.creation_date | date:'medium'"></span>
           </div>
         </div>
         <div class="row">
           <div class="blog-post-social col-xs-5">
-            <span fb-like="BASE_URL+post.ID"></span>
+            <span fb-like="BASE_URL+post.id"></span>
           </div>
           <div class="blog-post-social col-xs-2">
-            <span tweet="post.TITLE"></span>
+            <span tweet="post.title"></span>
           </div>
         </div>
       </br>
-      <div ng-bind-html="post.BODY" class="blog-post-body"></div>
-      <a ng-href="news/{{post.ID}}">(continua...)</a>
+      <div ng-bind-html="post.body" class="blog-post-body"></div>
+      <a ng-href="news/{{post.id}}">(continua...)</a>
     </div>
-  <!--</div>-->
-  <!--
+  </div>
   <div class="col-sm-3">
-      Search: <input ng-model="query">
-      Sort by:
+    <div class="search">
+      <span>Search:</span>
+      <input ng-model="query">
+      <!--Sort by:
       <select ng-model="orderProp">
         <option value="title">Alfabetico</option>
         <option value="id">Più recente</option>
-      </select>
+      </select>-->
+    </div>
+    <div class="tag-cloud">
+      <h5>Tags</h5>
+      <ul class="nav nav-pills nav-stacked">
+        <li ng-class="{active : -1==currentTag}" role="presentation">
+          <!--<span class="badge" ng-bind="tag.count"></span>-->
+          <a href="news">Tutte</a>
+        </li>
+        <li ng-repeat="tag in tags" ng-class="{active : tag.name==currentTag}" role="presentation">
+          <a ng-href="/news/tag/{{tag.name}}">{{tag.name}}
+            <span class="badge" ng-bind="tag.count"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
-  -->
-
 </div>

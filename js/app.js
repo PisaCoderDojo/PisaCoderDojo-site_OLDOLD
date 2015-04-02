@@ -50,8 +50,10 @@ function($routeProvider, $locationProvider) {
     controller: 'newsCtrl',
     resolve: {
       news: function(newsService){
-        //console.log('inside resolve');
         return newsService.getNews();
+      },
+      tags: function(newsService){
+        return newsService.getTags();
       }
     }
   })
@@ -61,6 +63,18 @@ function($routeProvider, $locationProvider) {
     resolve: {
       news: function(newsService, $route){
         return newsService.getNew($route.current.params.id);
+      }
+    }
+  })
+  .when('/news/tag/:tag',{
+    templateUrl: 'html/news.html',
+    controller: 'newsCtrl',
+    resolve: {
+      news: function(newsService, $route){
+        return newsService.getNews($route.current.params.tag);
+      },
+      tags: function(newsService){
+        return newsService.getTags();
       }
     }
   })

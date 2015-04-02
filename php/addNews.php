@@ -11,14 +11,19 @@ if ($token->admin){
   $body = $database->escapeString($data->text);
   $author = $database->escapeString($data->user);
   $date = time()*1000;
+  $tagList = $data->tag;
 
-  $sql ="INSERT INTO news (TITLE,BODY,AUTHOR,DATE_CREATE)
+  $sql ="INSERT INTO NEWS (title,body,author,creation_date)
          VALUES ('$title','$body','$author','$date')";
 
   $ret = $database->exec($sql);
   if(!$ret){
     echo $database->lastErrorMsg();
   } else {
+    $newsID = $database->lastInsertRowID();
+    foreach ($tagList as $tag){
+      $database->exec("INSERT INTO TAGS (name,news_id) VALUES ('$tag',$newsID)");
+    }
     echo "success";
   }
 }else
