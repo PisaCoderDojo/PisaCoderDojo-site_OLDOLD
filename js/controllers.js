@@ -5,6 +5,7 @@ angular.module('coderDojoControllers', [])
   function($scope,Event){
     Event.next().success(function(data){
       $scope.nextEvent = Math.floor(Event.getDay(data));
+      $scope.eventIsSet = $scope.nextEvent>=0;
     });
 }])
 .controller('newsCtrl', ['$scope','news','tags','$route','$timeout','$http','ngProgress',
