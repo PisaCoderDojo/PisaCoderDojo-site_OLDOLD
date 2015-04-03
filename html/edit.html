@@ -10,7 +10,12 @@
     </div>
     <div class="col-sm-4">
       <label class="control-label">Tags</label>
-      <input type="text" class="form-control" ng-model="tags">
+      <!--<input type="text" class="form-control" ng-model="tags">-->
+      <tags-input ng-model="tags"
+        display-property='name'
+        add-on-space="true">
+        <auto-complete source="loadTags($query)"></auto-complete>
+      </tags-input>
     </div>
   </div>
   <br/>

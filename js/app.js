@@ -11,7 +11,8 @@ var myApp = angular.module('coderDojo',[
   'angulike',
   'angulartics',
   'angulartics.google.analytics',
-  'imageupload'
+  'imageupload',
+  'ngTagsInput'
   ]);
 
 myApp.run(['$rootScope','ngProgress','$location','tokenService','TitleService',
@@ -122,7 +123,12 @@ function($routeProvider, $locationProvider) {
   })
   .when('/admin/edit',{
     templateUrl: 'html/edit.html',
-    controller: 'addCtrl'
+    controller: 'addCtrl',
+    resolve: {
+      tags: function(newsService){
+        return newsService.getTags();
+      }
+    }
   })
   .when('/admin/edit/:id',{
     templateUrl: 'html/edit.html',
@@ -131,6 +137,9 @@ function($routeProvider, $locationProvider) {
       news: function(newsService, $route){
         //console.log('inside resolve');
         return newsService.getNew($route.current.params.id);
+      },
+      tags: function(newsService){
+        return newsService.getTags();
       }
     }
   })

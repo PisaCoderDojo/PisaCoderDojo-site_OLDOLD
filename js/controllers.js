@@ -92,8 +92,8 @@ angular.module('coderDojoControllers', [])
       });
     };
 }])
-.controller('modCtrl', ['$scope', 'news', 'newsService', '$location',
-  function($scope,news,newsService,$location){
+.controller('modCtrl', ['$scope','news','newsService','$location','tagHelper','tags',
+  function($scope,news,newsService,$location,tagHelper,tags){
     news=news.data[0];
     if (news===undefined)
       $location.path('/admin');
@@ -103,20 +103,24 @@ angular.module('coderDojoControllers', [])
       $scope.title=news.title;
       $scope.user=news.author;
       $scope.text=news.body;
-      $scope.tags=news.tags.join(',');
+      $scope.tags=tagHelper.fromArray(news.tags);
     }
     $scope.submit = function(){
       var data = {id:id,
                   title:$scope.title,
                   user:$scope.user,
                   text:$scope.text,
-                  tags:$scope.tags.split(',')
+                  tags:tagHelper.toArray($scope.tags)
                   };
       newsService.modNews(data).success(function(data){
         if(data=='success'){
           $location.path('/admin');
         }
       });
+    };
+    $scope.loadTags = function(query) {
+      console.log(tags.data);
+      return tags.data;
     };
 }])
 .controller('loginCtrl', ['$scope', '$location', 'loginService','tokenService',
@@ -137,21 +141,24 @@ angular.module('coderDojoControllers', [])
       });
     };
 }])
-.controller('addCtrl', ['$scope', 'newsService', '$location',
-  function($scope, newsService, $location){
+.controller('addCtrl', ['$scope', 'newsService', '$location', 'tagHelper','tags',
+  function($scope, newsService, $location, tagHelper,tags){
     $scope.submit = function(){
       if ($scope.title!=='' && $scope.text!=='' && $scope.user!==''){
-        console.log(tagArray);
+        console.log(tagHelper.fromObj($scope.tags));
         newsService.addNews({
           title: $scope.title,
           text: $scope.text,
           user: $scope.user,
-          tags: $scope.tags.split(',')
+          tags: tagHelper.fromObj($scope.tags)
         }).success(function(data){
           if(data=='success')
             $location.path('/admin');
         });
       }
+    };
+    $scope.loadTags = function(query) {
+      return tags.data;
     };
 }])
 .controller('updateImageModal', ['$scope', '$modalInstance', 'imageService',
