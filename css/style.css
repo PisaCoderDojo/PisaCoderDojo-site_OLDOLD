@@ -189,3 +189,7 @@ body {
 hr{
   border-top: 1px solid #CFC9C9;
 }
+
+.tag-cloud, .search-bar{
+  margin-bottom:25px;
+}

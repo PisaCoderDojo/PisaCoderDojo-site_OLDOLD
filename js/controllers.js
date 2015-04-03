@@ -7,13 +7,47 @@ angular.module('coderDojoControllers', [])
       $scope.nextEvent = Math.floor(Event.getDay(data));
     });
 }])
-.controller('newsCtrl', ['$scope', 'news', 'tags', '$route',
-  function($scope, news, tags, $route) {
+.controller('newsCtrl', ['$scope','news','tags','$route','$timeout','$http','ngProgress',
+  function($scope, news, tags, $route,$timeout,$http,ngProgress) {
     $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
     $scope.news = news.data;
     $scope.tags = tags.data;
     $scope.currentTag = $route.current.params.tag || -1;
     $scope.orderProp = 'age';
+
+    var httpSearch = function(){
+      ngProgress.start();
+      $http({
+        method: 'GET',
+        url: 'php/searchNews.php?text='+$scope.query
+      }).success(function(data){
+        console.log('success');
+        ngProgress.complete();
+        $scope.news = data;
+      });
+    };
+    $scope.query='';
+    var searchActive = false;
+    $scope.search = function(key){
+      //console.log(key);
+      if ($scope.query==''){
+        console.log('empty');
+        //empty input
+        $scope.news=news.data;
+      }else if(key==13){
+        //press ENTER
+        console.log('enter');
+        httpSearch();
+      }else if (!searchActive && $scope.query.length>2){
+        //finish timeout and input large enough
+        searchActive=true;
+        httpSearch();
+        $timeout(function(){
+          console.log('timeout');
+          searchActive=false;
+        }, 3000);
+      }
+    };
 }])
 .controller('newCtrl', ['$scope', 'news', '$location',
   function($scope,news,$location){

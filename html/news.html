@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="col-sm-9">
-    <div ng-repeat="post in news | filter:query | orderBy:orderProp" class="blog-post">
+    <div ng-repeat="post in news | orderBy:orderProp" class="blog-post">
       <a ng-href="news/{{post.id}}"><h2 class="blog-post-title" ng-bind="post.title"></h2></a>
         <div class="row">
           <div class="blog-post-meta col-sm-6">
@@ -24,9 +24,9 @@
     </div>
   </div>
   <div class="col-sm-3">
-    <div class="search">
-      <span>Search:</span>
-      <input ng-model="query">
+    <div class="search-bar">
+      <h4>Search</h4>
+      <input ng-model="query" ng-keyup="search($event)"></input>
       <!--Sort by:
       <select ng-model="orderProp">
         <option value="title">Alfabetico</option>
@@ -34,14 +34,14 @@
       </select>-->
     </div>
     <div class="tag-cloud">
-      <h5>Tags</h5>
+      <h4>Tags</h4>
       <ul class="nav nav-pills nav-stacked">
         <li ng-class="{active : -1==currentTag}" role="presentation">
           <!--<span class="badge" ng-bind="tag.count"></span>-->
-          <a href="news">Tutte</a>
+          <a href="news">Tutti</a>
         </li>
         <li ng-repeat="tag in tags" ng-class="{active : tag.name==currentTag}" role="presentation">
-          <a ng-href="/news/tag/{{tag.name}}">{{tag.name}}
+          <a ng-href="news/tag/{{tag.name}}">{{tag.name}}
             <span class="badge" ng-bind="tag.count"></span>
           </a>
         </li>
