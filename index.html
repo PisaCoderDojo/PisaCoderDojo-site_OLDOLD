@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="coderDojo">
-  <head>
+  <head ng-controller="titleController">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
     <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
@@ -10,7 +10,7 @@
     <link rel="icon" href="favicon.png">
     <base href="/">
 
-    <title>{{ TitleService.get() }}</title>
+    <title ng-bind="title.get()"></title>
 
     <meta name="google-site-verification" content="vjlLmSmymlvFbY2RmKpDFP6SASUrfOcHJr0nKeFWh3g"/>
 
