@@ -151,6 +151,9 @@ angular.module('coderDojoServices', [])
       var data = new Date(data.items[data.items.length-1].start.dateTime);
       var now = new Date().getTime();
       return (data - now)/(1000*60*60*24);
+    },
+    getNote:function(data){
+      console.log(data.items);
     }
   };
 }]);
