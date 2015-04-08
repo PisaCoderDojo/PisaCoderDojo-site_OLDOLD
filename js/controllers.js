@@ -9,7 +9,7 @@ angular.module('coderDojoControllers', [])
 }])
 .controller('newsCtrl', ['$scope', 'news', 'tags', '$route',
   function($scope, news, tags, $route) {
-    $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
+    $scope.BASE_URL="http://pisa.coderdojo.it/news/";
     $scope.news = news.data;
     $scope.tags = tags.data;
     $scope.currentTag = $route.current.params.tag || -1;
@@ -17,7 +17,7 @@ angular.module('coderDojoControllers', [])
 }])
 .controller('newCtrl', ['$scope', 'news', '$location',
   function($scope,news,$location){
-    $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
+    $scope.BASE_URL="http://pisa.coderdojo.it/news/";
     news=news.data[0];
     if (news===undefined)
       $location.path('/news');
