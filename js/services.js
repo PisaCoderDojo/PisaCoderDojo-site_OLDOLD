@@ -154,6 +154,9 @@ angular.module('coderDojoServices', [])
     },
     getEventBrite: function(data){
       return data.items[data.items.length-1].description;
+    },
+    getNote:function(data){
+      console.log(data.items);
     }
   };
 }]);

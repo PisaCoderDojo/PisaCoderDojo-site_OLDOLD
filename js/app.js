@@ -20,8 +20,8 @@ myApp.run(['$rootScope','ngProgress','$location','tokenService','TitleService',
     tokenService.copyCookie();
     $rootScope.$on('$routeChangeStart', function(data, current) {
       ngProgress.start();
-      //TitleService.set(current.$$route.title);
-      console.log(TitleService.get());
+      console.log(current.$$route.title);
+      TitleService.set(current.$$route.title);
       //console.log('cookie_token '+tokenService.get());
       var route = current.$$route.originalPath.split('/')[1];
       $rootScope.home = route === "";
@@ -175,3 +175,8 @@ myApp.controller('CarouselCtrl', function ($scope) {
     $scope.addSlide();
   }
 });
+
+myApp.controller('titleController',['$scope','TitleService',
+  function($scope,TitleService){
+    $scope.title=TitleService;
+}]);
