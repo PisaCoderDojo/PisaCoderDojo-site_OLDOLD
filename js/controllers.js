@@ -4,7 +4,8 @@ angular.module('coderDojoControllers', [])
 .controller('homeCtrl', ['$scope','Event',
   function($scope,Event){
     Event.next().success(function(data){
-      $scope.nextEvent = Math.floor(Event.getDay(data));
+      $scope.eventBrite = Event.getEventBrite(data);
+      $scope.nextEvent = Event.getDay(data);
     });
 }])
 .controller('newsCtrl', ['$scope', 'news', 'tags', '$route',

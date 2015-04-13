@@ -148,9 +148,12 @@ angular.module('coderDojoServices', [])
       });
     },
     getDay: function(data){
-      var data = new Date(data.items[data.items.length-1].start.dateTime);
+      data = new Date(data.items[data.items.length-1].start.dateTime);
       var now = new Date().getTime();
-      return (data - now)/(1000*60*60*24);
+      return Math.floor((data - now)/(1000*60*60*24));
+    },
+    getEventBrite: function(data){
+      return data.items[data.items.length-1].description;
     }
   };
 }]);
