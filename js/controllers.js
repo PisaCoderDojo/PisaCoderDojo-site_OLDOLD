@@ -4,13 +4,14 @@ angular.module('coderDojoControllers', [])
 .controller('homeCtrl', ['$scope','Event',
   function($scope,Event){
     Event.next().success(function(data){
-      $scope.nextEvent = Math.floor(Event.getDay(data));
+      $scope.eventBrite = Event.getEventBrite(data);
+      $scope.nextEvent = Event.getDay(data);
       $scope.eventIsSet = $scope.nextEvent>=0;
     });
 }])
 .controller('newsCtrl', ['$scope','news','tags','$route','$timeout','$http','ngProgress','TitleService',
   function($scope, news, tags, $route,$timeout,$http,ngProgress,TitleService) {
-    $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
+    $scope.BASE_URL="http://pisa.coderdojo.it/news/";
     $scope.news = news.data;
     $scope.tags = tags.data;
     $scope.currentTag = $route.current.params.tag || -1;
@@ -55,7 +56,7 @@ angular.module('coderDojoControllers', [])
 }])
 .controller('newCtrl', ['$scope', 'news', '$location','TitleService',
   function($scope,news,$location,TitleService){
-    $scope.BASE_URL="http://pisacoderdojo.sfcoding.com/news/";
+    $scope.BASE_URL="http://pisa.coderdojo.it/news/";
     news=news.data[0];
     TitleService.set(news.title);
     if (news===undefined)
