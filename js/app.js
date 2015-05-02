@@ -93,31 +93,43 @@ function($routeProvider, $locationProvider) {
     title:'calendario',
     templateUrl: 'html/calendar.html'
   })
-  /*.when('/albums', {
-    templateUrl: 'html/albums.html',
-    controller: 'albumsCtrl',
-    resolve: {
-      albums: function(albumsService){
-        return albumsService.getAlbums();
-      }
-    }
-  })
-  .when('/albums/:id', {
-    templateUrl: 'html/album.html',
-    controller: 'albumCtrl',
-    resolve: {
-      album: function(albumsService, $route){
-        return albumsService.getAlbum($route.current.params.id);
-      }
-    }
-  })*/
   .when('/admin',{
       templateUrl: 'html/admin.html',
       controller: 'adminCtrl',
       resolve: {
-        news: function(newsService){
+        itemList: function(newsService){
           //console.log('inside resolve');
           return newsService.getNews();
+        },
+        category: function(resourceService){
+          //console.log('inside resolve');
+          return resourceService.getCategory();
+        },
+        delItem: function(newsService){
+          return newsService.delNews;
+        },
+        addItem:function(){
+          return {name:'news',href:'/admin/edit'};
+        }
+      }
+  })
+  .when('/admin/resource/:id',{
+      templateUrl: 'html/admin.html',
+      controller: 'adminCtrl',
+      resolve: {
+        itemList: function(resourceService, $route){
+          //console.log('inside resolve');
+          return resourceService.getResources($route.current.params.id);
+        },
+        category: function(resourceService){
+          //console.log('inside resolve');
+          return resourceService.getCategory();
+        },
+        delItem: function(resourceService){
+          return resourceService.delResource;
+        },
+        addItem: function(){
+            return {name:'resource',href:'/admin/edit/resource'};
         }
       }
   })
@@ -143,10 +155,50 @@ function($routeProvider, $locationProvider) {
       }
     }
   })
+  .when('/admin/edit/resource',{
+      templateUrl: 'html/edit-resource.html',
+      controller: 'editResourceCtrl',
+      resolve: {
+        category: function(resourceService){
+          return resourceService.getCategory();
+        }
+      }
+  })
+  .when('/admin/edit/resource/:id',{
+      templateUrl: 'html/edit-resource.html',
+      controller: 'editResourceCtrl',
+      resolve: {
+        resource: function(resourceService, $route){
+          //console.log('inside resolve');
+          return resourceService.getResource($route.current.params.id);
+        },
+        category: function(resourceService){
+          return resourceService.getCategory();
+        }
+      }
+  })
   .when('/login',{
     templateUrl: 'html/login.html',
     controller: 'loginCtrl'
   })
+  /*.when('/albums', {
+    templateUrl: 'html/albums.html',
+    controller: 'albumsCtrl',
+    resolve: {
+      albums: function(albumsService){
+        return albumsService.getAlbums();
+      }
+    }
+  })
+  .when('/albums/:id', {
+    templateUrl: 'html/album.html',
+    controller: 'albumCtrl',
+    resolve: {
+      album: function(albumsService, $route){
+        return albumsService.getAlbum($route.current.params.id);
+      }
+    }
+  })*/
   .otherwise({
     redirectTo: '/'
   });

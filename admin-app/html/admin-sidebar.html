@@ -1,0 +1,12 @@
+<nav class="nav-sidebar">
+  <ul class="nav tabs">
+     <li class="active"><a href="/admin" data-toggle="tab">News</a></li>
+     <li ng-repeat="item in menuList" class=""><a href="/admin/resource/{{item.id}}" ng-bind="menuList.name" data-toggle="tab"></a></li>
+  </ul>
+</nav>
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Search for...">
+  <span class="input-group-btn">
+    <button class="btn btn-default" type="button">add Category</button>
+  </span>
+</div><!-- /input-group -->
