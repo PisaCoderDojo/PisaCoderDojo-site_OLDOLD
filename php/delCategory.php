@@ -6,17 +6,18 @@ $token = $data->token;
 $token = JWT::decode($token, $_SERVER['SECRET_KEY']);
 
 if ($token->admin){
-  $database = new SQLite3('../sqlite/newsdb.db');
-  $name = $database->escapeString($data->name);
+  $data = json_decode(file_get_contents("php://input"));
+  $id = SQLite3::escapeString($data->id);
 
-  $sql ="INSERT INTO CATEGORY (name) VALUES ('$name')";
+  $sql ="DELETE FROM CATEGORY WHERE ID=$id";
+
+  $database = new SQLite3('../sqlite/newsdb.db');
 
   $ret = $database->exec($sql);
   if(!$ret){
     echo $database->lastErrorMsg();
   } else {
-    echo $database->lastInsertRowID();
-    //echo "success";
+    echo "success";
   }
 }else
   echo "token is not valid";

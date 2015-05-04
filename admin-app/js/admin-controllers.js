@@ -32,11 +32,70 @@ angular.module('AdminControllers', [])
       });
     };
 }])
-.controller('adminResourceCtrl', ['$scope', 'category', 'resource', 'resourceService', '$location', '$cookies',
-  function($scope, category, resource, resourceService, $location, $cookies){
-    if (resource)
-      $scope.resource = resource.data;
+.controller('adminResourceCtrl', ['$scope', 'actualCategoryId', 'category', 'resource', 'resourceService', '$location', '$cookies',
+  function($scope, actualCategoryId, category, resource, resourceService, $location, $cookies){
     $scope.category = category.data;
+    $scope.isModCat = false;
+    $scope.isAddCat = false;
+
+    $scope.changeCat = function(cat){
+      if (cat){
+        $location.path('resource/' + cat.id);
+      }
+    };
+
+    if (actualCategoryId){
+      $scope.category.forEach(function(item){
+        if(item.id==actualCategoryId)
+          $scope.actualCategory=item;
+      });
+      $scope.resource = resource.data;
+    }else
+      $scope.changeCat($scope.category[0]);
+
+    $scope.addCategory = function(){
+      $scope.inputModCat='';
+      $scope.isAddCat = true;
+    };
+
+    $scope.modCategory = function(){
+      $scope.inputModCat='';
+      $scope.isModCat = true;
+      $scope.inputModCat = $scope.actualCategory.name;
+    };
+
+    $scope.saveAddCat = function(){
+      if($scope.isAddCat){
+        resourceService.addCategory({name:$scope.inputModCat}).success(function(data){
+            data = parseInt(data);
+            if(!isNaN(data)){
+              $scope.isAddCat = false;
+              $location.path('resource/' + data);
+            }else
+              console.log('error: '+data);
+        });
+      }else if($scope.isModCat){
+        resourceService.modCategory({id:$scope.actualCategory.id,
+                              name:$scope.inputModCat
+                            })
+          .success(function(data){
+            if(data=='success'){
+              $scope.isModCat=false;
+              $scope.actualCategory.name = $scope.inputModCat;
+            }else
+              console.log('error: '+data);
+          });
+      }
+    };
+
+    $scope.delCategory = function(){
+      resourceService.delCategory(actualCategoryId).success(function(data){
+        if(data=='success'){
+          $location.path('resource');
+        }else
+          console.log('error: '+data);
+      });
+    };
 
     $scope.modify = function(id){
       $location.path('resource/edit/' + id);
@@ -51,10 +110,10 @@ angular.module('AdminControllers', [])
       $('#deleteModal').modal('show');
     };
 
-    $scope.logout = function(){
+    /*$scope.logout = function(){
       delete $cookies['token'];
       $location.path('/');
-    };
+    };*/
 
     $scope.delete = function(item){
       $('#deleteModal').modal('hide');

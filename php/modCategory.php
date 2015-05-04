@@ -7,16 +7,18 @@ $token = JWT::decode($token, $_SERVER['SECRET_KEY']);
 
 if ($token->admin){
   $database = new SQLite3('../sqlite/newsdb.db');
+  $id = $database->escapeString($data->id);
   $name = $database->escapeString($data->name);
 
-  $sql ="INSERT INTO CATEGORY (name) VALUES ('$name')";
+  $sql ="UPDATE CATEGORY
+         SET name = '$name'
+         WHERE id='$id'";
 
   $ret = $database->exec($sql);
   if(!$ret){
     echo $database->lastErrorMsg();
   } else {
-    echo $database->lastInsertRowID();
-    //echo "success";
+    echo "success";
   }
 }else
   echo "token is not valid";

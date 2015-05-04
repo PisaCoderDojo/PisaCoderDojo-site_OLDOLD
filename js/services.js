@@ -90,6 +90,22 @@ angular.module('coderDojoServices', [])
         data: {id:id,token:tokenService.get()}
       });
     },
+    modCategory: function(cat){
+      cat.token = tokenService.get();
+      return $http({
+        method: 'POST',
+        url: '/php/modCategory.php',
+        data: cat
+      });
+    },
+    modResource: function(res){
+      res.token = tokenService.get();
+      return $http({
+        method: 'POST',
+        url: '/php/modResource.php',
+        data: res
+      });
+    },
     delResource: function(id){
       return $http({
         method: 'POST',

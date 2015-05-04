@@ -1,14 +1,38 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-9">
-      <a href="{{addItem.href}}" class="btn btn-default btn-lg" role="button">
+    <a href="edit/resource" class="btn btn-default btn-lg" role="button">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      Add Resource
+    </a>
+    <div>
+      <div ng-hide="isModCat" class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+          <span ng-bind="actualCategory.name"></span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <li ng-repeat="cat in category" role="presentation">
+            <a ng-bind="cat.name" ng-click="changeCat(cat)" rorole="menuitem" tabindex="-1" href="#"></a>
+          </li>
+        </ul>
+      </div>
+      <div ng-show="isModCat || isAddCat" class="input-group">
+        <input ng-model="inputModCat" type="text" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+          <button ng-click="saveAddCat()" class="btn btn-default" type="button">Go!</button>
+        </span>
+      </div>
+      <button ng-click="modCategory()" class="btn btn-default btn-lg" role="button">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Add News
-      </a>
-    </div>
-    <div class="col-sm-3">
-      <button type="button" class="btn btn-default btn-lg right" ng-click="logout()">
-        <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout
+        Modify Category
+      </button>
+      <button ng-click="addCategory()" class="btn btn-default btn-lg" role="button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Add Category
+      </button>
+      <button ng-click="delCategory()" class="btn btn-default btn-lg" role="button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        Delete Category
       </button>
     </div>
   </div>

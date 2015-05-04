@@ -46,6 +46,9 @@ function($routeProvider, $locationProvider) {
       templateUrl: 'html/admin-resource.html',
       controller: 'adminResourceCtrl',
       resolve: {
+        actualCategoryId: function(){
+          return null;
+        },
         category: function(resourceService){
           //console.log('inside resolve');
           return resourceService.getCategory();
@@ -59,6 +62,9 @@ function($routeProvider, $locationProvider) {
       templateUrl: 'html/admin-resource.html',
       controller: 'adminResourceCtrl',
       resolve: {
+        actualCategoryId: function($route){
+          return $route.current.params.id;
+        },
         category: function(resourceService){
           //console.log('inside resolve');
           return resourceService.getCategory();
@@ -69,7 +75,7 @@ function($routeProvider, $locationProvider) {
         }
       }
   })
-  .when('/news/edit',{
+  .when('/edit/news',{
     templateUrl: 'html/news-edit.html',
     controller: 'addNewsCtrl',
     resolve: {
@@ -78,7 +84,7 @@ function($routeProvider, $locationProvider) {
       }
     }
   })
-  .when('/news/edit/:id',{
+  .when('/edit/news/:id',{
     templateUrl: 'html/news-edit.html',
     controller: 'modNewsCtrl',
     resolve: {
@@ -91,7 +97,7 @@ function($routeProvider, $locationProvider) {
       }
     }
   })
-  .when('/resource/edit',{
+  .when('/edit/resource',{
       templateUrl: 'html/edit-resource.html',
       controller: 'addResourceCtrl',
       resolve: {
@@ -100,7 +106,7 @@ function($routeProvider, $locationProvider) {
         }
       }
   })
-  .when('/resource/edit/:id',{
+  .when('/edit/resource/:id',{
       templateUrl: 'html/edit-resource.html',
       controller: 'modResourceCtrl',
       resolve: {
