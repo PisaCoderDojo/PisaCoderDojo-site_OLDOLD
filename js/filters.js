@@ -1,8 +1,6 @@
 'use strict';
 
 /* Filters */
-
-
 var coderDojoFilters = angular.module('coderDojoFilters', [])
 
 coderDojoFilters.filter('checkmark', function() {

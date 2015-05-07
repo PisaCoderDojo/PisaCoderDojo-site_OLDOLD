@@ -6,6 +6,7 @@ var myApp = angular.module('coderDojo-admin',[
   'ngCookies',
   'textAngular',
   'AdminControllers',
+  'AdminDirective',
   'coderDojoServices',
   'coderDojoFilters',
   'imageupload',
@@ -97,25 +98,27 @@ function($routeProvider, $locationProvider) {
       }
     }
   })
-  .when('/edit/resource',{
+  .when('/edit/resource/cat/:cat',{
       templateUrl: 'html/edit-resource.html',
-      controller: 'addResourceCtrl',
+      controller: 'editResourceCtrl',
       resolve: {
-        category: function(resourceService){
-          return resourceService.getCategory();
+        categoryId: function($route){
+          return $route.current.params.cat;
+        },
+        resource: function(){
+          return null;
         }
       }
   })
-  .when('/edit/resource/:id',{
+  .when('/edit/resource/cat/:cat/id/:id',{
       templateUrl: 'html/edit-resource.html',
-      controller: 'modResourceCtrl',
+      controller: 'editResourceCtrl',
       resolve: {
-        resource: function(resourceService, $route){
-          //console.log('inside resolve');
-          return resourceService.getResource($route.current.params.id);
+        categoryId: function($route){
+          return $route.current.params.cat;
         },
-        category: function(resourceService){
-          return resourceService.getCategory();
+        resource: function(resourceService, $route){
+          return resourceService.getResource($route.current.params.id);
         }
       }
   })

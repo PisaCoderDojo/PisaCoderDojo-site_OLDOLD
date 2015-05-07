@@ -193,13 +193,51 @@ angular.module('AdminControllers', [])
       return tags.data;
     };
 }])
-.controller('addResourceCtrl', ['$scope', 'category',
-  function($scope, category){
+.controller('editResourceCtrl', ['$scope', 'categoryId', 'resource', 'resourceService', '$location',
+  function($scope, categoryId, resource, resourceService, $location){
+    if (resource){
+      var resourceList = [];
+      resource.resource.forEach.split(',').forEach(function(item){
+        resourceList.push({link:item});
+      });
+      $scope.editRes = {
+        name: resource.name,
+        description: resource.description,
+        resource: resourceList
+      };
+    }else{
+      $scope.editRes = {resource:[{link:''}]};
+    }
 
-}])
-.controller('modResourceCtrl', ['$scope', 'category','resource',
-  function($scope, category,resource){
+    $scope.keydown = function(key,item){
+      if (item.link === ''){
+        $scope.editRes.resource.splice(key,1);
+        console.log('key: '+key);
+      }
+      var last = $scope.editRes.resource.length-1;
+      if($scope.editRes.resource[last].link !== ''){
+        $scope.editRes.resource.push({link:''});
+      }
 
+    };
+
+    /*$scope.addMaterial = function(link){
+      $scope.editRes.resource.push(link);
+      $scope.newMaterial='';
+      console.log($scope.editRes.resource);
+    };*/
+    $scope.submit = function(){
+      if ($scope.editRes.name && $scope.editRes.description){
+        $scope.editRes.resource = $scope.editRes.resource.join(',');
+        resourceService.addResource($scope.editRes).success(function(data){
+          if (data=='success')
+            $location.path('resource/'+categoryId);
+          else
+            console.log('error: '+data);
+        });
+      }else
+        console.log('missed name or description');
+    };
 }])
 .controller('updateImageModal', ['$scope', '$modalInstance', 'imageService',
   function($scope,$modalInstance,imageService){
