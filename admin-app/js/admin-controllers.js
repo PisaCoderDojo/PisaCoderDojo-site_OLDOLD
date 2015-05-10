@@ -195,15 +195,27 @@ angular.module('AdminControllers', [])
 }])
 .controller('editResourceCtrl', ['$scope', 'categoryId', 'resource', 'resourceService', '$location',
   function($scope, categoryId, resource, resourceService, $location){
-    if (resource){
+    var resourceToArray = function(r){
       var resourceList = [];
-      resource.resource.forEach.split(',').forEach(function(item){
+      for (var item in r.split(',')){
         resourceList.push({link:item});
-      });
+      }
+      return resourceList;
+    };
+    var resourceToString = function(r){
+      var resourceList = [];
+      for (var item in r){
+        if(item.link!=='')
+          resourceList.push(item.link);
+      }
+      r=resourceList.join(',');
+    };
+
+    if (resource){
       $scope.editRes = {
         name: resource.name,
         description: resource.description,
-        resource: resourceList
+        resource: resourceToArray(resource.resource)
       };
     }else{
       $scope.editRes = {resource:[{link:''}]};
@@ -226,9 +238,12 @@ angular.module('AdminControllers', [])
       $scope.newMaterial='';
       console.log($scope.editRes.resource);
     };*/
+
     $scope.submit = function(){
       if ($scope.editRes.name && $scope.editRes.description){
-        $scope.editRes.resource = $scope.editRes.resource.join(',');
+
+        resourceToString($scope.editRes.resource);
+
         resourceService.addResource($scope.editRes).success(function(data){
           if (data=='success')
             $location.path('resource/'+categoryId);
