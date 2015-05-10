@@ -1,0 +1,21 @@
+<div class="container container-fluid">
+  <div class="row">
+    <label for="title" class="control-label">Title</label>
+    <input ng-model="editRes.name" type="text" id="title" class="form-control">
+  </div>
+  <div class="row">
+    <label for="description" class="control-label">Description</label>
+    <textarea ng-model="editRes.description" class="form-control" id="description" rows="3"></textarea>
+  </div>
+
+  <label class="control-label">Materiale</label>
+  <div class="row">
+    <ul class="list-group">
+      <li ng-repeat="(key,item) in editRes.resource" class="list-group-item">
+        <input ng-model="item.link" ng-change="keydown(key,item)">
+      </li>
+    </ul>
+
+  </div>
+  <button ng-click="submit()" type="button" class="btn btn-default">Save</button>
+</div>

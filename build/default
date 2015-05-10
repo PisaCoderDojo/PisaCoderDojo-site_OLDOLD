@@ -18,6 +18,10 @@ server {
         try_files $uri $uri/ /index.html /index.php?$query_string;
     }
 
+    location /admin-app {
+        try_files $uri $uri/ /admin-app/index.html /admin-app/index.php?$query_string;
+    }
+
     location = /favicon.ico { log_not_found off; access_log off; }
     location = /robots.txt  { access_log off; log_not_found off; }
 
