@@ -6,7 +6,7 @@ angular.module('AdminControllers', [])
     $scope.news = news.data;
 
     $scope.modify = function(id){
-      $location.path('news/edit/' + id);
+      $location.path('/edit/news/' + id);
     };
 
     $scope.showDelModal = function(id,key){
@@ -50,6 +50,7 @@ angular.module('AdminControllers', [])
           $scope.actualCategory=item;
       });
       $scope.resource = resource.data;
+      console.log($scope.resource);
     }else
       $scope.changeCat($scope.category[0]);
 
@@ -98,7 +99,7 @@ angular.module('AdminControllers', [])
     };
 
     $scope.modify = function(id){
-      $location.path('resource/edit/' + id);
+      $location.path('/edit/resource/cat/'+actualCategoryId+'/id/' + id);
     };
 
     $scope.showDelModal = function(id,key){
@@ -196,29 +197,33 @@ angular.module('AdminControllers', [])
 .controller('editResourceCtrl', ['$scope', 'categoryId', 'resource', 'resourceService', '$location',
   function($scope, categoryId, resource, resourceService, $location){
     var resourceToArray = function(r){
-      var resourceList = [];
-      for (var item in r.split(',')){
-        resourceList.push({link:item});
+      if (r!=='') r+=',';
+      var resourceList = r.split(',');
+      for (var i=0;i<resourceList.length;i++){
+        resourceList[i]=({link:resourceList[i]});
       }
       return resourceList;
     };
     var resourceToString = function(r){
       var resourceList = [];
-      for (var item in r){
-        if(item.link!=='')
-          resourceList.push(item.link);
+      for (var i=0;i<r.length;i++){
+        if(r[i].link!=='')
+          resourceList.push(r[i].link);
       }
-      r=resourceList.join(',');
+      return resourceList.join(',');
     };
 
     if (resource){
+      resource = resource.data[0];
       $scope.editRes = {
-        name: resource.name,
+        id: resource.id,
+        title: resource.title,
         description: resource.description,
-        resource: resourceToArray(resource.resource)
+        resource: resourceToArray(resource.resource),
+        category_id: categoryId
       };
     }else{
-      $scope.editRes = {resource:[{link:''}]};
+      $scope.editRes = {resource:[{link:''}], category_id: categoryId};
     }
 
     $scope.keydown = function(key,item){
@@ -240,16 +245,26 @@ angular.module('AdminControllers', [])
     };*/
 
     $scope.submit = function(){
-      if ($scope.editRes.name && $scope.editRes.description){
+      if ($scope.editRes.title && $scope.editRes.description){
 
-        resourceToString($scope.editRes.resource);
+        var stringRes = resourceToString($scope.editRes.resource);
+        $scope.editRes.resource = stringRes;
 
-        resourceService.addResource($scope.editRes).success(function(data){
-          if (data=='success')
-            $location.path('resource/'+categoryId);
-          else
-            console.log('error: '+data);
-        });
+        if (resource){  //Modify resource
+          resourceService.modResource($scope.editRes).success(function(data){
+            if (data=='success')
+              $location.path('resource/'+categoryId);
+            else
+              console.log('error: '+data);
+          });
+        }else{ //add resource
+          resourceService.addResource($scope.editRes).success(function(data){
+            if (data=='success')
+              $location.path('resource/'+categoryId);
+            else
+              console.log('error: '+data);
+          });
+        }
       }else
         console.log('missed name or description');
     };

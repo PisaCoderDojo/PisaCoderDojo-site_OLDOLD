@@ -86,7 +86,7 @@ function($routeProvider, $locationProvider) {
     }
   })
   .when('/edit/news/:id',{
-    templateUrl: 'html/news-edit.html',
+    templateUrl: 'html/edit-news.html',
     controller: 'modNewsCtrl',
     resolve: {
       news: function(newsService, $route){

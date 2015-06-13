@@ -16,7 +16,7 @@ if ($token->admin){
 
 
   $sql ="UPDATE RESOURCE
-         SET title='$tile',
+         SET title='$title',
              description='$description',
              resource='$resource',
              category_id='$category_id',
