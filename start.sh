@@ -2,4 +2,4 @@ sudo docker build -t webapp . # Build a Docker image named "webapp" from this lo
 # wait for it to build...
 
 # Run the docker container
-sudo docker run -v `pwd`:/var/www:rw -p 8080:80 webapp /sbin/my_init
+sudo docker run -v `pwd`:/var/www:rw -p 8080:8080 webapp /sbin/my_init

@@ -1,5 +1,5 @@
 server {
-    listen  80;
+    listen  8080;
 
     root /var/www;
     index index.html index.htm index.php;
@@ -18,9 +18,18 @@ server {
         try_files $uri $uri/ /index.html /index.php?$query_string;
     }
 
-    location /admin-app {
-        try_files $uri $uri/ /admin-app/index.html /admin-app/index.php?$query_string;
+    location /admin-app/ {
+      rewrite ^(.*[^/])$ $1/ permanent;
+      try_files $uri $uri/ /admin-app/index.html;
     }
+
+
+    location /api {
+      #rewrite ^(.*[^/])$ $1/ permanent;
+      #root /api;
+      try_files $uri $uri/ /api/index.php?$args;
+    }
+
 
     location = /favicon.ico { log_not_found off; access_log off; }
     location = /robots.txt  { access_log off; log_not_found off; }
