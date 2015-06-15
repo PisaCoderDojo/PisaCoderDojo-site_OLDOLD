@@ -7,20 +7,20 @@ angular.module('coderDojoServices', [])
     getNews: function(tag) {
       return $http({
         method: 'GET',
-        url: (tag ? '/api/news/tag/'+tag : '/api/news')
+        url: (tag ? '/php/getNews.php?tag='+tag : '/php/getNews.php')
       });
     },
     getNew: function(id) {
       return $http({
         method: 'GET',
-        url: '/api/news/id/'+id
+        url: '/php/getNews.php?id='+id
       });
     },
-    modNews: function(id,news){
+    modNews: function(news){
       news.token = tokenService.get();
       return $http({
-        method: 'PUT',
-        url: '/api/news/id/'+id,
+        method: 'POST',
+        url: '/php/modNews.php',
         data: news
       });
     },
@@ -28,27 +28,21 @@ angular.module('coderDojoServices', [])
       news.token = tokenService.get();
       return $http({
         method: 'POST',
-        url: '/api/news',
+        url: '/php/addNews.php',
         data: news
-      });
-    },
-    searchNews: function(text){
-      return $http({
-        method: 'GET',
-        url: 'api/news/search/'+text
       });
     },
     delNews: function(id){
       return $http({
-        method: 'DELETE',
-        url: '/api/news/id/'+id,
-        data: {token:tokenService.get()}
+        method: 'POST',
+        url: '/php/delNews.php',
+        data: {id:id,token:tokenService.get()}
       });
     },
     getTags: function(){
       return $http({
         method: 'GET',
-        url: '/api/tags'
+        url: '/php/getTags.php'
       });
     }
   };
@@ -58,99 +52,94 @@ angular.module('coderDojoServices', [])
     getResources: function(cat) {
       return $http({
         method: 'GET',
-        url: '/api/resource/cat/'+cat
+        url: '/php/getResource.php?cat='+cat
       });
     },
     getResource: function(id) {
       return $http({
         method: 'GET',
-        url: '/api/resource/id/'+id
+        url: '/php/getResource.php?id='+id
       });
     },
-    addResource: function(cat,resource){
-      resource.token = tokenService.get();
-      return $http({
-        method: 'POST',
-        url: '/api/resource/cat/'+cat,
-        data: resource
-      });
-    },
-    modResource: function(id,res){
-      res.token = tokenService.get();
-      return $http({
-        method: 'PUT',
-        url: '/api/resource/id/'+id,
-        data: res
-      });
-    },
-    delResource: function(id){
-      return $http({
-        method: 'DELETE',
-        url: '/api/resource/'+id,
-        data: {token:tokenService.get()}
-      });
-    }
-  };
-}])
-.factory('categoryService', ['$http', 'tokenService', function($http, tokenService) {
-  return {
     getCategory: function(){
       return $http({
         method: 'GET',
-        url: '/api/category'
+        url: '/php/getCategory.php'
       });
     },
     addCategory: function(cat){
       cat.token = tokenService.get();
       return $http({
         method: 'POST',
-        url: '/api/category',
+        url: '/php/addCategory.php',
         data: cat
+      });
+    },
+    addResource: function(resource){
+      resource.token = tokenService.get();
+      return $http({
+        method: 'POST',
+        url: '/php/addResource.php',
+        data: resource
       });
     },
     delCategory: function(id){
       return $http({
-        method: 'DELETE',
-        url: '/api/category/'+id,
-        data: {token:tokenService.get()}
+        method: 'POST',
+        url: '/php/delCategory.php',
+        data: {id:id,token:tokenService.get()}
       });
     },
-    modCategory: function(id,cat){
+    modCategory: function(cat){
       cat.token = tokenService.get();
       return $http({
-        method: 'PUT',
-        url: '/api/category/'+id,
+        method: 'POST',
+        url: '/php/modCategory.php',
         data: cat
+      });
+    },
+    modResource: function(res){
+      res.token = tokenService.get();
+      return $http({
+        method: 'POST',
+        url: '/php/modResource.php',
+        data: res
+      });
+    },
+    delResource: function(id){
+      return $http({
+        method: 'POST',
+        url: '/php/delResource.php',
+        data: {id:id,token:tokenService.get()}
       });
     }
   };
 }])
-.factory('resourceHelper', [function() {
-  return {
-    toArray: function(r){
-      //if (r!=='') r+=',';
-      var resourceList = r.split(',');
-      for (var i=0;i<resourceList.length;i++){
-        resourceList[i]=({link:resourceList[i]});
+.factory('tagHelper',[
+  function(){
+    return {
+      fromArray: function(tagArray){
+        var ris = [];
+        tagArray.forEach(function(tag){
+          ris.push({name:tag});
+        });
+        return ris;
+      },
+      toArray: function(tagObj){
+        var ris=[];
+        tagObj.forEach(function(tag){
+          ris.push(tag.name);
+        });
+        return ris;
       }
-      return resourceList;
-    },
-    toString: function(r){
-      var resourceList = [];
-      for (var i=0;i<r.length;i++){
-        if(r[i].link!=='')
-          resourceList.push(r[i].link);
-      }
-      return resourceList.join(',');
-    }
-  };
+    };
 }])
 .factory('imageService', ['$http','tokenService', function($http,tokenService){
   return {
     upload: function(img){
       return $http({
         method: 'POST',
-        url: '/api/photo',
+        url: '/php/updateImg.php',
         data: {img:img,token:tokenService.get()}
       });
     }
@@ -161,13 +150,13 @@ angular.module('coderDojoServices', [])
     getAlbums: function() {
       return $http({
         method: 'GET',
-        url: '/api/album'
+        url: '/php/getAlbums.php'
       });
     },
     getAlbum: function(id) {
       return $http({
         method: 'GET',
-        url: '/api/album/'+id
+        url: '/php/getAlbums.php?id='+id
       });
     }
   };
@@ -177,7 +166,7 @@ angular.module('coderDojoServices', [])
     login: function(pass){
       return $http({
         method:'POST',
-        url: '/api/login',
+        url: '/php/checkPass.php',
         data: {'password':pass}
       });
     }

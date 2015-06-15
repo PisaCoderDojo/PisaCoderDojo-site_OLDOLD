@@ -25,16 +25,16 @@ myApp.run(['$rootScope','ngProgress','$location','tokenService','TitleService',
       //console.log('cookie_token '+tokenService.get());
       var route = current.$$route.originalPath.split('/')[1];
       $rootScope.home = route === "";
-      $rootScope.sideBar=!(route == 'admin' || route == 'login');
-      if (route == 'admin' && !tokenService.isSet()){
+      //$rootScope.sideBar=!(route == 'admin' || route == 'login');
+      /*if (route == 'admin' && !tokenService.isSet()){
         $location.path('/login');
-      }
+      }*/
     });
     $rootScope.$on('$routeChangeSuccess', function() {
       ngProgress.complete();
     });
     $rootScope.$on("$routeChangeError", function(event, current, previous, rejection) {
-        console.log(event);
+      console.log(event);
     });
 }]);
 
@@ -79,6 +79,15 @@ function($routeProvider, $locationProvider) {
       }
     }
   })
+  .when('/resource/:cat',{
+    templateUrl: 'html/resource.html',
+    controller: 'resourceCtrl',
+    resolve: {
+      resource: function(resourceService, $route){
+        return resourceService.getResources($route.current.params.cat);
+      }
+    }
+  })
   .when('/contact', {
     title: 'contatti',
     templateUrl: 'html/contact.html',
@@ -93,95 +102,7 @@ function($routeProvider, $locationProvider) {
     title:'calendario',
     templateUrl: 'html/calendar.html'
   })
-  .when('/admin',{
-      templateUrl: 'html/admin.html',
-      controller: 'adminCtrl',
-      resolve: {
-        itemList: function(newsService){
-          //console.log('inside resolve');
-          return newsService.getNews();
-        },
-        category: function(resourceService){
-          //console.log('inside resolve');
-          return resourceService.getCategory();
-        },
-        delItem: function(newsService){
-          return newsService.delNews;
-        },
-        addItem:function(){
-          return {name:'news',href:'/admin/edit'};
-        }
-      }
-  })
-  .when('/admin/resource/:id',{
-      templateUrl: 'html/admin.html',
-      controller: 'adminCtrl',
-      resolve: {
-        itemList: function(resourceService, $route){
-          //console.log('inside resolve');
-          return resourceService.getResources($route.current.params.id);
-        },
-        category: function(resourceService){
-          //console.log('inside resolve');
-          return resourceService.getCategory();
-        },
-        delItem: function(resourceService){
-          return resourceService.delResource;
-        },
-        addItem: function(){
-            return {name:'resource',href:'/admin/edit/resource'};
-        }
-      }
-  })
-  .when('/admin/edit',{
-    templateUrl: 'html/edit.html',
-    controller: 'addCtrl',
-    resolve: {
-      tags: function(newsService){
-        return newsService.getTags();
-      }
-    }
-  })
-  .when('/admin/edit/:id',{
-    templateUrl: 'html/edit.html',
-    controller: 'modCtrl',
-    resolve: {
-      news: function(newsService, $route){
-        //console.log('inside resolve');
-        return newsService.getNew($route.current.params.id);
-      },
-      tags: function(newsService){
-        return newsService.getTags();
-      }
-    }
-  })
-  .when('/admin/edit/resource',{
-      templateUrl: 'html/edit-resource.html',
-      controller: 'editResourceCtrl',
-      resolve: {
-        category: function(resourceService){
-          return resourceService.getCategory();
-        }
-      }
-  })
-  .when('/admin/edit/resource/:id',{
-      templateUrl: 'html/edit-resource.html',
-      controller: 'editResourceCtrl',
-      resolve: {
-        resource: function(resourceService, $route){
-          //console.log('inside resolve');
-          return resourceService.getResource($route.current.params.id);
-        },
-        category: function(resourceService){
-          return resourceService.getCategory();
-        }
-      }
-  })
-  .when('/login',{
-    templateUrl: 'html/login.html',
-    controller: 'loginCtrl'
-  })
-  /*.when('/albums', {
+  .when('/albums', {
     templateUrl: 'html/albums.html',
     controller: 'albumsCtrl',
     resolve: {
@@ -198,7 +119,7 @@ function($routeProvider, $locationProvider) {
         return albumsService.getAlbum($route.current.params.id);
       }
     }
-  })*/
+  })
   .otherwise({
     redirectTo: '/'
   });
@@ -206,15 +127,13 @@ function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 }]);
 
-myApp.controller('CarouselCtrl', function ($scope) {
+myApp.controller('CarouselCtrl', ['$scope', function ($scope) {
   $scope.myInterval = 5000;
   var slides = $scope.slides = [];
-  $scope.addSlide = function() {
-    slides.push({
-      image: 'http://lorempixel.com/g/1000/400/abstract/',
-      text: ''
-    });
-  };
+  slides.push({
+    image: 'http://lorempixel.com/g/1000/400/abstract/',
+    text: ''
+  });
   slides.push({
     image:'img/SMS-biblio.jpg',
     text: ''
@@ -223,10 +142,17 @@ myApp.controller('CarouselCtrl', function ($scope) {
     image: 'img/tre-banner.jpg',
     text: ''
   });
-  for (var i=0; i<1; i++) {
-    $scope.addSlide();
-  }
-});
+}]);
+
+myApp.controller('menuController', ['$scope', '$http',
+function($scope, $http){
+  $http({
+    method: 'GET',
+    url: '/api/category'
+  }).success(function(data){
+    $scope.category = data;
+  });
+}]);
 
 myApp.controller('titleController',['$scope','TitleService',
   function($scope,TitleService){

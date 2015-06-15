@@ -8,6 +8,7 @@ var myApp = angular.module('coderDojo-admin',[
   'AdminControllers',
   'AdminDirective',
   'coderDojoServices',
+  'coderDojoAdminServices',
   'coderDojoFilters',
   'imageupload',
   'ngTagsInput'
@@ -50,9 +51,9 @@ function($routeProvider, $locationProvider) {
         actualCategoryId: function(){
           return null;
         },
-        category: function(resourceService){
+        category: function(categoryService){
           //console.log('inside resolve');
-          return resourceService.getCategory();
+          return categoryService.getCategory();
         },
         resource: function(){
           return null;
@@ -66,9 +67,9 @@ function($routeProvider, $locationProvider) {
         actualCategoryId: function($route){
           return $route.current.params.id;
         },
-        category: function(resourceService){
+        category: function(categoryService){
           //console.log('inside resolve');
-          return resourceService.getCategory();
+          return categoryService.getCategory();
         },
         resource: function(resourceService, $route){
           //console.log('inside resolve');
@@ -77,7 +78,7 @@ function($routeProvider, $locationProvider) {
       }
   })
   .when('/edit/news',{
-    templateUrl: 'html/news-edit.html',
+    templateUrl: 'html/edit-news.html',
     controller: 'addNewsCtrl',
     resolve: {
       tags: function(newsService){
@@ -100,7 +101,7 @@ function($routeProvider, $locationProvider) {
   })
   .when('/edit/resource/cat/:cat',{
       templateUrl: 'html/edit-resource.html',
-      controller: 'editResourceCtrl',
+      controller: 'addResourceCtrl',
       resolve: {
         categoryId: function($route){
           return $route.current.params.cat;
@@ -112,7 +113,7 @@ function($routeProvider, $locationProvider) {
   })
   .when('/edit/resource/cat/:cat/id/:id',{
       templateUrl: 'html/edit-resource.html',
-      controller: 'editResourceCtrl',
+      controller: 'modResourceCtrl',
       resolve: {
         categoryId: function($route){
           return $route.current.params.cat;

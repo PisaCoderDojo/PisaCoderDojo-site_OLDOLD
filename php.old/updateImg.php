@@ -8,7 +8,7 @@ $token = JWT::decode($token, $_SERVER['SECRET_KEY']);
 if ($token->admin){
 
   $url = 'img/article/';
-  $path = '../'.$URL;
+  $path = '../'.$url;
   $realPath = realpath($path);
 
   $data = json_decode(file_get_contents("php://input"));
@@ -23,7 +23,7 @@ if ($token->admin){
   file_put_contents($realPath.$name, $img);
 
 
-  echo $URL.$name;
+  echo $url.$name;
 
 }else{
   echo "token is not valid";

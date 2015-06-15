@@ -9,8 +9,8 @@ angular.module('coderDojoControllers', [])
       $scope.eventIsSet = $scope.nextEvent>=0;
     });
 }])
-.controller('newsCtrl', ['$scope','news','tags','$route','$timeout','$http','ngProgress','TitleService',
-  function($scope, news, tags, $route,$timeout,$http,ngProgress,TitleService) {
+.controller('newsCtrl', ['$scope','news','tags','$route','$timeout','$http','ngProgress','TitleService','newsService',
+  function($scope, news, tags, $route,$timeout,$http,ngProgress,TitleService,newsService) {
     $scope.BASE_URL="http://pisa.coderdojo.it/news/";
     $scope.news = news.data;
     $scope.tags = tags.data;
@@ -22,10 +22,7 @@ angular.module('coderDojoControllers', [])
 
     var httpSearch = function(){
       ngProgress.start();
-      $http({
-        method: 'GET',
-        url: 'php/searchNews.php?text='+$scope.query
-      }).success(function(data){
+      newsService.searchNews($scope.query).success(function(data){
         console.log('success');
         ngProgress.complete();
         $scope.news = data;
@@ -57,12 +54,23 @@ angular.module('coderDojoControllers', [])
 .controller('newCtrl', ['$scope', 'news', '$location','TitleService',
   function($scope,news,$location,TitleService){
     $scope.BASE_URL="http://pisa.coderdojo.it/news/";
-    news=news.data[0];
+    news=news.data;
     TitleService.set(news.title);
     if (news===undefined)
       $location.path('/news');
     else{
       $scope.new = news;
+    }
+}])
+.controller('resourceCtrl', ['$scope', 'resource', 'resourceHelper','TitleService',
+  function($scope,resource,resourceHelper,TitleService){
+    //TitleService.set(resource.title);
+    if(resource){
+      $scope.allresource = resource.data;
+    }
+
+    for (var i=0;i<$scope.allresource.length;i++){
+      $scope.allresource[i].resource = resourceHelper.toArray($scope.allresource[i].resource);
     }
 }])
 .controller('albumsCtrl', ['$scope', 'albums',
@@ -91,7 +99,7 @@ angular.module('coderDojoControllers', [])
       //console.log($scope.mail+' '+$scope.subject+' '+$scope.text);
       $http({
         method:'POST',
-        url: 'php/sendMail.php',
+        url: 'api/sendmail',
         data: {'mail':$scope.mail,
                'subject':$scope.subject,
                'text':$scope.text}

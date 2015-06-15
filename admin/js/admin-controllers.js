@@ -1,8 +1,8 @@
 /* Controllers */
 "use strict";
 angular.module('AdminControllers', [])
-.controller('adminNewsCtrl', ['$scope', 'news', '$location', '$cookies',
-  function($scope, news, $location, $cookies){
+.controller('adminNewsCtrl', ['$scope', 'news', '$location', '$cookies', 'newsService',
+  function($scope, news, $location, $cookies, newsService){
     $scope.news = news.data;
 
     $scope.modify = function(id){
@@ -28,12 +28,12 @@ angular.module('AdminControllers', [])
       newsService.delNews(item.id).success(function(data){
         //console.log(data);
         if(data=='success')
-          $scope.itemList.splice(item.key,1);
+          $scope.news.splice(item.key,1);
       });
     };
 }])
-.controller('adminResourceCtrl', ['$scope', 'actualCategoryId', 'category', 'resource', 'resourceService', '$location', '$cookies',
-  function($scope, actualCategoryId, category, resource, resourceService, $location, $cookies){
+.controller('adminResourceCtrl', ['$scope', 'actualCategoryId', 'category', 'resource', 'resourceService', 'categoryService', '$location', '$cookies',
+  function($scope, actualCategoryId, category, resource, resourceService, categoryService, $location, $cookies){
     $scope.category = category.data;
     $scope.isModCat = false;
     $scope.isAddCat = false;
@@ -67,7 +67,7 @@ angular.module('AdminControllers', [])
 
     $scope.saveAddCat = function(){
       if($scope.isAddCat){
-        resourceService.addCategory({name:$scope.inputModCat}).success(function(data){
+        categoryService.addCategory({name:$scope.inputModCat}).success(function(data){
             data = parseInt(data);
             if(!isNaN(data)){
               $scope.isAddCat = false;
@@ -76,9 +76,7 @@ angular.module('AdminControllers', [])
               console.log('error: '+data);
         });
       }else if($scope.isModCat){
-        resourceService.modCategory({id:$scope.actualCategory.id,
-                              name:$scope.inputModCat
-                            })
+        categoryService.modCategory($scope.actualCategory.id,{name:$scope.inputModCat})
           .success(function(data){
             if(data=='success'){
               $scope.isModCat=false;
@@ -90,7 +88,7 @@ angular.module('AdminControllers', [])
     };
 
     $scope.delCategory = function(){
-      resourceService.delCategory(actualCategoryId).success(function(data){
+      categoryService.delCategory(actualCategoryId).success(function(data){
         if(data=='success'){
           $location.path('resource');
         }else
@@ -111,11 +109,6 @@ angular.module('AdminControllers', [])
       $('#deleteModal').modal('show');
     };
 
-    /*$scope.logout = function(){
-      delete $cookies['token'];
-      $location.path('/');
-    };*/
-
     $scope.delete = function(item){
       $('#deleteModal').modal('hide');
       resourceService.delResource(item.id).success(function(data){
@@ -127,7 +120,7 @@ angular.module('AdminControllers', [])
 }])
 .controller('modNewsCtrl', ['$scope','news','newsService','$location','tagHelper','tags',
   function($scope,news,newsService,$location,tagHelper,tags){
-    news=news.data[0];
+    news=news.data;
     if (news===undefined)
       $location.path('/admin');
     else{
@@ -139,13 +132,12 @@ angular.module('AdminControllers', [])
       $scope.tags=tagHelper.fromArray(news.tags);
     }
     $scope.submit = function(){
-      var data = {id:id,
-                  title:$scope.title,
+      var data = {title:$scope.title,
                   user:$scope.user,
                   text:$scope.text,
                   tags:tagHelper.toArray($scope.tags)
                   };
-      newsService.modNews(data).success(function(data){
+      newsService.modNews(id,data).success(function(data){
         if(data=='success'){
           $location.path('/admin');
         }
@@ -178,12 +170,12 @@ angular.module('AdminControllers', [])
   function($scope, newsService, $location, tagHelper,tags){
     $scope.submit = function(){
       if ($scope.title!=='' && $scope.text!=='' && $scope.user!==''){
-        console.log(tagHelper.fromObj($scope.tags));
+        console.log(tagHelper.fromArray($scope.tags));
         newsService.addNews({
           title: $scope.title,
           text: $scope.text,
           user: $scope.user,
-          tags: tagHelper.fromObj($scope.tags)
+          tags: tagHelper.fromArray($scope.tags)
         }).success(function(data){
           if(data=='success')
             $location.path('/admin');
@@ -194,36 +186,50 @@ angular.module('AdminControllers', [])
       return tags.data;
     };
 }])
-.controller('editResourceCtrl', ['$scope', 'categoryId', 'resource', 'resourceService', '$location',
-  function($scope, categoryId, resource, resourceService, $location){
-    var resourceToArray = function(r){
-      if (r!=='') r+=',';
-      var resourceList = r.split(',');
-      for (var i=0;i<resourceList.length;i++){
-        resourceList[i]=({link:resourceList[i]});
+.controller('addResourceCtrl', ['$scope', 'categoryId', 'resource', 'resourceService', 'resourceHelper','$location',
+  function($scope, categoryId, resource, resourceService, resourceHelper, $location){
+
+    $scope.editRes = {resource:[{link:''}], category_id: categoryId};
+
+    $scope.keydown = function(key,item){
+      if (item.link === ''){
+        $scope.editRes.resource.splice(key,1);
+        console.log('key: '+key);
       }
-      return resourceList;
-    };
-    var resourceToString = function(r){
-      var resourceList = [];
-      for (var i=0;i<r.length;i++){
-        if(r[i].link!=='')
-          resourceList.push(r[i].link);
+      var last = $scope.editRes.resource.length-1;
+      if($scope.editRes.resource[last].link !== ''){
+        $scope.editRes.resource.push({link:''});
       }
-      return resourceList.join(',');
+
     };
 
+    $scope.submit = function(){
+      if ($scope.editRes.title && $scope.editRes.description){
+
+        var stringRes = resourceHelper.toString($scope.editRes.resource);
+        $scope.editRes.resource = stringRes;
+
+        //add resource
+        resourceService.addResource(categoryId,$scope.editRes).success(function(data){
+          if (data=='success')
+            $location.path('resource/'+categoryId);
+          else
+            console.log('error: '+data);
+        });
+      }else
+        console.log('missed name or description');
+    };
+}])
+.controller('modResourceCtrl', ['$scope', 'categoryId', 'resource', 'resourceService', 'resourceHelper', '$location',
+  function($scope, categoryId, resource, resourceService, resourceHelper, $location){
     if (resource){
-      resource = resource.data[0];
+      resource = resource.data;
       $scope.editRes = {
-        id: resource.id,
         title: resource.title,
         description: resource.description,
-        resource: resourceToArray(resource.resource),
+        resource: resourceHelper.toArray(resource.resource),
         category_id: categoryId
       };
-    }else{
-      $scope.editRes = {resource:[{link:''}], category_id: categoryId};
     }
 
     $scope.keydown = function(key,item){
@@ -238,33 +244,20 @@ angular.module('AdminControllers', [])
 
     };
 
-    /*$scope.addMaterial = function(link){
-      $scope.editRes.resource.push(link);
-      $scope.newMaterial='';
-      console.log($scope.editRes.resource);
-    };*/
-
     $scope.submit = function(){
       if ($scope.editRes.title && $scope.editRes.description){
 
-        var stringRes = resourceToString($scope.editRes.resource);
+        var stringRes = resourceHelper.toString($scope.editRes.resource);
         $scope.editRes.resource = stringRes;
 
-        if (resource){  //Modify resource
-          resourceService.modResource($scope.editRes).success(function(data){
+        //Modify resource
+        resourceService.modResource(resource.id, $scope.editRes)
+          .success(function(data){
             if (data=='success')
               $location.path('resource/'+categoryId);
             else
               console.log('error: '+data);
           });
-        }else{ //add resource
-          resourceService.addResource($scope.editRes).success(function(data){
-            if (data=='success')
-              $location.path('resource/'+categoryId);
-            else
-              console.log('error: '+data);
-          });
-        }
       }else
         console.log('missed name or description');
     };

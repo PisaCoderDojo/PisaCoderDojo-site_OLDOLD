@@ -6,83 +6,97 @@ Class News {
     // Get book with ID
     $app->get('/', Helper::setHeader($app), function () {
       $db = Helper::getDB();
-      $sql = "SELECT * FROM news ORDER BY id DESC";
-      $uResult = $db->query($sql);
-      echo Helper::encodeJsonNews($uResult);
+      $result = $db->query("SELECT * FROM news ORDER BY id DESC");
+      echo Helper::encodeJsonArrayNews($result);
     });
 
     $app->get('/id/:id', Helper::setHeader($app), function($id){
       $db = Helper::getDB();
-      $sql = "SELECT * FROM news WHERE id=$id";
-      $uResult = $db->query($sql);
-      echo Helper::encodeJsonNews($uResult);
+      $stmt = $db->prepare("SELECT * FROM news WHERE id=:id");
+      $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+
+      $result = $stmt->execute();
+      echo Helper::encodeJsonObjectNews($result);
     });
 
     $app->get('/tag/:tag', Helper::setHeader($app), function($tag){
       $db = Helper::getDB();
-      $sql = "SELECT id,title,body,author,creation_date
-              FROM NEWS INNER JOIN TAGS ON NEWS.id=TAGS.news_id
-              WHERE TAGS.name='$tag'";
-      $uResult = $db->query($sql);
-      echo Helper::encodeJsonNews($uResult);
+      $stmt = $db->prepare("SELECT id,title,body,author,creation_date
+                            FROM NEWS INNER JOIN TAGS ON NEWS.id=TAGS.news_id
+                            WHERE TAGS.name=:tag");
+      $stmt->bindValue(':tag', $tag, SQLITE3_TEXT);
+      $uResult = $stmt->execute();
+      echo Helper::encodeJsonArrayNews($uResult);
+    });
+
+    $app->get('/search/:text', Helper::setHeader($app), function($text){
+      $db = Helper::getDB();
+      $stmt = $db->prepare("SELECT * FROM NEWS WHERE title LIKE :text OR body LIKE :text");
+      $stmt->bindValue(':text', '%'.$text.'%', SQLITE3_TEXT);
+      $uResult = $stmt->execute();
+      echo Helper::encodeJsonArrayNews($uResult);
     });
 
     $app->post('/', Helper::checkToken($app), function() use($app){
       $data = json_decode($app->request->getBody());
       $db = Helper::getDB();
-      $title = $db->escapeString($data->title);
-      $body = $db->escapeString($data->text);
-      $author = $db->escapeString($data->user);
-      $date = time()*1000;
-      //$tagList = $data->tags;
+      $stmt = $db->prepare("INSERT INTO NEWS (title,body,author,creation_date)
+                            VALUES (:title,:body,:author,:creation_date)");
+      $stmt->bindValue(':title', $data->title, SQLITE3_TEXT);
+      $stmt->bindValue(':body', $data->text, SQLITE3_TEXT);
+      $stmt->bindValue(':author', $data->user, SQLITE3_TEXT);
+      $stmt->bindValue(':creation_date', time()*1000, SQLITE3_INTEGER);
+      $ret = $stmt->execute();
 
-      $sql ="INSERT INTO NEWS (title,body,author,creation_date)
-             VALUES ('$title','$body','$author','$date')";
-
-      $ret = $db->exec($sql);
       if(!$ret){
         echo $db->lastErrorMsg();
       }else {
         $newsID = $db->lastInsertRowID();
-        /*foreach ($tagList as $tag){
-          $db->exec("INSERT INTO TAGS (name,news_id) VALUES ('$tag',$newsID)");
-        }*/
-        echo $newsID;
+        $tagList = $data->tags;
+        foreach ($tagList as $tag){
+          $stmt = $db->prepare("INSERT INTO TAGS (name,news_id) VALUES (:tag,:id)");
+          $stmt->bindValue(':tag', $tag, SQLITE3_TEXT);
+          $stmt->bindValue(':id', $newsID, SQLITE3_INTEGER);
+          $stmt->execute();
+        }
+        echo 'success';
       }
     });
 
-    $app->put('/', Helper::checkToken($app), function() use($app){
+    $app->put('/id/:id', Helper::checkToken($app), function($id) use($app){
       $data = json_decode($app->request->getBody());
       $db = Helper::getDB();
-      $id = $db->escapeString($data->id);
-      $title = $db->escapeString($data->title);
-      $body = $db->escapeString($data->text);
-      $author = $db->escapeString($data->user);
-      $tags = $data->tags;
+      $stmt = $db->prepare("UPDATE NEWS
+                    SET title = :title, body = :body, author = :author
+                    WHERE id=:id");
+      $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+      $stmt->bindValue(':title', $data->title, SQLITE3_TEXT);
+      $stmt->bindValue(':body', $data->text, SQLITE3_TEXT);
+      $stmt->bindValue(':author', $data->user, SQLITE3_TEXT);
+      $ret = $stmt->execute();
 
-      $sql ="UPDATE NEWS
-             SET title = '$title', body = '$body', author = '$author'
-             WHERE id='$id'";
-
-      $ret = $db->exec($sql);
       if(!$ret){
         echo $db->lastErrorMsg();
       } else {
-        $db->exec("DELETE FROM TAGS WHERE news_id=$id");
+        $tags = $data->tags;
+        $stmt = $db->prepare("DELETE FROM TAGS WHERE news_id=:id");
+        $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+        $stmt->execute();
         foreach ($tags as $tag){
-          $db->exec("INSERT INTO TAGS (name,news_id) VALUES ('$tag',$id)");
+          $stmt = $db->prepare("INSERT INTO TAGS (name,news_id) VALUES (:tag,:id)");
+          $stmt->bindValue(':tag', $tag, SQLITE3_TEXT);
+          $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+          $stmt->execute();
         }
         echo "success";
       }
     });
 
-    $app->delete('/', Helper::checkToken($app), function() use($app){
-      $data = json_decode($app->request->getBody());
+    $app->delete('/id/:id', Helper::checkToken($app), function($id) use($app){
       $db = Helper::getDB();
-      $id = $db::escapeString($data->id);
-      $sql ="DELETE FROM news WHERE ID=$id";
-
-      $ret = $db->exec($sql);
+      $stmt = $db->prepare("DELETE FROM news WHERE id=:id");
+      $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+      $ret = $stmt->execute();
       if(!$ret){
         echo $db->lastErrorMsg();
       } else {

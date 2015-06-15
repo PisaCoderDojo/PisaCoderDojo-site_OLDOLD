@@ -1,0 +1,39 @@
+<div class="container container-fluid">
+  <div class="col-sm-9">
+    <div ng-repeat="res in allresource | orderBy:orderProp" class="panel panel-default">
+      <!-- Default panel contents -->
+      <div ng-bind="res.title" class="panel-heading"></div>
+      <div ng-bind="res.description" class="panel-body"></div>
+
+      <!-- List group -->
+      <ul ng-hide="{{ res.resource.length-1==0 }}" class="list-group">
+        <li ng-repeat="item in res.resource" ng-bind="item.link" class="list-group-item"></li>
+      </ul>
+    </div>
+  </div>
+  <!--
+  <div class="col-sm-3">
+    <div class="search-bar">
+      <h4>Search</h4>
+      <input ng-model="query" ng-keyup="search($event)"></input>
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="title">Alfabetico</option>
+        <option value="id">Più recente</option>
+      </select>
+    </div>
+    <div class="tag-cloud">
+      <h4>Tags</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li ng-class="{active : -1==currentTag}" role="presentation">
+          <a href="news">Tutti</a>
+        </li>
+        <li ng-repeat="tag in tags" ng-class="{active : tag.name==currentTag}" role="presentation">
+          <a ng-href="news/tag/{{tag.name}}">{{tag.name}}
+            <span class="badge" ng-bind="tag.count"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>-->
+</div>
