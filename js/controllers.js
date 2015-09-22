@@ -98,6 +98,28 @@ angular.module('coderDojoControllers', [])
       $scope.people = data;
     });
 }])
+.controller('mentorCtrl',['$scope', '$http',
+ function ($scope, $http) {
+    $scope.isSend = false;
+    $scope.send = function(){
+      //console.log($scope.mail+' '+$scope.subject+' '+$scope.text);
+      $http({
+        method:'POST',
+        url: 'api/sendmail',
+        data: {'name':$scope.name,
+               'surname':$scope.surname,
+               'age':$scope.age,
+               'selection':$scope.selection,
+               'aboutyou':$scope.aboutyou,
+               'howknow':$scope.howknow
+        }
+      }).success(function(data){
+        //console.log(data);
+        if(data == 'true')
+          $scope.isSend=true;
+      });
+    };
+}])
 .controller('contactCtrl', ['$scope', '$http',
   function ($scope, $http) {
     $scope.isSend = false;

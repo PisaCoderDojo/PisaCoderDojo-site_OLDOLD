@@ -93,6 +93,11 @@ function($routeProvider, $locationProvider) {
     templateUrl: 'html/contact.html',
     controller: 'contactCtrl'
   })
+  .when('/mentor', {
+    title: 'Lavora con noi',
+    templateUrl: 'html/mentor.html',
+    controller: 'mentorCtrl'
+  })
   .when('/about', {
     title:'chi siamo',
     templateUrl: 'html/about.html',
