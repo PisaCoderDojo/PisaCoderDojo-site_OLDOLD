@@ -3,11 +3,17 @@
 angular.module('coderDojoControllers', [])
 .controller('homeCtrl', ['$scope','Event',
   function($scope,Event){
-    Event.next().success(function(data){
+    /*Event.next().success(function(data){
       $scope.eventBrite = Event.getEventBrite(data);
       $scope.nextEvent = Event.getDay(data);
       $scope.eventIsSet = $scope.nextEvent>=0;
     });
+    */
+    var data = new Date('2015-10-11');
+    var now = new Date().getTime();
+    $scope.eventBrite = 'http://www.eventbrite.it/e/biglietti-pisa-coderdojo-if-2-18741035943';
+    $scope.nextEvent = Math.floor((data - now)/(1000*60*60*24));
+    $scope.eventIsSet = $scope.nextEvent>=0;
 }])
 .controller('newsCtrl', ['$scope','news','tags','$route','$timeout','$http','ngProgress','TitleService','newsService',
   function($scope, news, tags, $route,$timeout,$http,ngProgress,TitleService,newsService) {
