@@ -131,7 +131,7 @@ myApp.controller('CarouselCtrl', ['$scope', function ($scope) {
   $scope.myInterval = 5000;
   var slides = $scope.slides = [];
   slides.push({
-    image: 'http://lorempixel.com/g/1000/400/abstract/',
+    image: 'img/all-dojo.jpg',
     text: ''
   });
   slides.push({
