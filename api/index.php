@@ -47,7 +47,7 @@ $app->post('/login', function () use ($app) {
   }
 });
 
-$app->post('/sendmail', Helper::checkToken($app), function() use ($app){
+$app->post('/sendmail', function() use ($app){
   $data = json_decode($app->request->getBody());
 
   $to = "pisa.it@coderdojo.com";
