@@ -109,7 +109,6 @@ angular.module('coderDojoControllers', [])
     $scope.howyouknow = [{name:"Giornali",value:false },
                         {name:"Social",value:false},
                         {name:"Amici",value:false},
-                        {name:"Marketing",value:false},
                         {name:"Newsletter",value:false}
                         ];
     $scope.isSend = false;

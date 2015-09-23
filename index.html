@@ -163,13 +163,13 @@
     </nav>
 
     <div class="carousel-header" ng-controller="CarouselCtrl" ng-show="home">
-      <div class="container-fluid">
+      <!--<div class="container-fluid">
           <div class="row">
               <div class="col-sm-2 col-sm-offset-10">
                 <img id="beta" class="img-responsive" src="img/beta1.png"></img>
               </div>
           </div>
-      </div>
+      </div>-->
       <carousel interval="myInterval">
         <slide ng-repeat="slide in slides" active="slide.active">
           <img ng-src="{{slide.image}}" style="margin:auto;"/>
