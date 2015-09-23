@@ -100,19 +100,48 @@ angular.module('coderDojoControllers', [])
 }])
 .controller('mentorCtrl',['$scope', '$http',
  function ($scope, $http) {
+    $scope.selection = [{name:"Informatica",value:true },
+                        {name:"Didattica",value:false},
+                        {name:"Esperienze con in bambini",value:false},
+                        {name:"Marketing",value:false},
+                        {name:"Organizazzione eventi",value:false}
+                        ];
+    $scope.howyouknow = [{name:"Giornali",value:false },
+                        {name:"Social",value:false},
+                        {name:"Amici",value:false},
+                        {name:"Marketing",value:false},
+                        {name:"Newsletter",value:false}
+                        ];
     $scope.isSend = false;
+    
+    var getValue = function(array){
+      var stringa = "";
+      var first = true;
+      for (var i=0; i < array.length; i++){
+        var object = array[i];
+        if(object['value']==true){
+          if (!first)
+            stringa+=', ';
+          stringa += object['name'];
+          first = false;
+        }
+      }
+      return stringa
+    }
     $scope.send = function(){
-      //console.log($scope.mail+' '+$scope.subject+' '+$scope.text);
+      var t = 'name: ' + $scope.name+
+              '\n age: ' +$scope.age+
+              '<br/> selection: '+ getValue($scope.selection) +
+              '\n aboutyou: '+$scope.aboutyou +
+              '\n howknow: '+ getValue($scope.howyouknow) ;
+      console.log($scope.mail+' '+t);
       $http({
         method:'POST',
         url: 'api/sendmail',
-        data: {'name':$scope.name,
-               'surname':$scope.surname,
-               'age':$scope.age,
-               'selection':$scope.selection,
-               'aboutyou':$scope.aboutyou,
-               'howknow':$scope.howknow
-        }
+        data: { "mail":$scope.mail,
+                'subject': "New mentor want to join us" ,          
+                'text':t
+                }
       }).success(function(data){
         //console.log(data);
         if(data == 'true')
