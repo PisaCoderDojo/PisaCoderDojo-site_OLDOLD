@@ -1,40 +1,72 @@
 <div class="container container-fluid">
-   <!--Un Dojo è un'organizzazione volontaria di persone che costituisce, attiva
-   e mantiene un club basandosi sul regolamento etico di CoderDojo al fine di
-   facilitare l'apprendimento gratuito della programmazione informatica tra
-   i giovani. Il lavoro di un Dojo - con buona probabilità un paio di ore
+   <!-- Il lavoro di un Dojo - con buona probabilità un paio di ore
    ogni due settimane - è volto a stimolare la creatività di tutti i partecipanti
    e a divertirsi in un ambiente sociale rilassato.-->
+
+   <div class="row">
+     <h2 class="col-sm-12">Partecipa!</h2>
+     <div class="col-sm-8 text-justify">
+       <em>Pisa</em> CoderDojo si riunisce una volta ogni due settimana a SMS Biblio,
+       controlla il nostro calendario e acquista il biglietto gratuito su Eventbrite.
+     </div>
+     <div class="col-sm-4">
+       <div class="eventbrite-button">
+          <div ng-show="eventIsSet">
+            <a href="{{ eventBrite }}" target="_blank"><img src="https://www.eventbrite.it/custombutton?eid=16099774860" alt="Eventbrite - Pisa CoderDojo 1" /></a>
+            <p>mancano {{ nextEvent }} giorni al prossimo evento</p>
+          </div>
+          <div ng-hide="eventIsSet">
+            <p>attualmente non ci sono eventi in programma.</p>
+          </div>
+        </div>
+      </div>
+  </div>
    <div class="row">
      <div class="col-sm-6">
        <div class="text-justify">
          <h2>Che cos'è?</h2>
+         Un Dojo è un'organizzazione volontaria di persone che costituisce, attiva
+         e mantiene un club basandosi sul regolamento etico di CoderDojo al fine di
+         facilitare l'apprendimento gratuito della programmazione informatica per
+         i giovani fra i 7 e i 17 anni.
+         <p></p>
          <em>Coder</em> significa Programmatore e <em>Dojo</em> significa Tempio dell'Apprendimento.
-          <p></p>
+
           <ul class="list-unstyled">
-          <li>Se vuoi imparare il karate vai in un <em>KarateDojo</em>,</li>
-          <li>se vuoi imparare il Kendo vai in un <em>KendoDojo<em>,</li>
-          <li>se vuoi imparare a programmare vai in un <em>CoderDojo<em> e
-              porta i tuoi genitori.</li>
+          <li>Se vuoi imparare il Karate vai in un <em>KarateDojo</em>,</li>
+          <li>se vuoi imparare il Kendo vai in un <em>KendoDojo</em>,</li>
+          <li>se vuoi imparare a programmare vai in un <em>CoderDojo</em> e porta i tuoi genitori.</li>
           </ul>
-         Pisa CoderDojo si riunisce presso SMS Biblio e c'è una sola regola: </br>
-         <strong>Be Cool!</strong>
+         C'è una sola regola:
+         <strong>Sempre in Gamba! Be Cool!</strong>
        </div>
      </div>
 
      <div class="col-sm-6">
        <div class="text-justify">
-         <h2>Come partecipare?</h2>
-         CoderDojo si riunisce una volta ogni due settimana a SMS Biblio, controlla il nostro calendario e acquista il biglietto gratuito su eventbrite..
-         <p></p>
-         <div ng-show="eventIsSet">
-           <a href="{{ eventBrite }}" target="_blank"><img class="eventbride-button" src="https://www.eventbrite.it/custombutton?eid=16099774860" alt="Eventbrite - Pisa CoderDojo 1" /></a>
-           <p>mancano {{ nextEvent }} giorni al prossimo evento</p>
-         </div>
-         <div ng-hide="eventIsSet">
-           <p>attualmente non ci sono eventi in programma.</p>
-         </div>
-       </div>
+         <h2>Perchè un Dojo?</h2>
+         Se ci guardiamo intorno, vediamo PC dappertutto.
+         Il mondo intero viene mandato avanti dai computer.
+         Ma che cosa manda avanti un computer? Il codice.
+         Scritto da programmatori e da gente comune.
+         A mano. Ad oggi mancano programmatori.
+         Sempre più ci appoggiamo ai computer anche per scopi di sopravvivenza e d'altra parte i corsi universitari di Informatica sperimentano un abbandono del 50%.
+         <p/>E' come se ci fosse un picco di richiesta di programmi e...
+         potrebbe essere una cosa terribile se non ci fossero programmatori che mandano avanti tutta la nostra quotidianità.
+         Siamo in tanti, quindi abbiamo bisogno di più programmatori e di bambini che imparino a programmare.
+        </div>
      </div>
    </div>
+
+    <div class="row">
+    <div class="col-sm-12">
+      <div class="text-justify">
+       <h2>Vuoi contribuire?</h2>
+       Stiamo cercando nuovi <b>mentori</b> che ci aiutino a portare avanti le nostre iniziative.
+       Non vi preoccupate: non cerchiamo solo programmatori, ma anche persone che abbiano voglia di fare, inventare e divertirsi.
+       <p></p>
+       <a href="/mentor">Clicca qui</a> per inviarci la tua candidatura.
+      </div>
+    </div>
+  </div>
 </div>

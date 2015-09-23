@@ -100,7 +100,7 @@ angular.module('coderDojoControllers', [])
 }])
 .controller('mentorCtrl',['$scope', '$http',
  function ($scope, $http) {
-    $scope.selection = [{name:"Informatica",value:true },
+    $scope.selection = [{name:"Informatica",value:false },
                         {name:"Didattica",value:false},
                         {name:"Esperienze con in bambini",value:false},
                         {name:"Marketing",value:false},
@@ -113,7 +113,7 @@ angular.module('coderDojoControllers', [])
                         {name:"Newsletter",value:false}
                         ];
     $scope.isSend = false;
-    
+
     var getValue = function(array){
       var stringa = "";
       var first = true;
@@ -129,17 +129,17 @@ angular.module('coderDojoControllers', [])
       return stringa
     }
     $scope.send = function(){
-      var t = 'name: ' + $scope.name+
-              '\n age: ' +$scope.age+
-              '<br/> selection: '+ getValue($scope.selection) +
-              '\n aboutyou: '+$scope.aboutyou +
-              '\n howknow: '+ getValue($scope.howyouknow) ;
-      console.log($scope.mail+' '+t);
+      var t = '<b>name:</b> ' + $scope.name+
+              '<br/> <b>age:</b> ' +$scope.age+
+              '<br/> <b>selection:</b> '+ getValue($scope.selection) +
+              '<br/> <b>aboutyou:</b> '+$scope.aboutyou +
+              '<br/> <b>howknow:</b> '+ getValue($scope.howyouknow) ;
+      //console.log($scope.mail+' '+t);
       $http({
         method:'POST',
         url: 'api/sendmail',
         data: { "mail":$scope.mail,
-                'subject': "New mentor want to join us" ,          
+                'subject': "New mentor want to join us" ,
                 'text':t
                 }
       }).success(function(data){
