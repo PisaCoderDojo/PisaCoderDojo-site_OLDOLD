@@ -27,7 +27,7 @@ CREATE TABLE RESOURCE (
   id integer PRIMARY KEY AUTOINCREMENT,
   title varchar(30) NOT NULL,
   description text NOT NULL,
-  resource text,
+  links text,
   category_id integer NOT NULL,
   creation_date integer NOT NULL,
   FOREIGN KEY(category_id) REFERENCES CATEGORY(id)

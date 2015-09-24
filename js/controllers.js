@@ -76,7 +76,7 @@ angular.module('coderDojoControllers', [])
     }
 
     for (var i=0;i<$scope.allresource.length;i++){
-      $scope.allresource[i].resource = resourceHelper.toArray($scope.allresource[i].resource);
+      $scope.allresource[i].resource = JSON.parse($scope.allresource[i].links);
     }
 }])
 .controller('albumsCtrl', ['$scope', 'albums',

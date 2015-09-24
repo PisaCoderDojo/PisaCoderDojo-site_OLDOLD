@@ -4,6 +4,7 @@ require_once('lib/jwt_helper.php');
 require_once('lib/password.php');
 require_once('Helper.php');
 require_once('routes/news.php');
+require_once('routes/tags.php');
 require_once('routes/resource.php');
 require_once('routes/category.php');
 require_once('routes/photo.php');
@@ -16,13 +17,11 @@ $app->group('/news', function() use ($app){
   News::create($app);
 });
 
-$app->get('/tags', Helper::setHeader($app), function () {
-  $db = Helper::getDB();
-  $uResult = $db->query("SELECT name, count(*) as count FROM TAGS GROUP BY name");
-  echo Helper::encodeJsonArray($uResult);
+$app->group('/tags', function () use($app){
+  Tags::create($app);
 });
 
-$app->group('/resource', function() use ($app){
+$app->group('/resources', function() use ($app){
   Resource::create($app);
 });
 

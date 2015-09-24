@@ -23,6 +23,10 @@ server {
       try_files $uri $uri/ /admin/index.html;
     }
 
+    location /ng-admin/ {
+      #rewrite ^(.*[^/])$ $1/ permanent;
+      try_files $uri $uri/ /ng-admin/index.html;
+    }
 
     location /api {
       #rewrite ^(.*[^/])$ $1/ permanent;

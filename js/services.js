@@ -7,20 +7,20 @@ angular.module('coderDojoServices', [])
     getNews: function(tag) {
       return $http({
         method: 'GET',
-        url: (tag ? '/api/news/tag/'+tag : '/api/news')
+        url: (tag ? '/api/news?tag='+tag : '/api/news')
       });
     },
     getNew: function(id) {
       return $http({
         method: 'GET',
-        url: '/api/news/id/'+id
+        url: '/api/news/'+id
       });
     },
     modNews: function(id,news){
       news.token = tokenService.get();
       return $http({
         method: 'PUT',
-        url: '/api/news/id/'+id,
+        url: '/api/news/'+id,
         data: news
       });
     },
@@ -35,13 +35,13 @@ angular.module('coderDojoServices', [])
     searchNews: function(text){
       return $http({
         method: 'GET',
-        url: 'api/news/search/'+text
+        url: 'api/news?search='+text
       });
     },
     delNews: function(id){
       return $http({
         method: 'DELETE',
-        url: '/api/news/id/'+id,
+        url: '/api/news/'+id,
         data: {token:tokenService.get()}
       });
     },
@@ -58,20 +58,20 @@ angular.module('coderDojoServices', [])
     getResources: function(cat) {
       return $http({
         method: 'GET',
-        url: '/api/resource/cat/'+cat
+        url: '/api/resources?category='+cat
       });
     },
     getResource: function(id) {
       return $http({
         method: 'GET',
-        url: '/api/resource/id/'+id
+        url: '/api/resources/'+id
       });
     },
-    addResource: function(cat,resource){
+    addResource: function(resource){
       resource.token = tokenService.get();
       return $http({
         method: 'POST',
-        url: '/api/resource/cat/'+cat,
+        url: '/api/resources',
         data: resource
       });
     },
@@ -79,14 +79,14 @@ angular.module('coderDojoServices', [])
       res.token = tokenService.get();
       return $http({
         method: 'PUT',
-        url: '/api/resource/id/'+id,
+        url: '/api/resources/'+id,
         data: res
       });
     },
     delResource: function(id){
       return $http({
         method: 'DELETE',
-        url: '/api/resource/'+id,
+        url: '/api/resources/'+id,
         data: {token:tokenService.get()}
       });
     }

@@ -7,7 +7,9 @@
 
       <!-- List group -->
       <ul ng-hide="{{ res.resource.length-1==0 }}" class="list-group">
-        <li ng-repeat="item in res.resource" ng-bind="item.link" class="list-group-item"></li>
+        <li ng-repeat="item in res.resource" class="list-group-item">
+          <a href="{{item.link}}" ng-bind="item.name"></a>
+        </li>
       </ul>
     </div>
   </div>
