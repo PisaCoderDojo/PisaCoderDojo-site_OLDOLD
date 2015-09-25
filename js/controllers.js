@@ -89,8 +89,9 @@ angular.module('coderDojoControllers', [])
 }])
 .controller('albumCtrl', ['$scope', 'album',
   function($scope,album){
+    console.log(album)
     $scope.album=album.data;
-    console.log(album.data);
+    //console.log(album.data);
 }])
 .controller('aboutCtrl', ['$scope', '$http',
   function($scope, $http){
