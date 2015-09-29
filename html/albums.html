@@ -14,10 +14,12 @@
       <li class="list-group-item" ng-repeat="album in albums">
         <span class="badge">{{album.count}}</span>
         <a href="{{ 'albums/'+album.id }}" >
-          <div ng-bind="album.name"></div>
+          <div ng-bind="album.name" > </div>
         </a>
+       <div ng-bind="album.description"></div>
+       <a href="{{ 'albums/'+album.id }}"> <img src="{{ getImg(album.cover_photo)}}" class="img-rounded img-responsive"> </a>
 
-        <div ng-bind="album.description"></div>
+        <!--div ng-bind="album.description"></div-->
       </li>
     </ul>
   </div>
