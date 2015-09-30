@@ -15,7 +15,7 @@ Class Category {
       $stmt = $db->prepare("SELECT * FROM category WHERE id=:id");
       $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
       $result = $stmt->execute();
-      echo Helper::encodeJsonArray($result);
+      echo Helper::encodeJsonObject($result);
     });
 
     $app->post('/', /*Helper::checkToken($app),*/ function() use($app){

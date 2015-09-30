@@ -58,7 +58,7 @@ myApp.config(['NgAdminConfigurationProvider', '$stateProvider', function (nga,$s
     console.log(entityId);
   });
 
-  news.creationView().fields([
+  news.showView().fields([
     nga.field('title')
     .validation({ required: true, minlength: 3, maxlength: 100 }),,
     nga.field('body','wysiwyg'),
@@ -73,10 +73,12 @@ myApp.config(['NgAdminConfigurationProvider', '$stateProvider', function (nga,$s
   var category = nga.entity('category');
   // set the fields of the user entity list view
   category.listView().fields([
-      nga.field('name')
+      nga.field('name').isDetailLink(true)
   ]);
 
-  category.creationView().fields(category.listView().fields());
+  category.creationView().fields([
+      nga.field('name')
+  ]);
 
   category.editionView().fields(category.creationView().fields());
   // add the user entity to the admin application
