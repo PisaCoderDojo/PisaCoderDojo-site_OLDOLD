@@ -118,8 +118,6 @@ myApp.config(['NgAdminConfigurationProvider', '$stateProvider', function (nga,$s
   admin.addEntity(category);
   // attach the admin application to the DOM and execute it
   nga.configure(admin);
-
-
 }]);
 
 myApp.config(['RestangularProvider', function (RestangularProvider) {
