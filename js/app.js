@@ -94,14 +94,22 @@ function($routeProvider, $locationProvider) {
     controller: 'contactCtrl'
   })
   .when('/mentor', {
-    title: 'Lavora con noi',
+    title: 'Collabora con noi',
     templateUrl: 'html/mentor.html',
     controller: 'mentorCtrl'
   })
   .when('/about', {
-    title:'chi siamo',
+    title:'Mentori',
     templateUrl: 'html/about.html',
-    controller: 'aboutCtrl'
+    controller: 'aboutCtrl',
+    resolve: {
+      actualMentors: function($http){
+        return $http.get('json/mentors-actual.json');
+      },
+      oldMentors: function($http){
+        return $http.get('json/mentors-old.json');
+      }
+    }
   })
   .when('/calendar', {
     title:'calendario',

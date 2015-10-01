@@ -93,11 +93,13 @@ angular.module('coderDojoControllers', [])
     $scope.album=album.data;
     //console.log(album.data);
 }])
-.controller('aboutCtrl', ['$scope', '$http',
-  function($scope, $http){
-    $http.get('json/about.json').success(function(data) {
-      $scope.people = data;
-    });
+.controller('aboutCtrl', ['$scope', 'actualMentors', 'oldMentors',
+  function($scope, actualMentors, oldMentors){
+    $scope.people = actualMentors.data;
+    $scope.peopleOld = oldMentors.data;
+    $scope.formatDate = function(date){
+        return '('+date.begin+'-'+date.end+')';
+    }
 }])
 .controller('mentorCtrl',['$scope', '$http',
  function ($scope, $http) {

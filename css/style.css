@@ -29,9 +29,21 @@
     height:100px;
 }
 
-.img-profile{
-  top: -20px;
-  position: relative;
+.about-old{
+  margin-top: 60px;
+}
+.about-profile{
+  margin-top:20px;
+}
+
+.about-profile img{
+  height: 150px
+}
+.about-profile-name{
+  font-size: 24px;
+}
+.about-profile-date{
+  font-size: 14px;
 }
 
 .vertical-align{

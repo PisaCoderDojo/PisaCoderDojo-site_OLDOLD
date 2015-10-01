@@ -1,0 +1,11 @@
+[
+  {
+    "name":"Vittorio Massaro",
+    "text":"Laureato in Informatica all'Università di Pisa, attualmente frequenta il corso magistrale di Informatica a Pisa. Grande appassionato di programmazione e matematica, è convinto che saper programmare sia utile non solo davanti ad un PC ma, e soprattutto, nella vita di tutti i giorni.",
+    "img":"img/personal/vittorio.jpg",
+    "date": {
+      "begin": "marzo 2015",
+      "end": "giugno 2015"
+    }
+  }
+]
