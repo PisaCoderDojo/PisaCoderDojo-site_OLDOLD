@@ -18,7 +18,7 @@ Class Category {
       echo Helper::encodeJsonObject($result);
     });
 
-    $app->post('/', /*Helper::checkToken($app),*/ function() use($app){
+    $app->post('/', Helper::checkToken($app), function() use($app){
       $data = json_decode($app->request->getBody());
       $db = Helper::getDB();
       $stmt = $db->prepare("INSERT INTO CATEGORY (name) VALUES (:name)");
@@ -31,7 +31,7 @@ Class Category {
       }
     });
 
-    $app->put('/:id', /*Helper::checkToken($app),*/ function($id) use($app){
+    $app->put('/:id', Helper::checkToken($app), function($id) use($app){
       $data = json_decode($app->request->getBody());
       $db = Helper::getDB();
       $stmt = $db->prepare("UPDATE CATEGORY
@@ -48,7 +48,7 @@ Class Category {
       }
     });
 
-    $app->delete('/:id', /*Helper::checkToken($app),*/ function($id) use($app){
+    $app->delete('/:id', Helper::checkToken($app), function($id) use($app){
       $db = Helper::getDB();
       $stmt = $db->prepare("DELETE FROM CATEGORY WHERE id=:id");
       $stmt->bindValue(':id', $id, SQLITE3_INTEGER);

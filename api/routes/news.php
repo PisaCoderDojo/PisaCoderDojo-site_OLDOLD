@@ -54,7 +54,7 @@ Class News {
       echo Helper::encodeJsonArrayNews($uResult);
     });
     */
-    $app->post('/', /*Helper::checkToken($app),*/ function() use($app){
+    $app->post('/', Helper::checkToken($app), function() use($app){
       $data = json_decode($app->request->getBody());
       $db = Helper::getDB();
       $stmt = $db->prepare("INSERT INTO NEWS (title,body,author,creation_date)
@@ -80,7 +80,7 @@ Class News {
       }
     });
 
-    $app->put('/:id', /*Helper::checkToken($app),*/ function($id) use($app){
+    $app->put('/:id', Helper::checkToken($app), function($id) use($app){
       $data = json_decode($app->request->getBody());
       $db = Helper::getDB();
       $stmt = $db->prepare("UPDATE NEWS
