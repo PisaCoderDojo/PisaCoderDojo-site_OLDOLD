@@ -57,8 +57,9 @@ class Helper{
   public static function checkToken($app){
     return function() use ($app){
       $res = $app->response();
-      $data = json_decode($app->request->getBody());
-      $token = $data->token;
+      //$data = json_decode($app->request->getBody());
+      //$token = $data->token;
+      $token = $app->request->headers->get('token');
       $token = JWT::decode($token, $_SERVER['SECRET_KEY']);
       if(!$token->admin){
         $res->status(401);
