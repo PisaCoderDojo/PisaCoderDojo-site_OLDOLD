@@ -4,7 +4,10 @@ require_once('lib/jwt_helper.php');
 class Helper{
 
   public static function getDB(){
-    return new SQLite3('../sqlite/newsdb.db');
+    $con = new SQLite3('../sqlite/newsdb.db');
+    $con->exec('PRAGMA foreign_keys = ON;');
+    return $con;
+    #return new SQLite3('../sqlite/newsdb.db.new');
   }
 
   public static function encodeJsonArray($sqlArray){
