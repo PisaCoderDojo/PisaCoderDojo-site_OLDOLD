@@ -64,6 +64,9 @@
   display: flex;
   align-items: center;
 }
+.privacy-policy{
+  margin-top: 20px;
+}
 
 /* Responsive iFrame */
 .responsive-iframe-container {
