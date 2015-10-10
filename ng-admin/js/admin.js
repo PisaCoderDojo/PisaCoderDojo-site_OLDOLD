@@ -2,17 +2,19 @@
 var myApp = angular.module('myApp', [
   'ng-admin',
   'ngCookies',
-  'AdminControllers',
-  'coderDojoServices'
+  'ngAdminService',
+  'ngAdminController'
 ]);
 
-myApp.run(['$rootScope','$location','tokenService',
-  function($rootScope,$location,tokenService){
+myApp.run(['$rootScope','$location','tokenService','Restangular',
+  function($rootScope,$location,tokenService, RestangularProvider){
     tokenService.copyCookie();
     $rootScope.$on('$stateChangeStart', function(data, current) {
       //ngProgress.start();
       if (!tokenService.isSet()){
         $location.path('/login');
+      }else{
+        //RestangularProvider.setDefaultHeaders({'token': tokenService.get()});
       }
     });
     $rootScope.$on('$stateChangeSuccess', function() {
@@ -23,14 +25,25 @@ myApp.run(['$rootScope','$location','tokenService',
     });
 }]);
 
-myApp.config(['$locationProvider',
-function($locationProvider) {
-  // configure html5 to get links working on jsfiddle
-  //$locationProvider.html5Mode(true);
+myApp.config(['RestangularProvider',
+  function (RestangularProvider) {
+    RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
+        if (operation == "getList") {
+            // custom filters
+            if (params._filters) {
+                for (var filter in params._filters) {
+                    params[filter] = params._filters[filter];
+                }
+                delete params._filters;
+            }
+        }
+        return { params: params };
+    });
 }]);
 
 // declare a function to run when the module bootstraps (during the 'config' phase)
-myApp.config(['NgAdminConfigurationProvider', '$stateProvider', function (nga,$stateProvider) {
+myApp.config(['NgAdminConfigurationProvider', '$stateProvider',
+function (nga,$stateProvider) {
 
   $stateProvider.state('login',{
       url:'/login',
@@ -54,17 +67,12 @@ myApp.config(['NgAdminConfigurationProvider', '$stateProvider', function (nga,$s
     nga.field('search').label('Search').pinned(true)
   ]);
 
-  news.listView().url(function(entityId) {
-    console.log(entityId);
-  });
-
-  news.showView().fields([
-    nga.field('title')
-    .validation({ required: true, minlength: 3, maxlength: 100 }),,
+  news.creationView().fields([
+    nga.field('title'),
     nga.field('body','wysiwyg'),
     nga.field('author'),
     nga.field('tags', 'json'),
-    nga.field('creation_date','datetime')
+    //nga.field('creation_date','datetime')
   ]);
   news.editionView().fields(news.creationView().fields());
   // add the user entity to the admin application
@@ -118,33 +126,4 @@ myApp.config(['NgAdminConfigurationProvider', '$stateProvider', function (nga,$s
   admin.addEntity(category);
   // attach the admin application to the DOM and execute it
   nga.configure(admin);
-}]);
-
-myApp.config(['RestangularProvider', function (RestangularProvider) {
-    RestangularProvider.addFullRequestInterceptor(function(element, operation, what, url, headers, params) {
-        if (operation == "getList") {
-            // custom pagination params
-            /*if (params._page) {
-                params._start = (params._page - 1) * params._perPage;
-                params._end = params._page * params._perPage;
-            }
-            delete params._page;
-            delete params._perPage;
-            // custom sort params
-            if (params._sortField) {
-                params._sort = params._sortField;
-                params._order = params._sortDir;
-                delete params._sortField;
-                delete params._sortDir;
-            }*/
-            // custom filters
-            if (params._filters) {
-                for (var filter in params._filters) {
-                    params[filter] = params._filters[filter];
-                }
-                delete params._filters;
-            }
-        }
-        return { params: params };
-    });
 }]);

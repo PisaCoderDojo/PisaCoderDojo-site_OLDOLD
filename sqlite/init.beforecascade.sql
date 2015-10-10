@@ -14,7 +14,7 @@ CREATE TABLE NEWS (
 CREATE TABLE TAGS (
   name  varchar(30) NOT NULL,
   news_id integer NOT NULL,
-  FOREIGN KEY(news_id) REFERENCES NEWS(id) ON DELETE CASCADE,
+  FOREIGN KEY(news_id) REFERENCES NEWS(id),
   PRIMARY KEY(name,news_id)
 );
 

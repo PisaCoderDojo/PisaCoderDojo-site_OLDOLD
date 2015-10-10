@@ -1,6 +1,6 @@
 /* Controllers */
 "use strict";
-angular.module('AdminControllers', [])
+angular.module('ngAdminController', [])
 .controller('loginCtrl', ['$scope', '$location', 'loginService','tokenService',
   function($scope,$location,loginService,tokenService){
     $scope.error = false;
@@ -18,4 +18,4 @@ angular.module('AdminControllers', [])
         }
       });
     };
-}])
+}]);

@@ -15,9 +15,9 @@ var myApp = angular.module('coderDojo',[
   'ngTagsInput'
   ]);
 
-myApp.run(['$rootScope','ngProgress','$location','tokenService','TitleService',
-  function($rootScope,ngProgress,$location,tokenService,TitleService){
-    tokenService.copyCookie();
+myApp.run(['$rootScope','ngProgress','$location','TitleService',
+  function($rootScope,ngProgress,$location,TitleService){
+    //tokenService.copyCookie();
     $rootScope.$on('$routeChangeStart', function(data, current) {
       ngProgress.start();
       console.log(current.$$route.title);

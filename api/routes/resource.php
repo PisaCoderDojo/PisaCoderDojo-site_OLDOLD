@@ -25,7 +25,7 @@ Class Resource {
       echo Helper::encodeJsonObject($res);
     });
 
-    $app->post('/', /*Helper::checkToken($app),*/ function() use($app){
+    $app->post('/', Helper::checkToken($app), function() use($app){
       $data = json_decode($app->request->getBody());
       $db = Helper::getDB();
       $stmt = $db->prepare("INSERT INTO RESOURCE (title,description,links,category_id,creation_date)
@@ -43,7 +43,7 @@ Class Resource {
       }
     });
 
-    $app->put('/:id', /*Helper::checkToken($app),*/ function($id) use($app){
+    $app->put('/:id', Helper::checkToken($app), function($id) use($app){
       $data = json_decode($app->request->getBody());
       $db = Helper::getDB();
       $stmt = $db->prepare("UPDATE RESOURCE
@@ -65,7 +65,7 @@ Class Resource {
       }
     });
 
-    $app->delete('/:id', /*Helper::checkToken($app),*/ function($id) use($app){
+    $app->delete('/:id', Helper::checkToken($app), function($id) use($app){
       $db = Helper::getDB();
       $stmt = $db->prepare("DELETE FROM RESOURCE WHERE id=:id");
       $stmt->bindValue(':id', $id, SQLITE3_INTEGER);
