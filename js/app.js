@@ -144,15 +144,15 @@ myApp.controller('CarouselCtrl', ['$scope', function ($scope) {
   $scope.myInterval = 5000;
   var slides = $scope.slides = [];
   slides.push({
+    image: 'img/carousel-IF.jpg',
+    text: ''
+  });
+  slides.push({
     image: 'img/all-dojo.jpg',
     text: ''
   });
   slides.push({
     image:'img/SMS-biblio.jpg',
-    text: ''
-  });
-  slides.push({
-    image: 'img/tre-banner.jpg',
     text: ''
   });
 }]);
