@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html ng-app="coderDojo">
-  <head ng-controller="titleController">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-    <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
-    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
-    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-    <link rel="icon" href="favicon.png">
-    <base href="/">
 
-    <title ng-bind="title.get()"></title>
+<head ng-controller="titleController">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+  <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
+  <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+  <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+  <link rel="icon" href="favicon.png">
+  <base href="/">
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-cookies.min.js"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <title ng-bind="title.get()"></title>
 
-
-    <!-- blueimp gallery for slideshow photos and video -->
-    <link rel="stylesheet" href="css/blueimp-gallery.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-cookies.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
-    <!--
+  <!-- blueimp gallery for slideshow photos and video -->
+  <link rel="stylesheet" href="css/blueimp-gallery.min.css">
+
+
+  <!--
     <link rel="stylesheet" href="lib/bootstrap.min.css">
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
@@ -33,164 +34,187 @@
     <script src="lib/angular-route.min.js"></script>
     -->
 
-    <link rel='stylesheet' href='lib/textAngular.css'>
-    <script src='lib/textAngular-rangy.min.js'></script>
-    <script src='lib/textAngular-sanitize.min.js'></script>
-    <!--<script src='lib/textAngular.min.js'></script>-->
-    <script src='lib/ui-bootstrap-tpls-0.12.1.min.js'></script>
-    <script src='lib/upload-file.js'></script>
-    <script src='lib/textAngular.js'></script>
-    <script src='lib/textAngularSetup.js'></script>
-    <script src='lib/angulike.js'></script>
-    <script src='lib/angulartics.min.js'></script>
-    <script src='lib/angulartics-ga.min.js'></script>
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap-social.css">
-    <script src='lib/ng-tags-input.min.js'></script>
-    <link rel="stylesheet" href="lib/ng-tags-input.css" type="text/css">
+  <link rel='stylesheet' href='lib/textAngular.css'>
+  <script src='lib/textAngular-rangy.min.js'></script>
+  <script src='lib/textAngular-sanitize.min.js'></script>
+  <!--<script src='lib/textAngular.min.js'></script>-->
+  <script src='lib/ui-bootstrap-tpls-0.12.1.min.js'></script>
+  <script src='lib/upload-file.js'></script>
+  <script src='lib/textAngular.js'></script>
+  <script src='lib/textAngularSetup.js'></script>
+  <script src='lib/angulike.js'></script>
+  <script src='lib/angulartics.min.js'></script>
+  <script src='lib/angulartics-ga.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap-social.css">
+  <script src='lib/ng-tags-input.min.js'></script>
+  <link rel="stylesheet" href="lib/ng-tags-input.css" type="text/css">
 
 
-    <link rel="stylesheet" href="lib/ngProgress.css">
-    <script src="lib/ngProgress.min.js"></script>
+  <link rel="stylesheet" href="lib/ngProgress.css">
+  <script src="lib/ngProgress.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <script src='js/app.js'></script>
-    <script src='js/services.js'></script>
-    <script src='js/controllers.js'></script>
-    <script src="js/filters.js"></script>
+  <script src='js/app.js'></script>
+  <script src='js/services.js'></script>
+  <script src='js/controllers.js'></script>
+  <script src="js/filters.js"></script>
 
-    <meta name="google-site-verification" content="AegUVUn84bKxjWMcMjmNLD9gxwyD0C_8TSASoJg7Yis" />
-  </head>
-  <body>
-    <!--FACEBOOK-sdk-->
-    <div id="fb-root"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '852604174797487',
-          xfbml      : true,
-          version    : 'v2.1'
-        });
-      };
-      (function(d, s, id){
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/it_IT/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <!--GOOGLE-ANALYSTIC-->
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <meta name="google-site-verification" content="AegUVUn84bKxjWMcMjmNLD9gxwyD0C_8TSASoJg7Yis" />
+</head>
 
-      ga('create', 'UA-7192458-7', 'auto');
-    </script>
-    <!--SCRATCH-->
-    <img id="scratch" src="img/cat-a.png"></img>
-    <script>
-      jQuery(document).ready(function () {
-        var setTimer = function(){
-          var time = Math.random()*55000+5000;
-          console.log(time);
-          setTimeout(function() {
-            var r = Math.random()*91+9;
-            var l = Math.floor(Math.random()*2);
-            if(l==1){
-              $("#scratch")
-                .css('right', 'auto')
-                .css('left','-110px')
-                .removeClass('mirror');
-              anobj1 = {left:'0'};
-              anobj2 = {left:'-110'};
-            }else{
-              $("#scratch")
-                .css('right','-110px')
-                .css('left', 'auto')
-                .addClass('mirror');
-              anobj1 = {right:'0'};
-              anobj2 = {right:'-110'};
-            }
-            $("#scratch").show().css('top',r+'%')
+<body>
+  <!--FACEBOOK-sdk-->
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '852604174797487',
+        xfbml: true,
+        version: 'v2.1'
+      });
+    };
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//connect.facebook.net/it_IT/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!--GOOGLE-ANALYSTIC-->
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-7192458-7', 'auto');
+  </script>
+  <!--SCRATCH-->
+  <img id="scratch" src="img/cat-a.png"></img>
+  <script>
+    jQuery(document).ready(function() {
+      var setTimer = function() {
+        var time = Math.random() * 55000 + 5000;
+        console.log(time);
+        setTimeout(function() {
+          var r = Math.random() * 91 + 9;
+          var l = Math.floor(Math.random() * 2);
+          if (l == 1) {
+            $("#scratch")
+              .css('right', 'auto')
+              .css('left', '-110px')
+              .removeClass('mirror');
+            anobj1 = {
+              left: '0'
+            };
+            anobj2 = {
+              left: '-110'
+            };
+          } else {
+            $("#scratch")
+              .css('right', '-110px')
+              .css('left', 'auto')
+              .addClass('mirror');
+            anobj1 = {
+              right: '0'
+            };
+            anobj2 = {
+              right: '-110'
+            };
+          }
+          $("#scratch").show().css('top', r + '%')
             .animate(anobj1, 800, 'linear', function() {
-                //completed
+              //completed
             })
             .animate(anobj2, 800, 'linear', function() {
-                $("#scratch").hide();
-                setTimer();
+              $("#scratch").hide();
+              setTimer();
             });
-          }, time);
-        };
-        setTimer();
-      });
-    </script>
+        }, time);
+      };
+      setTimer();
+    });
+  </script>
 
-    <nav class="navbar-default navbar navbar-fixed-top" >
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle admin collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href=".">
-            <img class="img-responsive" src="img/banner-header.png"></img>
-          </a>
-        </div>
+  <nav class="navbar-default navbar navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle admin collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href=".">
+          <img style="height: 50px;" class="img-responsive" src="img/pisaCoderDojo_banner-web-80px.png"></img>
+        </a>
+      </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div ng-controller="menuController" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li ng-class="{ active: isActive('/news') }"><a href="news">Notizie</a></li>
-            <!--<li ng-class="{ active: isActive('/calendar') }"><a href="calendar">Calendario</a></li>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div ng-controller="menuController" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ng-class="{ active: isActive('/news') }"><a href="news">Notizie</a></li>
+          <!--<li ng-class="{ active: isActive('/calendar') }"><a href="calendar">Calendario</a></li>
             <li ng-class="{ active: isActive('/albums') }"><a href="albums">Galleria</a></li>-->
-            <li ng-class="{ active: isActive('/albums') }"><a href="albums">Dojo Gallery</a></li>
-            <li role="presentation" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+          <li ng-class="{ active: isActive('/albums') }"><a href="albums">Dojo Gallery</a></li>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 Risorse <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu" role="menu">
-                <li ng-repeat="cat in category">
-                  <a href="resource/{{cat.id}}"><span ng-bind="cat.name"></span></a>
-                </li>
-              </ul>
-            </li>
-            <li ng-class="{ active: isActive('/about') }"><a href="about">Mentori</a></li>
-            <li ng-class="{ active: isActive('/mentor') }"><a href="mentor">Diventa Mentore</a></li>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="cat in category">
+                <a href="resource/{{cat.id}}">
+                  <span ng-bind="cat.name"></span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li ng-class="{ active: isActive('/about') }"><a href="about">Mentori</a></li>
+          <li ng-class="{ active: isActive('/mentor') }"><a href="mentor">Diventa Mentore</a></li>
 
-            <li ng-class="{ active: isActive('/contact') }"><a href="contact">Contatti</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+          <li ng-class="{ active: isActive('/contact') }"><a href="contact">Contatti</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
 
-    <div class="carousel-header" ng-controller="CarouselCtrl" ng-show="home">
-      <!--<div class="container-fluid">
+  <div class="carousel-header" ng-controller="CarouselCtrl" ng-show="home">
+    <!--<div class="container-fluid">
           <div class="row">
               <div class="col-sm-2 col-sm-offset-10">
                 <img id="beta" class="img-responsive" src="img/beta1.png"></img>
               </div>
           </div>
       </div>-->
-      <carousel interval="myInterval">
-        <slide ng-repeat="slide in slides" active="slide.active">
-          <img ng-src="{{slide.image}}" style="margin:auto;"/>
-          <div class="carousel-caption">
-            <h4></h4>
-            <p></p>
-          </div>
-        </slide>
-      </carousel>
-    </div>
+    <carousel interval="myInterval">
+      <slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}" style="margin:auto;" />
+        <div class="carousel-caption">
+          <h4></h4>
+          <p></p>
+        </div>
+      </slide>
+    </carousel>
+  </div>
 
-    <!-- Image Background Page Header -->
-    <!-- Note: The background image is set within the business-casual.css file. -->
-    <!--
+  <!-- Image Background Page Header -->
+  <!-- Note: The background image is set within the business-casual.css file. -->
+  <!--
     <header class="business-header" ng-show="home">
       <div class="container">
           <div class="row">
@@ -202,104 +226,127 @@
     </header>
     -->
 
-    <div class="main row">
-        <div class="col-sm-12">
-          <div ng-view autoscroll="true"></div>
-        </div>
+  <div class="main row">
+    <div class="col-sm-12">
+      <div ng-view autoscroll="true"></div>
     </div>
+  </div>
 
-    <footer class="footer">
-      <div class="container social">
-        <div class="row">
+  <footer class="footer">
+    <div class="container social">
+      <div class="row">
 
-            <!--
+        <!--
             <div class="col-sm-3" style="width:195px; text-align:center;" ><iframe  src="https://www.eventbrite.it/countdown-widget?eid=16099774860" frameborder="0" height="460" width="195" marginheight="0" marginwidth="0" scrolling="no" allowtransparency="true"></iframe><div style="font-family:Helvetica, Arial; font-size:10px; padding:5px 0 5px; margin:2px; width:195px; text-align:center;" ><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.it/r/ecount">Registrazione dell'evento online</a><span style="color:#ddd;"> per </span><a style="color:#ddd; text-decoration:none;" target="_blank" href="https://www.eventbrite.it/e/biglietti-pisa-coderdojo-1-16099774860?ref=ecount">Pisa CoderDojo 1</a> <span style="color:#ddd;">con tecnologia</span> <a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.it?ref=ecount">Eventbrite</a></div></div>
             -->
-          <div class="col-sm-5">
+        <div class="col-sm-5">
 
-            <!-- Begin MailChimp Signup Form -->
-            <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-            <style type="text/css">
-              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; max-width:400px}
-              #mc_embed_signup input.email {width:80%;}
-              /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+          <!-- Begin MailChimp Signup Form -->
+          <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+          <style type="text/css">
+            #mc_embed_signup {
+              background: #fff;
+              clear: left;
+              font: 14px Helvetica, Arial, sans-serif;
+              max-width: 400px
+            }
+
+            #mc_embed_signup input.email {
+              width: 80%;
+            }
+            /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
                  We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-            </style>
-            <div id="mc_embed_signup">
-              <form action="//sfcoding.us10.list-manage.com/subscribe/post?u=eb8799a541ad4e7c8602cf884&amp;id=a55665e114" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                <div id="mc_embed_signup_scroll">
+          </style>
+          <div id="mc_embed_signup">
+            <form action="//sfcoding.us10.list-manage.com/subscribe/post?u=eb8799a541ad4e7c8602cf884&amp;id=a55665e114" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+              <div id="mc_embed_signup_scroll">
                 <h4>Iscriviti alla nostra newsletter</h4>
                 <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-                  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                  <div style="position: absolute; left: -5000px;"><input type="text" name="b_eb8799a541ad4e7c8602cf884_a55665e114" tabindex="-1" value=""></div>
-                  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-                  </div>
-              </form>
-            </div>
-            <!--End mc_embed_signup-->
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;">
+                  <input type="text" name="b_eb8799a541ad4e7c8602cf884_a55665e114" tabindex="-1" value="">
+                </div>
+                <div class="clear">
+                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="col-sm-3">
-            <div class="fb-like-box"
-                 data-href="https://www.facebook.com/pisacoderdojo"
-                 data-width="250"
-                 data-colorscheme="light"
-                 data-show-faces="false"
-                 data-header="true"
-                 data-stream="false"
-                 data-show-border="true">
-            </div>
-            <div>
-              <a class="btn btn-social-icon btn-lg btn-github" href="https://github.com/PisaCoderDojo">
-                <i class="fa fa-github"></i>
-              </a>
-              <span>GitHub</span>
-            </div>
+          <!--End mc_embed_signup-->
+        </div>
+        <div class="col-sm-3">
+          <div class="fb-like-box" data-href="https://www.facebook.com/pisacoderdojo" data-width="250" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true">
           </div>
-          <div class="col-sm-4">
-            <a class="twitter-timeline"
-               href="https://twitter.com/PisaCoderDojo"
-               data-chrome=""
-               data-widget-id="575254844765765632"
-               height="250"
-               width="250">Tweetdi @PisaCoderDojo</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          <div>
+            <a class="btn btn-social-icon btn-lg btn-github" href="https://github.com/PisaCoderDojo">
+              <i class="fa fa-github"></i>
+            </a>
+            <span>GitHub</span>
           </div>
         </div>
-      </div>
-      <div class="container">
-        <div class="text-muted">Le nostre collaborazioni</div>
-        <img class="img-responsive img-col" src="img/loghi.png"></img>
-        <div class="privacy-policy">
-          <a href="//www.iubenda.com/privacy-policy/961066" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+        <div class="col-sm-4">
+          <a class="twitter-timeline" href="https://twitter.com/PisaCoderDojo" data-chrome="" data-widget-id="575254844765765632" height="250" width="250">Tweetdi @PisaCoderDojo</a>
+          <script>
+            ! function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0],
+                p = /^http:/.test(d.location) ? 'http' : 'https';
+              if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = p + "://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+              }
+            }(document, "script", "twitter-wjs");
+          </script>
         </div>
       </div>
-    </footer>
-    <!-- photo album script : bueimpo gallery -->
-    <script src="js/blueimp-gallery.min.js"></script>
+    </div>
+    <div class="container">
+      <div class="text-muted">Le nostre collaborazioni</div>
+      <img class="img-responsive img-col" src="img/loghi.png"></img>
+      <div class="privacy-policy">
+        <a href="//www.iubenda.com/privacy-policy/961066" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+  <!-- photo album script : bueimpo gallery -->
+  <script src="js/blueimp-gallery.min.js"></script>
 
-    <script type="text/ng-template" id="updateImageModal.html">
-      <div class="modal-header">
-        <h3 class="modal-title">upload Image</h3>
-      </div>
-      <div class="modal-body">
-        <input type="file" accept="image/*" image="image2"
-            resize-max-width="600"
-            resize-quality="0.8" />
-        Resized <img class="img-responsive" ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok(image2.resized.dataURL)">OK</button>
-        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-      </div>
-    </script>
-    <script type="text/javascript" id="cookiebanner"
-    src="http://cookiebanner.eu/js/cookiebanner.min.js"
-    data-message="Questo sito o gli strumenti di terze parti che utilizza si avvalgono di cookie necessari al funzionamento e per gli scopi illustrati nella relativa policy; continuando con la navigazione si accetta l'utilizzo di tali cookie. Per maggiori dettagli "
-    data-moreinfo="//www.iubenda.com/privacy-policy/961066"
-    data-linkmsg="clicca qui">
-    </script>
-    <!--<a href="//www.iubenda.com/privacy-policy/961066" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>
-    --><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);};
-    if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
-  </body>
+  <script type="text/ng-template" id="updateImageModal.html">
+    <div class="modal-header">
+      <h3 class="modal-title">upload Image</h3>
+    </div>
+    <div class="modal-body">
+      <input type="file" accept="image/*" image="image2" resize-max-width="600" resize-quality="0.8" /> Resized
+      <img class="img-responsive" ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ok(image2.resized.dataURL)">OK</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+  </script>
+  <script type="text/javascript" id="cookiebanner" src="http://cookiebanner.eu/js/cookiebanner.min.js" data-message="Questo sito o gli strumenti di terze parti che utilizza si avvalgono di cookie necessari al funzionamento e per gli scopi illustrati nella relativa policy; continuando con la navigazione si accetta l'utilizzo di tali cookie. Per maggiori dettagli "
+  data-moreinfo="//www.iubenda.com/privacy-policy/961066" data-linkmsg="clicca qui">
+  </script>
+  <!--<a href="//www.iubenda.com/privacy-policy/961066" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+    -->
+  <script type="text/javascript">
+    (function(w, d) {
+      var loader = function() {
+        var s = d.createElement("script"),
+          tag = d.getElementsByTagName("script")[0];
+        s.src = "//cdn.iubenda.com/iubenda.js";
+        tag.parentNode.insertBefore(s, tag);
+      };
+      if (w.addEventListener) {
+        w.addEventListener("load", loader, false);
+      } else if (w.attachEvent) {
+        w.attachEvent("onload", loader);
+      } else {
+        w.onload = loader;
+      }
+    })(window, document);
+  </script>
+</body>
+
 </html>
