@@ -13,6 +13,8 @@
     "angulartics": "~0.20.1",
     "ng-tags-input": "~3.0.0",
     "bootstrap-social": "~4.10.1",
-    "angulartics-google-analytics": "~0.1.1"
+    "angulartics-google-analytics": "~0.1.1",
+    "angular-bootstrap": "~0.14.3",
+    "ngprogress": "~1.1.2"
   }
 }

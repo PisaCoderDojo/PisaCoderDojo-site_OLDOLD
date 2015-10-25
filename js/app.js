@@ -4,20 +4,20 @@ var myApp = angular.module('coderDojo',[
   'ngRoute',
   'ngProgress',
   'ngCookies',
-  'textAngular',
+  'ngSanitize',
   'coderDojoControllers',
   'coderDojoServices',
   'coderDojoFilters',
   'angulike',
   'angulartics',
   'angulartics.google.analytics',
-  'imageupload',
-  'ngTagsInput'
+  'ui.bootstrap'
   ]);
 
-myApp.run(['$rootScope','ngProgress','$location','TitleService',
-  function($rootScope,ngProgress,$location,TitleService){
+myApp.run(['$rootScope','ngProgressFactory','$location','TitleService',
+  function($rootScope,ngProgressFactory,$location,TitleService){
     //tokenService.copyCookie();
+    var ngProgress = ngProgressFactory.createInstance();
     $rootScope.$on('$routeChangeStart', function(data, current) {
       ngProgress.start();
       console.log(current.$$route.title);

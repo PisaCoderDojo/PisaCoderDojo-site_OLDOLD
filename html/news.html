@@ -1,23 +1,25 @@
 <div class="container container-fluid">
   <div class="col-sm-9">
     <div ng-repeat="post in news | orderBy:orderProp" class="blog-post">
-      <a ng-href="news/{{post.id}}"><h2 class="blog-post-title" ng-bind="post.title"></h2></a>
-        <div class="row">
-          <div class="blog-post-meta col-sm-6">
-            <span class="glyphicon glyphicon-user"></span>
-            <span ng-bind="post.author"></span>
-            <span class="glyphicon glyphicon-time"></span>
-            <span ng-bind="post.creation_date | date:'medium'"></span>
-          </div>
+      <a ng-href="news/{{post.id}}">
+        <h2 class="blog-post-title" ng-bind="post.title"></h2>
+      </a>
+      <div class="row">
+        <div class="blog-post-meta col-sm-6">
+          <span class="glyphicon glyphicon-user"></span>
+          <span ng-bind="post.author"></span>
+          <span class="glyphicon glyphicon-time"></span>
+          <span ng-bind="post.creation_date | date:'medium'"></span>
         </div>
-        <div class="row">
-          <div class="blog-post-social col-xs-5">
-            <span fb-like="BASE_URL+post.id"></span>
-          </div>
-          <div class="blog-post-social col-xs-2">
-            <span tweet="post.title"></span>
-          </div>
+      </div>
+      <div class="row">
+        <div class="blog-post-social col-xs-5">
+          <span fb-like="BASE_URL+post.id"></span>
         </div>
+        <div class="blog-post-social col-xs-2">
+          <span tweet="post.title"></span>
+        </div>
+      </div>
       </br>
       <div ng-bind-html="post.body" class="blog-post-body"></div>
       <a ng-href="news/{{post.id}}">(continua...)</a>
