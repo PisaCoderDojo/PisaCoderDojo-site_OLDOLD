@@ -1,334 +1,198 @@
 <!DOCTYPE html>
 <html ng-app="coderDojo">
 
-<head ng-controller="titleController">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-  <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
-  <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
-  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
-  <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-  <link rel="icon" href="favicon.png">
-  <base href="/">
+  <head ng-controller="titleController">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+    <!-- <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"> -->
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <!-- <link rel="icon" href="favicon.png"> -->
 
-  <title ng-bind="title.get()"></title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/icon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/icon/manifest.json">
+    <link rel="mask-icon" href="/icon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/icon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-  <script src="lib/js/jquery.min.js"></script>
-  <link href="lib/css/bootstrap.min.css" rel="stylesheet">
-  <link href="lib/css/font-awesome.min.css" rel="stylesheet" />
-  <link href="lib/css/bootstrap-social.css" rel="stylesheet" />
-  <link href="lib/css/ngProgress.css" rel="stylesheet" />
-  <link href="lib/css/blueimp-gallery.min.css" rel="stylesheet" />
+    <base href="/">
 
-  <!-- <script src='lib/upload-file.js'></script>
-  <script src="lib/js/ng-tags-input.min.js"></script>
-  <link rel="stylesheet" href="lib/ng-tags-input.css" type="text/css"> -->
+    <title ng-bind="title.get()"></title>
 
-  <link href="css/style.css" rel="stylesheet" />
-  <meta name="google-site-verification" content="AegUVUn84bKxjWMcMjmNLD9gxwyD0C_8TSASoJg7Yis" />
-</head>
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="lib/css/bootstrap-social.css" rel="stylesheet" />
+    <link href="lib/css/ngProgress.css" rel="stylesheet" />
+    <link href="lib/css/blueimp-gallery.min.css" rel="stylesheet" />
 
-<body>
-  <!--FACEBOOK-sdk-->
-  <div id="fb-root"></div>
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId: '852604174797487',
-        xfbml: true,
-        version: 'v2.1'
-      });
-    };
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "//connect.facebook.net/it_IT/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-  <!--GOOGLE-ANALYSTIC-->
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/mailchimp.css" rel="stylesheet" />
+    <meta name="google-site-verification" content="AegUVUn84bKxjWMcMjmNLD9gxwyD0C_8TSASoJg7Yis" />
+  </head>
 
-    ga('create', 'UA-7192458-7', 'auto');
-  </script>
-  <!--SCRATCH-->
-  <img id="scratch" src="img/cat-a.png" />
-  <script>
-    jQuery(document).ready(function() {
-      var setTimer = function() {
-        var time = Math.random() * 55000 + 5000;
-        console.log(time);
-        setTimeout(function() {
-          var r = Math.random() * 91 + 9;
-          var l = Math.floor(Math.random() * 2);
-          if (l == 1) {
-            $("#scratch")
-              .css('right', 'auto')
-              .css('left', '-110px')
-              .removeClass('mirror');
-            anobj1 = {
-              left: '0'
-            };
-            anobj2 = {
-              left: '-110'
-            };
-          } else {
-            $("#scratch")
-              .css('right', '-110px')
-              .css('left', 'auto')
-              .addClass('mirror');
-            anobj1 = {
-              right: '0'
-            };
-            anobj2 = {
-              right: '-110'
-            };
-          }
-          $("#scratch").show().css('top', r + '%')
-            .animate(anobj1, 800, 'linear', function() {
-              //completed
-            })
-            .animate(anobj2, 800, 'linear', function() {
-              $("#scratch").hide();
-              setTimer();
-            });
-        }, time);
-      };
-      setTimer();
-    });
-  </script>
-
-  <nav class="navbar-default navbar navbar-fixed-top">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle admin collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href=".">
-          <img style="height: 50px;" class="img-responsive" src="img/banner-header.png" />
-        </a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div ng-controller="menuController" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li ng-class="{ active: isActive('/news') }"><a href="news">Notizie</a></li>
-          <!--<li ng-class="{ active: isActive('/calendar') }"><a href="calendar">Calendario</a></li>
-            <li ng-class="{ active: isActive('/albums') }"><a href="albums">Galleria</a></li>-->
-          <li ng-class="{ active: isActive('/albums') }"><a href="albums">Dojo Gallery</a></li>
-          <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+  <body>
+    <nav class="navbar-default navbar navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle admin collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href=".">
+            <img style="height: 50px;" class="img-responsive" src="img/banner-web_x2.png" />
+          </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div ng-controller="menuController" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="{ active: isActive('/news') }"><a href="news">Notizie</a></li>
+            <!--<li ng-class="{ active: isActive('/calendar') }"><a href="calendar">Calendario</a></li>-->
+            <li ng-class="{ active: isActive('/albums') }"><a href="albums">Dojo Gallery</a></li>
+            <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                 Risorse <span class="caret"></span>
               </a>
-            <ul class="dropdown-menu" role="menu">
-              <li ng-repeat="cat in category">
-                <a href="resource/{{cat.id}}">
-                  <span ng-bind="cat.name"></span>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li ng-class="{ active: isActive('/about') }"><a href="about">Mentori</a></li>
-          <li ng-class="{ active: isActive('/mentor') }"><a href="mentor">Diventa Mentore</a></li>
-
-          <li ng-class="{ active: isActive('/contact') }"><a href="contact">Contatti</a></li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-  </nav>
-
-  <div class="carousel-header" ng-controller="CarouselCtrl" ng-show="home">
-    <!--<div class="container-fluid">
-          <div class="row">
-              <div class="col-sm-2 col-sm-offset-10">
-                <img id="beta" class="img-responsive" src="img/beta1.png"></img>
-              </div>
-          </div>
-      </div>-->
-    <uib-carousel interval="myInterval">
-      <uib-slide ng-repeat="slide in slides" active="slide.active">
-        <img ng-src="{{slide.image}}" style="margin:auto;" />
-        <div class="carousel-caption">
-          <h4></h4>
-          <p></p>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="cat in category">
+                  <a href="resource/{{cat.id}}">
+                    <span ng-bind="cat.name"></span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li ng-class="{ active: isActive('/about') }"><a href="about">Mentori</a></li>
+            <li ng-class="{ active: isActive('/mentor') }"><a href="mentor">Diventa Mentore</a></li>
+            <li ng-class="{ active: isActive('/contact') }"><a href="contact">Contatti</a></li>
+          </ul>
         </div>
-      </uib-slide>
-    </uib-carousel>
-  </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
 
-  <!-- Image Background Page Header -->
-  <!-- Note: The background image is set within the business-casual.css file. -->
-  <!--
-    <header class="business-header" ng-show="home">
+    <div class="carousel-header" ng-controller="CarouselCtrl" ng-show="home">
+      <uib-carousel interval="myInterval">
+        <uib-slide ng-repeat="slide in slides" active="slide.active">
+          <img ng-src="{{slide.image}}" style="margin:auto;" />
+          <div class="carousel-caption">
+            <h4></h4>
+            <p></p>
+          </div>
+        </uib-slide>
+      </uib-carousel>
+    </div>
+
+    <div class="main row">
+      <div class="col-sm-12">
+        <div ng-view autoscroll="true"></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container social">
+        <div class="row">
+          <div class="col-sm-5">
+
+            <!-- Begin MailChimp Signup Form -->
+            <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+            <div id="mc_embed_signup">
+              <form action="//sfcoding.us10.list-manage.com/subscribe/post?u=eb8799a541ad4e7c8602cf884&amp;id=a55665e114" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+                  <h4>Iscriviti alla nostra newsletter</h4>
+                  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                  <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_eb8799a541ad4e7c8602cf884_a55665e114" tabindex="-1" value="">
+                  </div>
+                  <div class="clear">
+                    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!--End mc_embed_signup-->
+
+          </div>
+          <div class="col-sm-3">
+            <div class="fb-like-box" data-href="https://www.facebook.com/pisacoderdojo" data-width="250" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true">
+            </div>
+            <div>
+              <a class="btn btn-social-icon btn-lg btn-github" href="https://github.com/PisaCoderDojo">
+                <i class="fa fa-github"></i>
+              </a>
+              <span>GitHub</span>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <a class="twitter-timeline" href="https://twitter.com/PisaCoderDojo" data-chrome="" data-widget-id="575254844765765632" height="250" width="250">Tweetdi @PisaCoderDojo</a>
+          </div>
+        </div>
+      </div>
       <div class="container">
-          <div class="row">
-              <div class="col-sm-2 col-sm-offset-10">
-                <img src="img/beta1.png"></img>
-              </div>
-          </div>
-      </div>
-    </header>
-    -->
-
-  <div class="main row">
-    <div class="col-sm-12">
-      <div ng-view autoscroll="true"></div>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="container social">
-      <div class="row">
-
-        <!--
-            <div class="col-sm-3" style="width:195px; text-align:center;" ><iframe  src="https://www.eventbrite.it/countdown-widget?eid=16099774860" frameborder="0" height="460" width="195" marginheight="0" marginwidth="0" scrolling="no" allowtransparency="true"></iframe><div style="font-family:Helvetica, Arial; font-size:10px; padding:5px 0 5px; margin:2px; width:195px; text-align:center;" ><a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.it/r/ecount">Registrazione dell'evento online</a><span style="color:#ddd;"> per </span><a style="color:#ddd; text-decoration:none;" target="_blank" href="https://www.eventbrite.it/e/biglietti-pisa-coderdojo-1-16099774860?ref=ecount">Pisa CoderDojo 1</a> <span style="color:#ddd;">con tecnologia</span> <a style="color:#ddd; text-decoration:none;" target="_blank" href="http://www.eventbrite.it?ref=ecount">Eventbrite</a></div></div>
-            -->
-        <div class="col-sm-5">
-
-          <!-- Begin MailChimp Signup Form -->
-          <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-          <style type="text/css">
-            #mc_embed_signup {
-              background: #fff;
-              clear: left;
-              font: 14px Helvetica, Arial, sans-serif;
-              max-width: 400px
-            }
-
-            #mc_embed_signup input.email {
-              width: 80%;
-            }
-            /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-                 We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-          </style>
-          <div id="mc_embed_signup">
-            <form action="//sfcoding.us10.list-manage.com/subscribe/post?u=eb8799a541ad4e7c8602cf884&amp;id=a55665e114" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-              <div id="mc_embed_signup_scroll">
-                <h4>Iscriviti alla nostra newsletter</h4>
-                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                <div style="position: absolute; left: -5000px;">
-                  <input type="text" name="b_eb8799a541ad4e7c8602cf884_a55665e114" tabindex="-1" value="">
-                </div>
-                <div class="clear">
-                  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
-                </div>
-              </div>
-            </form>
-          </div>
-          <!--End mc_embed_signup-->
-        </div>
-        <div class="col-sm-3">
-          <div class="fb-like-box" data-href="https://www.facebook.com/pisacoderdojo" data-width="250" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true">
-          </div>
-          <div>
-            <a class="btn btn-social-icon btn-lg btn-github" href="https://github.com/PisaCoderDojo">
-              <i class="fa fa-github"></i>
-            </a>
-            <span>GitHub</span>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <a class="twitter-timeline" href="https://twitter.com/PisaCoderDojo" data-chrome="" data-widget-id="575254844765765632" height="250" width="250">Tweetdi @PisaCoderDojo</a>
-          <script>
-            ! function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0],
-                p = /^http:/.test(d.location) ? 'http' : 'https';
-              if (!d.getElementById(id)) {
-                js = d.createElement(s);
-                js.id = id;
-                js.src = p + "://platform.twitter.com/widgets.js";
-                fjs.parentNode.insertBefore(js, fjs);
-              }
-            }(document, "script", "twitter-wjs");
-          </script>
+        <div class="text-muted">Le nostre collaborazioni</div>
+        <img class="img-responsive img-col" src="img/loghi.png" />
+        <div class="privacy-policy">
+          <a href="//www.iubenda.com/privacy-policy/961066" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="text-muted">Le nostre collaborazioni</div>
-      <img class="img-responsive img-col" src="img/loghi.png" />
-      <div class="privacy-policy">
-        <a href="//www.iubenda.com/privacy-policy/961066" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <script type="text/ng-template" id="updateImageModal.html">
-    <div class="modal-header">
-      <h3 class="modal-title">upload Image</h3>
-    </div>
-    <div class="modal-body">
-      <input type="file" accept="image/*" image="image2" resize-max-width="600" resize-quality="0.8" /> Resized
-      <img class="img-responsive" ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="ok(image2.resized.dataURL)">OK</button>
-      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    </div>
-  </script>
-  <script type="text/javascript" id="cookiebanner" src="http://cookiebanner.eu/js/cookiebanner.min.js" data-message="Questo sito o gli strumenti di terze parti che utilizza si avvalgono di cookie necessari al funzionamento e per gli scopi illustrati nella relativa policy; continuando con la navigazione si accetta l'utilizzo di tali cookie. Per maggiori dettagli "
-  data-moreinfo="//www.iubenda.com/privacy-policy/961066" data-linkmsg="clicca qui">
-  </script>
-  <!--<a href="//www.iubenda.com/privacy-policy/961066" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>
-    -->
-  <script type="text/javascript">
-    (function(w, d) {
-      var loader = function() {
-        var s = d.createElement("script"),
-          tag = d.getElementsByTagName("script")[0];
-        s.src = "//cdn.iubenda.com/iubenda.js";
-        tag.parentNode.insertBefore(s, tag);
-      };
-      if (w.addEventListener) {
-        w.addEventListener("load", loader, false);
-      } else if (w.attachEvent) {
-        w.attachEvent("onload", loader);
-      } else {
-        w.onload = loader;
-      }
-    })(window, document);
-  </script>
+    <!--FACEBOOK-sdk-->
+    <div id="fb-root"></div>
+    <!--SCRATCH-->
+    <img id="scratch" src="img/cat-a.png" />
 
-  <!-- JS LIBRARY -->
-  <script src="lib/js/bootstrap.min.js"></script>
-  <script src="lib/js/angular.min.js"></script>
-  <script src="lib/js/angular-route.min.js"></script>
-  <script src="lib/js/angular-cookies.min.js"></script>
-  <script src="lib/js/angular-sanitize.min.js"></script>
-  <script src="lib/js/ui-bootstrap-tpls.min.js"></script>
-  <script src="lib/js/angulike.js"></script>
-  <script src="lib/js/angulartics.min.js"></script>
-  <script src="lib/js/angulartics-google-analytics.min.js"></script>
-  <script src="lib/js/ngprogress.min.js"></script>
-  <script src="lib/js/blueimp-gallery.min.js"></script>
+    <!--COOKIE BANNER-->
+    <script type="text/javascript" id="cookiebanner" src="http://cookiebanner.eu/js/cookiebanner.min.js" data-message="Questo sito o gli strumenti di terze parti che utilizza si avvalgono di cookie necessari al funzionamento e per gli scopi illustrati nella relativa policy; continuando con la navigazione si accetta l'utilizzo di tali cookie. Per maggiori dettagli "
+    data-moreinfo="//www.iubenda.com/privacy-policy/961066" data-linkmsg="clicca qui">
+    </script>
+    <!--<a href="//www.iubenda.com/privacy-policy/961066" class="iubenda-black iubenda-embed" title="Privacy Policy">Privacy Policy</a>-->
 
-  <!-- JS MAIN -->
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-</body>
+    <!-- JS LIBRARY -->
+    <script src="lib/js/jquery.min.js"></script>
+    <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/angular.min.js"></script>
+    <script src="lib/js/angular-route.min.js"></script>
+    <script src="lib/js/angular-cookies.min.js"></script>
+    <script src="lib/js/angular-sanitize.min.js"></script>
+    <script src="lib/js/ui-bootstrap-tpls.min.js"></script>
+    <script src="lib/js/angulike.js"></script>
+    <script src="lib/js/angulartics.min.js"></script>
+    <script src="lib/js/angulartics-google-analytics.min.js"></script>
+    <script src="lib/js/ngprogress.min.js"></script>
+    <script src="lib/js/blueimp-gallery.min.js"></script>
+
+    <!-- JS MAIN -->
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/scratch.js"></script>
+
+    <!--SERVICE-->
+    <script src="js/third-party/twitter.js"></script>
+    <script src="js/third-party/facebook.js"></script>
+    <script src="js/third-party/google-analystic.js"></script>
+    <script src="js/third-party/iubenda.js"></script>
+
+  </body>
 
 </html>

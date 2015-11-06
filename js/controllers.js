@@ -9,9 +9,9 @@
           $scope.eventIsSet = $scope.nextEvent>=0;
         });
         */
-        var data = new Date('2015-10-29');
+        var data = new Date('2015-11-12');
         var now = new Date().getTime();
-        $scope.eventBrite = 'https://www.eventbrite.it/e/biglietti-pisa-coderdojo-9-19206722825';
+        $scope.eventBrite = 'https://www.eventbrite.it/e/biglietti-pisa-coderdojo-11-19438615422?ref=elink';
         $scope.nextEvent = Math.floor((data - now) / (1000 * 60 * 60 * 24));
         $scope.eventIsSet = $scope.nextEvent >= 0;
       }
@@ -198,7 +198,7 @@
             'New School', [
               '<b>name:</b> ' + $scope.name,
               '<b>school:</b> ' + $scope.scuola,
-              '<b>classi:</b> ' + $scope.classi,
+              '<b>classi:</b> ' + $scope.classe,
               '<b>howknow:</b> ' + mailService.selectionToString($scope.howyouknow),
               '<b>note:</b> ' + $scope.note
             ]).success(function(data) {

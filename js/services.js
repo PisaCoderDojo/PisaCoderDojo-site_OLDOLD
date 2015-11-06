@@ -153,7 +153,7 @@
         }
       };
     }])
-    .factory('mailService', '$http', function($http) {
+    .factory('mailService', ['$http', function($http) {
       return {
         send: function(mail, subject, text) {
           return $http({
@@ -181,7 +181,7 @@
           return stringa;
         }
       }
-    })
+    }])
     .factory('imageService', ['$http', 'tokenService', function($http, tokenService) {
       return {
         upload: function(img) {
