@@ -1,10 +1,10 @@
-'use strict';
+(function() {
+  "use strict";
+  angular.module('coderDojoFilters', [])
 
-/* Filters */
-var coderDojoFilters = angular.module('coderDojoFilters', [])
-
-coderDojoFilters.filter('checkmark', function() {
-  return function(input) {
-    return input ? '\u2713' : '\u2718';
-  };
-});
+  .filter('checkmark', function() {
+    return function(input) {
+      return input ? '\u2713' : '\u2718';
+    };
+  });
+})();

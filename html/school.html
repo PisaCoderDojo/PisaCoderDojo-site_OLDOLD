@@ -1,0 +1,45 @@
+<div class="container container-fluid">
+  <p class="text-center">Compila la richiesta per organizzare un dojo nella tua scuola</p>
+  <form ng-submit="send()" class="form-horizontal" ng-hide="isSend">
+    <div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Nome referente</label>
+      <div class="col-sm-10">
+        <input ng-model="name" type="name" class="form-control" id="name" placeholder="Inserisci il tuo nome" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="mail" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <input ng-model="mail" type="email" class="form-control" id="mail" placeholder="Inserisci la tua mail" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="scuola" class="col-sm-2 control-label">Scuola</label>
+      <div class="col-sm-10">
+        <input ng-model="scuola" class="form-control" id="scuola" placeholder="Inserisci il nome della scuola" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="classe" class="col-sm-2 control-label">Classe/i</label>
+      <div class="col-sm-10">
+        <input ng-model="classe" class="form-control" id="classe" placeholder="Inserisci le classi che vuoi far partecipare" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="testo" class="col-sm-2 control-label">Come sei venuto a conoscenza</label>
+      <div class="col-sm-10">
+        <label class="checkbox-inline" ng-repeat="item in howyouknow" >
+          <input type="checkbox" ng-model="item.value"/>{{item.name}}
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="testo"  class="col-sm-2 control-label">Note libere</label>
+      <div class="col-sm-10">
+        <textarea ng-model="note" style="resize:none" class="form-control" rows="10" id="testo" required></textarea>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default col-sm-2 col-sm-offset-2">Invia</button>
+  </form>
+  <div ng-show="isSend">Inviata!</div>
+</div>
