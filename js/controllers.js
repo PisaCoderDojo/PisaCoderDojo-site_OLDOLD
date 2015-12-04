@@ -9,9 +9,9 @@
           $scope.eventIsSet = $scope.nextEvent>=0;
         });
         */
-        var data = new Date('2015-11-12');
+        var data = new Date('2015-12-10');
         var now = new Date().getTime();
-        $scope.eventBrite = 'https://www.eventbrite.it/e/biglietti-pisa-coderdojo-11-19438615422?ref=elink';
+        $scope.eventBrite = 'https://www.eventbrite.it/e/biglietti-pisa-coderdojo-12-19854207469?ref=elink';
         $scope.nextEvent = Math.floor((data - now) / (1000 * 60 * 60 * 24));
         $scope.eventIsSet = $scope.nextEvent >= 0;
       }
