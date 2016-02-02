@@ -13,5 +13,15 @@
     "name":"Luca Rinaldi",
     "text":"Laureato in Informatica all'Università di  Perugia, attualmente studia Informatica e Networking all'Università di Pisa e alla Scuola Superiore Sant'anna. Originario delle Marche il suo sogno nella vita lavorare nel campo dei servizi web.",
     "img":"img/personal/luca.jpg"
+  },
+  {
+    "name":"Mario Viti",
+    "text":"Laureando in Informatica presso l'Università di Pisa, ha precedentemente conseguito il diploma in arti multimediali e grafica all'Accademia di Belle Arti di Carrara. Originario di Massa Carrara ha una passione sconfinata per musica, disegno, cartoni animati e videogiochi.",
+    "img":"img/personal/mario.jpg"
+  },
+  {
+    "name":"Francesco Feola",
+    "text":"Laureato magistrale in Lingua e Letteratura Italiana all’Università di Pisa, dottorando di ricerca in Studi Italianistici presso il medesimo ateneo, giornalista cartaceo e online, scrittore qualche volta, ha aderito a Pisa CoderDojo per la sua propensione all’insegnamento, e per la consapevolezza che nessun campo ormai può fare a meno dell’informatica, neppure quello umanistico.",
+    "img":"img/personal/francesco.jpg"
   }
 ]

@@ -2,3 +2,6 @@
 node_modules
 bower_components
 img/article/*
+
+#mac merda
+.DS_Store
