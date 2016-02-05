@@ -3,7 +3,8 @@
   angular.module('coderDojoControllers', [])
     .controller('homeCtrl', ['$scope', 'event',
       function($scope, nextEvent) {
-        console.log(nextEvent)
+        nextEvent = nextEvent.data;
+        console.log(nextEvent.data);
         /*Event.next().success(function(data){
           $scope.eventBrite = Event.getEventBrite(data);
           $scope.nextEvent = Event.getDay(data);
