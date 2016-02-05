@@ -23,5 +23,10 @@
     "name":"Francesco Feola",
     "text":"Laureato magistrale in Lingua e Letteratura Italiana all’Università di Pisa, dottorando di ricerca in Studi Italianistici presso il medesimo ateneo, giornalista cartaceo e online, scrittore qualche volta, ha aderito a Pisa CoderDojo per la sua propensione all’insegnamento, e per la consapevolezza che nessun campo ormai può fare a meno dell’informatica, neppure quello umanistico.",
     "img":"img/personal/francesco.jpg"
+  },
+  {
+    "name":"Davide Balestri",
+    "text":"Laureando in Ingegneria Gestionale presso l'Università di Pisa. Appassionato fin da piccolo all'informatica e a tutto ciò che riguarda la multimedialità. Il suo desiderio é riuscire a far conoscere le potenzialità degli strumenti informatici che ci circondano in maniera semplice e alla portata di tutti.",
+    "img":"img/personal/davide_b.jpg"
   }
 ]

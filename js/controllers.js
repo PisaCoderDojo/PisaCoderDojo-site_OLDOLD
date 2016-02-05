@@ -1,17 +1,17 @@
 (function() {
   "use strict";
   angular.module('coderDojoControllers', [])
-    .controller('homeCtrl', ['$scope', 'Event',
-      function($scope, Event) {
+    .controller('homeCtrl', ['$scope', 'event',
+      function($scope, nextEvent) {
+        console.log(nextEvent)
         /*Event.next().success(function(data){
           $scope.eventBrite = Event.getEventBrite(data);
           $scope.nextEvent = Event.getDay(data);
           $scope.eventIsSet = $scope.nextEvent>=0;
-        });
-        */
-        var data = new Date('2015-12-10');
+        });*/
+        var data = new Date(nextEvent.date);
         var now = new Date().getTime();
-        $scope.eventBrite = 'https://www.eventbrite.it/e/biglietti-pisa-coderdojo-12-19854207469?ref=elink';
+        $scope.eventBrite = nextEvent.url + '?ref=elink';
         $scope.nextEvent = Math.floor((data - now) / (1000 * 60 * 60 * 24));
         $scope.eventIsSet = $scope.nextEvent >= 0;
       }

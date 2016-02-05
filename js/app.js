@@ -43,7 +43,11 @@
       $routeProvider
         .when('/', {
           templateUrl: 'html/home.html',
-          controller: 'homeCtrl'
+          controller: 'homeCtrl',
+          resolve: {
+            event: function($http) {
+              return $http.get('json/next-event.json');
+            }}
         })
         .when('/news', {
           title: 'notizie',
@@ -178,6 +182,5 @@
   myApp.controller('titleController', ['$scope', 'TitleService',
     function($scope, TitleService) {
       $scope.title = TitleService;
-    }
-  ]);
+  }]);
 }());
